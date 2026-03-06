@@ -13,3 +13,6 @@
 
 ## Trello
 [Trello Board](https://trello.com/b/jGi8ajuS/softwaresnakes-10-project-csce3444)
+
+## Scrum Meeting Times
+The group will meet during class hours for scrum meetings, alongside wednesdays at 6:30 PM.
