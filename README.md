@@ -16,3 +16,9 @@
 
 ## Scrum Meeting Times
 The group will meet during class hours for scrum meetings, alongside wednesdays at 6:30 PM online through Zoom.
+
+Join Zoom Meeting 
+https://us05web.zoom.us/j/83044713288?pwd=QFN6uw1LTIY9ZwaBh2ydrrL57aRbPw.1 
+Meeting ID: 830 4471 3288 
+Passcode: 3igRQJ 
+
