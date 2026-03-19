@@ -18,15 +18,53 @@
     --padding: 16px;
 }
 
+body {
+  font-family: 'K2D', sans-serif;
+  background-color: var(--light-gray);
+  color: var(--black);
+}
 
-/*profile and settings*/
-
-/*search bar for explore and friends pages*/
 
 
 
-/*commit: started a stylesheet that can be used for the whole wesbite
-added colors from figma stylesheet
-*/
+/*sidebar: profile and settings pages*/
+.sidebar{ 
+    width: 220px;
+    background: var(--mid-gray);
+    border-radius: var(--border-radius);
+    padding: 20px;
 
-/*(some of the) resources used: https://www.w3schools.com/css/css3_variables.asp*/
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.sidebar button{ 
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* layout wrapper: profile and settings pages*/
+.page {
+  padding: 20px;
+}
+
+.content {
+  display: flex;
+  gap: 20px;
+}
+
+
+
+
+
+
+/*search bar: explore and friends pages*/
+
+
+
+/*some resources:
+https://www.w3schools.com/cssref/index.php 
+https://www.w3schools.com/css/css3_variables.asp*/
