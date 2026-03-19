@@ -1,0 +1,32 @@
+:root{
+    /*primary colors*/
+    --primary-green: #90E626 ;
+    --primary-blue: #4272FF;
+    --primary-orange: #FF7E42;
+    --primary-yellow: #FFB343;
+    --primary-teal: #42EAFF;
+
+    /*neutrals*/
+    --white: #FFFFFF;
+    --light-gray: #F3F5F7;
+    --mid-gray: #D9D9D9;
+    --dark-gray: #6C7179;
+    --black: #0D1014;
+
+    /*layout*/
+    --border-radius: 20px;
+    --padding: 16px;
+}
+
+
+/*profile and settings*/
+
+/*search bar for explore and friends pages*/
+
+
+
+/*commit: started a stylesheet that can be used for the whole wesbite
+added colors from figma stylesheet
+*/
+
+/*(some of the) resources used: https://www.w3schools.com/css/css3_variables.asp*/
