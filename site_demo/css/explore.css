@@ -2,11 +2,19 @@
 /* 
     typically, you would include general designs
     in a shared, common stylesheet, but for now,
-    this will do fine. 
+    this will do fine please feel free to modify. 
 
 */
 
-p {text-align: left;}
+p {
+    text-align: left;
+}
+
+body {
+    margin: 0;
+    font-family: 'K2D';
+
+}
 
 .header {
     /* display: inline-flexbox; */
@@ -51,7 +59,5 @@ p {text-align: left;}
 
 .container {
     background: #F3F5F7;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 90%;
 }

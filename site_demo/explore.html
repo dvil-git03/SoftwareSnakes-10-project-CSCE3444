@@ -9,6 +9,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyDigiRoom - Explore</title>
     <link rel="stylesheet" href="css/explore.css">
+
+    <!-- This should probably be loaded locally, for now, as for the sake of demonstration, I will load it from Google's API. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=K2D:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -24,10 +31,21 @@
             <div class="header_logo"><a href=""><img src="images/smily_face.png" alt="Logo"></a></div>
             <div class="header_logo"><a href=""><img src="images/person_icon.png" alt="Logo"></a></div>
         </div>
+        <!-- I used the template from before to start as a basis,
+             something is probably wrong, but I can't figure it out. -->
+        <div class="header_center">
+            <h1>Explore</h1>
+        </div>
     </div>
 
     <div class="container">
+        <div class="exploreLeft">
+            <div class="exploreHeader">Explore<img src="images/globe_icon.png"></div>
+        </div>
+        <div class="exploreRight">
+            <input class="search" type="text" placeholder="Search Rooms">
 
+        </div>
     </div>
 </body>
 
