@@ -178,18 +178,18 @@ I think this should work for all webpages if everyone wants an easy to use topba
 
 /*=======PROFILE AND SETTINGS PAGES=======*/
 /* bethany: layout wrapper */
-.page {
+.prof-sett-page {
   padding: 20px;
 }
 
 /*bethany: sidebar + main layout*/
-.content {
+.prof-sett-content {
   display: flex;
   gap: 20px;
 }
 
 /*bethany: sidebar */
-.sidebar{ 
+.prof-sett-sidebar{ 
     width: 220px;
     background: var(--mid-gray);
     border-radius: var(--border-radius);
@@ -200,7 +200,7 @@ I think this should work for all webpages if everyone wants an easy to use topba
     justify-content: space-between;
 }
 
-.sidebar button{ 
+.prof-sett-sidebar button{ 
     display: block;
     width: 100%;
     border: none;
@@ -210,17 +210,17 @@ I think this should work for all webpages if everyone wants an easy to use topba
 }
 
 /*sidebar button states*/
-.sidebar .active{
+.prof-sett-sidebar .active{
     background: var(--primary-green);
 }
 
-.sidebar .logout {
+.prof-sett-sidebar .logout {
     background: var(--primary-yellow);
     margin-top: auto;
 }
 
 /*bethany: main profile/settings content*/
-.profile-settings-main {
+.prof-sett-main {
     flex: 1;
     background: var(--mid-gray);
     border-radius: var(--border-radius);
@@ -245,11 +245,11 @@ I think this should work for all webpages if everyone wants an easy to use topba
 }
 
 /*bethany: input containers*/
-.form {
+.profile-form {
     margin-top: 20px;
 }
 
-.form input{
+.profile-form input{
     width: 90%;
     padding: 12px;
     margin-bottom: 15px;
