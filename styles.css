@@ -31,8 +31,11 @@ body {
 
 I think this should work for all webpages if everyone wants an easy to use topbar:
 
-<header class="topbar">
-    <div class="mydigiroom-left">MyDigiRoom</div>
+ <header class="topbar">
+    <div class="mydigiroom-left">
+        <img src="topbarlogo.png" alt="MyDigiRoom Logo" class="topbar-logo">
+        <span>MyDigiRoom</span>
+    </div>
     <div class="icons">
         <span class="navbar-icons">🏠︎</span>
         <span class="navbar-icons">🌏︎</span>
@@ -42,7 +45,7 @@ I think this should work for all webpages if everyone wants an easy to use topba
         i just don't want to design them right now considering
         they'll be grey 'n stuff' -->
     </div>
-</header>
+   </header>
 */
 
     .topbar {
@@ -53,7 +56,26 @@ I think this should work for all webpages if everyone wants an easy to use topba
         background: #D9D9D9;
     }
 
+    .topbar-logo {
+        width: 60px;
+        height: 40px;
+        margin-right: 10px;
+    }
+
     /*==============LOGIN===============*/
+
+    .login-space {
+        display: flex;
+        align-items: center;
+        gap: 300px; /*so login and image are separated*/
+    }
+
+    .big-cat-image {
+        width: 600px;
+        height: 650px;
+        object-fit: cover;
+        border-radius: 12px;
+    }
 
     .login-container {
         width: 450px; 
@@ -67,7 +89,7 @@ I think this should work for all webpages if everyone wants an easy to use topba
     .login-page {
     height: 100vh;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     }
 
@@ -116,6 +138,7 @@ I think this should work for all webpages if everyone wants an easy to use topba
         
         cursor: pointer;
     }
+    
     /*dean: icons distance*/
     .icons {
         display: flex;
@@ -260,8 +283,20 @@ I think this should work for all webpages if everyone wants an easy to use topba
 }
 
 /*=======SETTINGS PAGE========*/
+.settings-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: left;
+    background: var(--light-gray);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
 
+.settings-group input{
+    width: auto;
 
+}
 
 
 /*some resources:
