@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>My Profile</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/main.css">
     <!--personal note: rel=type of file, href=where file is -->
     <!--
     -->
 </head>
 
 <body>
+    <script src="js/header_init.js"></script>
+    <div id="insert_header">
+        <h1>Header Loading</h1>
+    </div>
+    <script>set_header("My Profile");</script>
 
     <main class="prof-sett-page">
         <div class="prof-sett-content">
@@ -24,11 +30,11 @@
                 <h1>My Profile</h1>
 
                 <div class="profile-top">
-                    <div class = "avatar"></div>
+                    <div class="avatar"></div>
                     <p>Hello [name]!</p>
                 </div>
 
-                <div class ="profile-form">
+                <div class="profile-form">
                     <input type="text" placeholder="Email Address">
                     <input type="text" placeholder="Name">
                     <input type="text" placeholder="Username">
@@ -39,4 +45,5 @@
 
     </main>
 </body>
+
 </html>
