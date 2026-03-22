@@ -1,6 +1,7 @@
 <!-- Explore Page by Diego Villela Morua -->
 <!-- NOT FINAL -->
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyDigiRoom - Explore</title>
-    <link rel="stylesheet" href="css/explore.css">
+    <link rel="stylesheet" href="css/main.css">
 
     <!-- This should probably be loaded locally, for now, as for the sake of demonstration, I will load it from Google's API. -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,32 +20,115 @@
 </head>
 
 <body>
-    <div class="header">
-        <div class="header_left">
-            <div class="header_logo">
-                <a href="index.html"><img src="images/logo.png" alt="Logo"></a>
+    <!-- Loading header from js/header_init.js -->
+    <script src="js/header_init.js"></script>
+    <div id="insert_header">
+        <h1>Header Loading</h1>
+    </div>
+    <script>set_header("Explore");</script>
+
+    <div class="explore_main">
+        <div class="explore_container">
+            <div class="explore_left">
+                <div class="explore_header">Explore</div>
+
+                <!-- These spots are placeholders as of right now, since we require proper scripting for the functionality required. -->
+                <div class="explore_room">
+                    <img src="images/smily_face.png">
+                    <div class="explore_room_test">
+                        <h3>JohnDoe's Room</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua.
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                            commodo consequat.
+                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                            pariatur.
+                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+                            anim id est laborum.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="explore_room">
+                    <img src="images/smily_face.png">
+                    <div class="explore_room_test">
+                        <h3>JaneDoe's Room</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua.
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                            commodo consequat.
+                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                            pariatur.
+                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+                            anim id est laborum.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="explore_room">
+                    <img src="images/smily_face.png">
+                    <div class="explore_room_test">
+                        <h3>Alice's Room</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua.
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                            commodo consequat.
+                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                            pariatur.
+                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+                            anim id est laborum.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explore_right">
+                <input class="explore_search" type="text" placeholder="Search Rooms">
+                <div class="explore_friends">
+                    <h3>Suggested Friends</h3>
+
+                    <!-- Same as before, these accounts are placeholders meant to demonstrate, not the final design. -->
+                    <div class="explore_account">
+                        <img src="images/person_icon.png">
+                        <div class="explore_account_info">
+                            <b>JohnDoe</b>
+                            <p>Status: Working</p>
+                        </div>
+                    </div>
+
+                    <div class="explore_account">
+                        <img src="images/person_icon.png">
+                        <div class="explore_account_info">
+                            <b>JaneDoe</b>
+                            <p>Status: Busy</p>
+                        </div>
+                    </div>
+
+                    <div class="explore_account">
+                        <img src="images/person_icon.png">
+                        <div class="explore_account_info">
+                            <b>Alice</b>
+                            <p>Status: Relaxing</p>
+                        </div>
+                    </div>
+
+                    <div class="explore_account">
+                        <img src="images/person_icon.png">
+                        <div class="explore_account_info">
+                            <b>Bob</b>
+                            <p>Status: Playing</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="header_right">
-            <div class="header_logo"><a href=""><img src="images/house_icon.png" alt="Logo"></a></div>
-            <div class="header_logo"><a href=""><img src="images/globe_icon.png" alt="Logo"></a></div>
-            <div class="header_logo"><a href=""><img src="images/smily_face.png" alt="Logo"></a></div>
-            <div class="header_logo"><a href=""><img src="images/person_icon.png" alt="Logo"></a></div>
-        </div>
-        <!-- I used the template from before to start as a basis,
-             something is probably wrong, but I can't figure it out. -->
-        <div class="header_center">
-            <h1>Explore</h1>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="exploreLeft">
-            <div class="exploreHeader">Explore<img src="images/globe_icon.png"></div>
-        </div>
-        <div class="exploreRight">
-            <input class="search" type="text" placeholder="Search Rooms">
-
+        <div class="explore_footer">
+            <a href="explore.html">
+                Click on a room to visit it!
+            </a>
         </div>
     </div>
 </body>
