@@ -1,3 +1,5 @@
-## Site Demo (Sprint 1)
+## Site Demo (Sprint 2)
 
-**This branch is our site Demonstration for Sprint 1 for our Project**
+**This branch is the work and progress for our site demo for the second sprint.**
+
+Please ensure all pushes to this branch are done using pull requests, to ensure proper quality and standards are followed.
