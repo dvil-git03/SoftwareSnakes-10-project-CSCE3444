@@ -12,10 +12,10 @@ function set_header(nameplate){
             <h1>${nameplate}</h1>
         </div>
         <div class="header_right">
-            <div class="header_logo"><a href="homepage.html"><img src="images/house_icon.png" alt="Logo"></a></div>
-            <div class="header_logo"><a href=""><img src="images/globe_icon.png" alt="Logo"></a></div>
-            <div class="header_logo"><a href=""><img src="images/smily_face.png" alt="Logo"></a></div>
-            <div class="header_logo"><a href="log_in.html"><img src="images/person_icon.png" alt="Logo"></a></div>
+            <div class="header_logo"><a href="myroom.html"><img src="images/house_icon.png" alt="Logo"></a></div>
+            <div class="header_logo"><a href="explore.html"><img src="images/globe_icon.png" alt="Logo"></a></div>
+            <div class="header_logo"><a href="friends.html"><img src="images/smily_face.png" alt="Logo"></a></div>
+            <div class="header_logo"><a href="profile.html"><img src="images/person_icon.png" alt="Logo"></a></div>
         </div>
     </div>
     `
