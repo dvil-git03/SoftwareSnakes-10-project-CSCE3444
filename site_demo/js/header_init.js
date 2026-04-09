@@ -5,7 +5,9 @@ function set_header(nameplate){
     <div id="main_header" class="header">
         <div class="header_left">
             <div class="header_logo">
-                <a href="homepage.html"><img src="images/logo.png" alt="Logo"></a>
+                    <a href="home.html">
+                        <img class="main-logo" src="images/logo.png" alt="Logo">
+                    </a>
             </div>
         </div>
         <div class="header_center">
