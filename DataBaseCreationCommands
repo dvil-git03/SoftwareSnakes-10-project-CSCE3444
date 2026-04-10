@@ -1,0 +1,41 @@
+-- These commands are used to create the database, complete with some extra user information for logins and such. This is intended to be used with PostgreSQL, so it may no run properly on other versions.
+create table UserInfo (
+UserID int PRIMARY KEY,
+UserName varchar(30) NOT NULL UNIQUE,
+email varchar(255) NOT NULL UNIQUE,
+college varchar(100)
+);
+create table hashpass (
+userID int NOT NULL,
+pwordhash varchar(30)
+);
+create table userpass (
+UserID INT NOT NULL,
+password varchar(30)
+);
+create table friends (
+userID int NOT NULL,
+friendID int NOT NULL
+);
+create table UserRoom (
+UserID int NOT NULL,
+backgroundID int NOT NULL,
+RoomItem1ID int,
+RoomItem2ID int,
+RoomItem3ID int,
+RoomItem4ID int,
+RoomItem5ID int
+);
+create table ObjectData (
+ItemID int primary key NOT NULL,
+imagedata bytea NOT NULL
+);
+alter table friends add constraint fk_userID foreign key (UseriD) references UserInfo(UserID) ON UPDATE CASCADE ON DELETE CASCADE;
+alter table UserRoom add constraint fk_userID foreign key (UseriD) references UserInfo(UserID) ON UPDATE CASCADE ON DELETE CASCADE;
+alter table hashpass add constraint fk_userID foreign key (UseriD) references UserInfo(UserID) ON UPDATE CASCADE ON DELETE CASCADE;
+alter table userpass add constraint fk_userID foreign key (UseriD) references UserInfo(UserID) ON UPDATE CASCADE ON DELETE CASCADE;
+alter table userroom add constraint fk_ItemID foreign key (backgroundID) references objectdata(ItemID) ON UPDATE CASCADE ON DELETE CASCADE;
+insert into userinfo (userID, email, college, username) values (01, 'admin@mydigiroom.com', 'NULL', 'admin'),
+(02, 'ralph@gmail.com', 'University of North Texas', 'ralphl0rd106'), (03, 'becca@gmail.com', 'University of Arlington', 'beccathagaymer');
+insert into friends (userID, friendID) values ( 02, 03 ), ( 03, 02 );
+insert into hashpass ( userID, pwordhash ) values ( 01, 'admin' ), (02, 'awdkgbjna'), (03, 'blnsoia');
