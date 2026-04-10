@@ -176,6 +176,7 @@ body {
     border: none;
     margin-top: 20px;
     margin-bottom: 20px;
+    cursor: pointer;
 }
 
 .sign_up_button{
@@ -186,6 +187,7 @@ body {
     border: none;
     margin-top: 20px;
     margin-bottom: 50px;
+    cursor: pointer;
 }
 
 .left_of_log_in{
