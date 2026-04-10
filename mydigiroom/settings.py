@@ -74,11 +74,14 @@ WSGI_APPLICATION = 'mydigiroom.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
+    # This configuration assumes you are running a PostgreSQL server locally on your computer. This is only a test at the moment.
+    # Ensure all your login settings, database name, and other settings listed here are correct. Please check the Django documentation
+    # for more information.
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mydigiroom',
-        'USER': 'diego', # for testing, this will likely need to be changed
-        'PASSWORD': 'BoomyDuple22',
+        'NAME': 'CHANGE THIS',
+        'USER': 'CHANGE THIS', 
+        'PASSWORD': 'CHANGE THIS',
         'HOST': 'localhost',
         'PORT': '5432'
     }
