@@ -129,28 +129,33 @@ body {
     border-radius: 12px;
     border: 1px solid var(--dark-gray);
     padding: 40px 30px;
-    margin: 0 auto;
+    margin: 0;
+    margin-left: 12%;
+    margin-top: -50px;
 
-    width: 100%;
-    height: fit-content;
+    width: 65%;
+    height: fit-content(200px,30%);
 
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+
     gap: 15px;
     
 }
 
 .log_in img {
-    width: 150px;
-    margin-bottom: 10px;
+    margin-left: 5%;
+    width: 75%;
+    margin-top: 25px;
+    margin-bottom: 30px;
 }
 
 .log_in_placement {
-    width: 100%;
+    width: 90%;
     text-align: center;
-    margin-bottom: 15px;
+    margin: auto;
+    margin-bottom: 10px;
 }
 
 .log_in_text {
@@ -160,7 +165,7 @@ body {
     border: none;
     text-align: left;
     background-color: #d9d9d9;
-    font-size: 16px;
+    font-size: 12px;
 }
 
 .log_in_button {
@@ -169,17 +174,30 @@ body {
     padding: 12px;
     border-radius: 8px;
     border: none;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.sign_up_button{
+    background-color: var(--primary-green);
+    width: 50%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    margin-top: 20px;
+    margin-bottom: 50px;
 }
 
 .left_of_log_in{
-    height: 100%;
-    overflow: hidden;
+    height: 90%;
 }
 
 .left_of_log_in img{
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
+    margin-left: 60px;
+    margin-top: 45px;
+    height: 80%;
+    width: 85%;
+    object-fit: contain;
 }
     
 
@@ -450,7 +468,9 @@ hr {
 /*=======PROFILE AND SETTINGS PAGES=======*/
 /* bethany: layout wrapper */
 .prof-sett-page {
-    padding: 20px;
+    font-family: 'K2D';
+    width: 90%;
+    margin: 40px auto;
 }
 
 /*bethany: sidebar + main layout*/
