@@ -1,6 +1,6 @@
 -- These commands are used to create the database, complete with some extra user information for logins and such. This is intended to be used with PostgreSQL, so it may no run properly on other versions.
 create table UserInfo (
-UserID int PRIMARY KEY,
+UserID int PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
 UserName varchar(30) NOT NULL UNIQUE,
 email varchar(255) NOT NULL UNIQUE,
 college varchar(100)
@@ -27,7 +27,7 @@ RoomItem4ID int,
 RoomItem5ID int
 );
 create table ObjectData (
-ItemID int primary key NOT NULL,
+ItemID int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 imagedata bytea NOT NULL
 );
 alter table friends add constraint fk_userID foreign key (UseriD) references UserInfo(UserID) ON UPDATE CASCADE ON DELETE CASCADE;
@@ -35,7 +35,7 @@ alter table UserRoom add constraint fk_userID foreign key (UseriD) references Us
 alter table hashpass add constraint fk_userID foreign key (UseriD) references UserInfo(UserID) ON UPDATE CASCADE ON DELETE CASCADE;
 alter table userpass add constraint fk_userID foreign key (UseriD) references UserInfo(UserID) ON UPDATE CASCADE ON DELETE CASCADE;
 alter table userroom add constraint fk_ItemID foreign key (backgroundID) references objectdata(ItemID) ON UPDATE CASCADE ON DELETE CASCADE;
-insert into userinfo (userID, email, college, username) values (01, 'admin@mydigiroom.com', 'NULL', 'admin'),
-(02, 'ralph@gmail.com', 'University of North Texas', 'ralphl0rd106'), (03, 'becca@gmail.com', 'University of Arlington', 'beccathagaymer');
-insert into friends (userID, friendID) values ( 02, 03 ), ( 03, 02 );
-insert into hashpass ( userID, pwordhash ) values ( 01, 'admin' ), (02, 'awdkgbjna'), (03, 'blnsoia');
+insert into userinfo (email, college, username) values ('admin@mydigiroom.com', 'NULL', 'admin'),
+('ralph@gmail.com', 'University of North Texas', 'ralphl0rd106'), ('becca@gmail.com', 'University of Arlington', 'beccathagaymer');
+insert into friends (userID, friendID) values ( 2, 3 ), ( 3, 2 );
+insert into hashpass ( userID, pwordhash ) values ( 1, 'admin' ), (2, 'awdkgbjna'), (3, 'blnsoia');
