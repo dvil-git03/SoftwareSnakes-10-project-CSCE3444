@@ -20,8 +20,8 @@
         <div class="prof-sett-content">
             <aside class="prof-sett-sidebar">
                 <div>
-                    <button class="active">My Profile</button>
-                    <button>Settings</button>
+                    <button id="nav-profile" class="active">My Profile</button>
+                    <button id="nav-settings">Settings</button>
                 </div>
                 <button class="logout">Logout</button>
             </aside>
@@ -31,19 +31,23 @@
 
                 <div class="profile-top">
                     <div class="avatar"></div>
-                    <p>Hello [name]!</p>
+                    <p id="welcome-message">Hello!</p>
                 </div>
 
                 <div class="profile-form">
-                    <input type="text" placeholder="Email Address">
-                    <input type="text" placeholder="Name">
-                    <input type="text" placeholder="Username">
-                    <input type="password" placeholder="Change Password">
+                    <input id="email" type="text" placeholder="Email Address">
+                    <input id="name" type="text" placeholder="Name">
+                    <input id="username" type="text" placeholder="Username">
+                    <input id="password" type="text" placeholder="Change Password">
                 </div>
             </section>
         </div>
 
     </main>
 </body>
+
+<script src="js/profileChecker.js"></script>
+<script src="js/subtabProfileSettings.js"></script>
+<script src="js/profileForm.js"></script>
 
 </html>
