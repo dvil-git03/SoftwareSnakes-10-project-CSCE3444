@@ -4,6 +4,11 @@
     currently needs to be cleaned up, 
     but for now,this will work.
 */
+@import url('https://fonts.googleapis.com/css2?family=K2D:wght@400;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
 
 :root{
     /*primary colors*/
@@ -30,6 +35,12 @@ p {
     text-align: left;
 }
 
+/*styling links*/
+a{
+    text-decoration: none;
+}
+
+
 body {
     margin: 0px;
     padding: 0px;
@@ -38,14 +49,20 @@ body {
     color: var(--black);
 }
 
+/*==============HEADER===============*/
+
 .header {
-    /* display: inline-flexbox; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     /* border: 5px outset red; */
     /* margin:0px;
     padding:0px; */
-    width: 100%;
-    background-color: #d9d9d9;
     text-align: center;
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #d9d9d9;
+    
 }
 
 .header_left {
@@ -53,6 +70,7 @@ body {
     display: inline-flex;
     text-align: center;
     padding: 5px;
+    padding-left: 15px;
     /* border: 5px inset blue; */
 }
 
@@ -64,63 +82,126 @@ body {
     padding-left: 15px;
     padding-right: 15px;
     padding: 5px;
+    cursor:pointer;
+    justify-content: center;
     /* padding-right: 15px; */
 }
 
-.header_center {
-    /* float: right; */
-    display: inline-flex;
-    text-align: center;
+.main-logo{
+    width: auto;
+    height: 30px;
+    padding-top: 5px;
 }
 
 
-.header_right {
-    float: right;
+.header_center {
+    /* float: right; */
+    display: flex;
+    text-align: center;
+}
+
+.header_center h1 {
+    /* float: right; */
+    font-family: 'K2D', sans-serif;
+    font-size: 28px;
+    margin: 0px;
     display: inline-flex;
     text-align: center;
-    padding: 5px;
-    /* border: 5px inset blue; */
+    padding-left: 5px;
+}
+.header_right img{
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    gap: 15px;
 }
 
 /*==============LOGIN===============*/
 
 .container {
     display: grid;
-    grid-template-columns: 2fr 1fr;
-    height: 100%;
+    grid-template-columns: 1fr 1fr;
+    height: 100vh;
+    align-items: center;
 }
 
 .log_in {
-    text-align: center;
-    border: 2px inset #6c7179;
-    padding-top: 25%;
-    padding-bottom: 0%;
     border-radius: 12px;
-    margin-top: 20%;
+    border: 1px solid var(--dark-gray);
+    padding: 40px 30px;
+    margin: 0;
+    margin-left: 12%;
+    margin-top: -50px;
+
+    width: 65%;
+    height: fit-content(200px,30%);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    gap: 15px;
+    
+}
+
+.log_in img {
+    margin-left: 5%;
+    width: 75%;
+    margin-top: 25px;
+    margin-bottom: 30px;
 }
 
 .log_in_placement {
+    width: 90%;
     text-align: center;
-    padding: 5%;
+    margin: auto;
+    margin-bottom: 10px;
 }
 
 .log_in_text {
-    display: grid;
-    width: 95%;
-    padding-top: 10px;
-    padding-bottom: 20px;
-    padding-left: 10px;
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
     text-align: left;
-    /* text-align: top; */
-    /* padding-top: 5px; */
-    /* padding-right: 50px; */
     background-color: #d9d9d9;
-    font-size: 16px;
+    font-size: 12px;
 }
 
 .log_in_button {
-    padding: 10%;
+    background-color: var(--primary-yellow);
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
 }
+
+.sign_up_button{
+    background-color: var(--primary-green);
+    width: 50%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    cursor: pointer;
+}
+
+.left_of_log_in{
+    height: 90%;
+}
+
+.left_of_log_in img{
+    margin-left: 60px;
+    margin-top: 45px;
+    height: 80%;
+    width: 85%;
+    object-fit: contain;
+}
+    
 
 /*==============EXPLORE===============*/
 
@@ -389,7 +470,9 @@ hr {
 /*=======PROFILE AND SETTINGS PAGES=======*/
 /* bethany: layout wrapper */
 .prof-sett-page {
-    padding: 20px;
+    font-family: 'K2D';
+    width: 90%;
+    margin: 40px auto;
 }
 
 /*bethany: sidebar + main layout*/
@@ -417,6 +500,7 @@ hr {
     padding: 10px;
     border-radius: 8px;
     margin-bottom: 15px;
+    cursor: pointer;
 }
 
 /*sidebar button states*/
