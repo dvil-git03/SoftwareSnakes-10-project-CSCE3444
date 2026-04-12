@@ -4,7 +4,7 @@
     This is done to reduce copying and pasting this element for each page of the website.
 */
 
-function set_header(nameplate) {
+function setHeader(nameplate) {
     const element = document.getElementById("insert_header");
 
     element.innerHTML = `

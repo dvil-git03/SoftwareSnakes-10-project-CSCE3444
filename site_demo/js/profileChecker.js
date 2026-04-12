@@ -22,20 +22,20 @@ function updateWelcomeMessage() {
 
 function logoutButtonHandler() {
     const user = localStorage.getItem("loggedIn");
-    const logoutBtn = document.querySelector(".logout");
+    const logoutButton = document.querySelector(".logout");
 
-    if (!logoutBtn) return;
+    if (!logoutButton) return;
 
     if (user) {
-        logoutBtn.style.display = "block";
+        logoutButton.style.display = "block";
 
-        logoutBtn.addEventListener("click", () => {
+        logoutButton.addEventListener("click", () => {
             localStorage.removeItem("loggedIn");
             window.location.href = "log_in.html";
         });
 
     } else {
-        logoutBtn.style.display = "none";
+        logoutButton.style.display = "none";
     }
 }
 
