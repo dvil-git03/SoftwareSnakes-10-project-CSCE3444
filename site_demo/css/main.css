@@ -10,9 +10,9 @@
     box-sizing: border-box;
 }
 
-:root{
+:root {
     /*primary colors*/
-    --primary-green: #90E626 ;
+    --primary-green: #90E626;
     --primary-blue: #4272FF;
     --primary-orange: #FF7E42;
     --primary-yellow: #FFB343;
@@ -36,7 +36,7 @@ p {
 }
 
 /*styling links*/
-a{
+a {
     text-decoration: none;
 }
 
@@ -62,10 +62,10 @@ body {
     width: 100%;
     padding: 10px 20px;
     background-color: #d9d9d9;
-    
+
 }
 
-.header_left {
+.header-left {
     float: left;
     display: inline-flex;
     text-align: center;
@@ -74,7 +74,7 @@ body {
     /* border: 5px inset blue; */
 }
 
-.header_logo {
+.header-logo {
     float: left;
     display: inline-flex;
     /* border: 5px inset green; */
@@ -82,25 +82,25 @@ body {
     padding-left: 15px;
     padding-right: 15px;
     padding: 5px;
-    cursor:pointer;
+    cursor: pointer;
     justify-content: center;
     /* padding-right: 15px; */
 }
 
-.main-logo{
+.main-logo {
     width: auto;
     height: 30px;
     padding-top: 5px;
 }
 
 
-.header_center {
+.header-center {
     /* float: right; */
     display: flex;
     text-align: center;
 }
 
-.header_center h1 {
+.header-center h1 {
     /* float: right; */
     font-family: 'K2D', sans-serif;
     font-size: 28px;
@@ -109,7 +109,8 @@ body {
     text-align: center;
     padding-left: 5px;
 }
-.header_right img{
+
+.header-right img {
     width: 30px;
     height: 30px;
     object-fit: contain;
@@ -125,7 +126,7 @@ body {
     align-items: center;
 }
 
-.log_in {
+.log-in {
     border-radius: 12px;
     border: 1px solid var(--dark-gray);
     padding: 40px 30px;
@@ -134,31 +135,31 @@ body {
     margin-top: -50px;
 
     width: 65%;
-    height: fit-content(200px,30%);
+    height: fit-content(200px, 30%);
 
     display: flex;
     flex-direction: column;
     justify-content: center;
 
     gap: 15px;
-    
+
 }
 
-.log_in img {
+.log-in img {
     margin-left: 5%;
     width: 75%;
     margin-top: 25px;
     margin-bottom: 30px;
 }
 
-.log_in_placement {
+.log-in-placement {
     width: 90%;
     text-align: center;
     margin: auto;
     margin-bottom: 10px;
 }
 
-.log_in_text {
+.log-in-text {
     width: 100%;
     padding: 12px;
     border-radius: 8px;
@@ -168,7 +169,7 @@ body {
     font-size: 12px;
 }
 
-.log_in_button {
+.log-in-button {
     background-color: var(--primary-yellow);
     width: 100%;
     padding: 12px;
@@ -179,7 +180,7 @@ body {
     cursor: pointer;
 }
 
-.sign_up_button{
+.sign-up-button {
     background-color: var(--primary-green);
     width: 50%;
     padding: 12px;
@@ -190,22 +191,22 @@ body {
     cursor: pointer;
 }
 
-.left_of_log_in{
+.left-of-log-in {
     height: 90%;
 }
 
-.left_of_log_in img{
+.left-of-log-in img {
     margin-left: 60px;
     margin-top: 45px;
     height: 80%;
     width: 85%;
     object-fit: contain;
 }
-    
+
 
 /*==============EXPLORE===============*/
 
-.explore_main {
+.explore-main {
     font-family: 'K2D';
     width: 90%;
     margin: 40px auto;
@@ -214,16 +215,16 @@ body {
     padding: 30px;
 }
 
-.explore_container {
+.explore-container {
     display: flex;
     gap: 40px;
 }
 
-.explore_left {
+.explore-left {
     flex: 2;
 }
 
-.explore_header {
+.explore-header {
     background: #ff7a3c;
     color: white;
     padding: 20px 30px;
@@ -233,46 +234,46 @@ body {
     margin-bottom: 30px;
 }
 
-.explore_header img {
+.explore-header img {
     display: inline-block;
 }
 
-.explore_room {
+.explore-room {
     display: flex;
     gap: 20px;
     margin-bottom: 30px;
     align-items: flex-start;
 }
 
-.explore_room img {
+.explore-room img {
     object-fit: contain;
     width: 300px;
     border-radius: 5px;
     border: 10px #333
 }
 
-.explore_room_text {
+.explore-room-text {
     width: 200px;
     word-wrap: break-word;
 }
 
-.explore_room_text h3 {
+.explore-room-text h3 {
     margin: 0;
     color: #ff7a3c;
 }
 
-.explore_room_text p {
+.explore-room-text p {
     font-size: 14px;
     color: #333
 }
 
-.explore_right {
+.explore-right {
     flex: 1;
     display: flex;
     flex-direction: column;
 }
 
-.explore_search {
+.explore-search {
     /* You shouldn't need to specify such an exact width, but I can't get this to align as I want it to without doing... this. */
     width: 562px;
     padding: 12px;
@@ -281,36 +282,33 @@ body {
     margin-bottom: 20px;
 }
 
-.explore_friends {
+.explore-friends {
     border: 2px solid #333;
     border-radius: 8px;
     padding: 15px;
     padding-top: 0px;
     background: #eee;
     flex-grow: 1;
-}
-
-.explore_friends {
     margin-top: 0;
 }
 
-.explore_account {
+.explore-account {
     display: flex;
     gap: 10px;
     align-items: center;
 }
 
-.explore_account img {
+.explore-account img {
     width: 50px;
     height: 50px;
     border-radius: 5px;
 }
 
-.explore_account_info b {
+.explore-account-info b {
     color: #ff7a3c
 }
 
-.explore_footer {
+.explore-footer {
     text-align: right;
     margin-top: 30px;
     font-size: 18px;
