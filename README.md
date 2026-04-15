@@ -24,13 +24,13 @@ Passcode: 3igRQJ
 
 ## Run Server
 To run and develop the proof of concept, install Django using PIP (Python's Package Manager).
-``pip install django ``.
+``pip install django psycopg2``.
 
 Before you can run the server, you must launch your PostgreSQL server. Modify the settings in `mydigiroom/settings.py` to match the settings of
 your PostgreSQL account. Then you must create a migration to move Django's database modifications onto your database, conduct this doing 
 ` python manage.py makemigrations` , and then `python manage.py migrate` to complete the migration.
 
-Then, before running, ensure your PostgreSQL server is running and your login and settings are correct in `mydigiroom/settings.pu`.
+Then, before running, ensure your PostgreSQL server is running and your login and settings are correct in `mydigiroom/settings.py`.
 After ensuring all settings are correct, we will launch the server with
 `` python manage.py runserver ``.
 
@@ -45,6 +45,7 @@ Examples include:
 - /users/settings
 - /users/friends
 - /users/explore
+
 The header should direct you to the correct pages as well.
 
 If you have any questions, please contact Diego. :)
