@@ -30,7 +30,7 @@ Before you can run the server, you must launch your PostgreSQL server. Modify th
 your PostgreSQL account. Then you must create a migration to move Django's database modifications onto your database, conduct this doing 
 ` python manage.py makemigrations` , and then `python manage.py migrate` to complete the migration.
 
-Then, before running, ensure your PostgreSQL server is running and your login and settings are correct in `mydigiroom/settings.pu`.
+Then, before running, ensure your PostgreSQL server is running and your login and settings are correct in `mydigiroom/settings.py`.
 After ensuring all settings are correct, we will launch the server with
 `` python manage.py runserver ``.
 
