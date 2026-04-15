@@ -21,7 +21,7 @@ function authenticate(username, password) {
 
         localStorage.setItem("loggedIn", username);
 
-        window.location.href = "myroom.html";
+        window.location.href = "/users/myroom";
     } else {
         document.getElementById("error").textContent = "Invalid username or password. Please try again.";
     }

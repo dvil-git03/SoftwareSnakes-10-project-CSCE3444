@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,16 +6,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyDigiRoom - Signup</title>
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
 
 <body>
     <div class="container">
         <div class="left-of-log-in">
-            <img src="images/bigcat.png" alt="Big Cat">
+            <img src="{% static 'images/bigcat.png' %}" alt="Big Cat">
         </div>
         <div class="log-in">
-            <img src="images/logo.png" alt="Logo">
+            <img src="{% static 'images/logo.png' %}" alt="Logo">
             <div class="log-in-placement">
                 <input type="text" class="log-in-text" id="email" placeholder="Email Address">
             </div>
@@ -27,7 +28,7 @@
             <div class="log-in-placement">
                 <input type="text" class="log-in-text" id="password" placeholder="Password">
             </div>
-            <a href="myroom.html">
+            <a href="/authenticate/login">
                 <div class="log-in-placement">
                     <button class="sign-up-button" type="button">Sign Up</button>
                 </div>

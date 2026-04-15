@@ -31,7 +31,7 @@ function logoutButtonHandler() {
 
         logoutButton.addEventListener("click", () => {
             localStorage.removeItem("loggedIn");
-            window.location.href = "log_in.html";
+            window.location.href = "/authenticate/login";
         });
 
     } else {
