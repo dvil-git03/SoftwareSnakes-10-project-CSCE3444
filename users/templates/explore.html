@@ -1,7 +1,4 @@
-<!-- Explore Page by Diego Villela Morua -->
-<!-- NOT FINAL -->
-
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,33 +6,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyDigiRoom - Explore</title>
-    <link rel="stylesheet" href="css/main.css">
-
-    <!-- This should probably be loaded locally, for now, as for the sake of demonstration, I will load it from Google's API. -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=K2D:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
-        rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
 
 <body>
     <!-- Loading header from js/header_init.js -->
-    <script src="js/header_init.js"></script>
+    <script src="{% static 'js/header_init.js' %}"></script>
     <div id="insert_header">
         <h1>Header Loading</h1>
     </div>
-    <script>set_header("Explore");</script>
+    <script>setHeader("Explore");</script>
 
-    <div class="explore_main">
-        <div class="explore_container">
-            <div class="explore_left">
-                <div class="explore_header">Explore</div>
+    <div class="explore-main">
+        <div class="explore-container">
+            <div class="explore-left">
+                <div class="explore-header">Explore</div>
 
                 <!-- These spots are placeholders as of right now, since we require proper scripting for the functionality required. -->
-                <div class="explore_room">
-                    <img src="images/smily_face.png">
-                    <div class="explore_room_test">
+                <div class="explore-room">
+                    <img src="{% static 'images/smily_face.png' %}">
+                    <div class="explore-room-test">
                         <h3>JohnDoe's Room</h3>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
@@ -50,9 +40,9 @@
                     </div>
                 </div>
 
-                <div class="explore_room">
-                    <img src="images/smily_face.png">
-                    <div class="explore_room_test">
+                <div class="explore-room">
+                    <img src="{% static 'images/smily_face.png' %}">
+                    <div class="explore-room-test">
                         <h3>JaneDoe's Room</h3>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
@@ -67,9 +57,9 @@
                     </div>
                 </div>
 
-                <div class="explore_room">
-                    <img src="images/smily_face.png">
-                    <div class="explore_room_test">
+                <div class="explore-room">
+                    <img src="{% static 'images/smily_face.png' %}">
+                    <div class="explore-room-test">
                         <h3>Alice's Room</h3>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
@@ -85,39 +75,39 @@
                 </div>
             </div>
 
-            <div class="explore_right">
-                <input class="explore_search" type="text" placeholder="Search Rooms">
-                <div class="explore_friends">
+            <div class="explore-right">
+                <input class="explore-search" type="text" placeholder="Search Rooms">
+                <div class="explore-friends">
                     <h3>Suggested Friends</h3>
 
                     <!-- Same as before, these accounts are placeholders meant to demonstrate, not the final design. -->
-                    <div class="explore_account">
-                        <img src="images/person_icon.png">
-                        <div class="explore_account_info">
+                    <div class="explore-account">
+                        <img src="{% static 'images/person_icon.png' %}">
+                        <div class="explore-account-info">
                             <b>JohnDoe</b>
                             <p>Status: Working</p>
                         </div>
                     </div>
 
-                    <div class="explore_account">
-                        <img src="images/person_icon.png">
-                        <div class="explore_account_info">
+                    <div class="explore-account">
+                        <img src="{% static 'images/person_icon.png' %}">
+                        <div class="explore-account-info">
                             <b>JaneDoe</b>
                             <p>Status: Busy</p>
                         </div>
                     </div>
 
-                    <div class="explore_account">
-                        <img src="images/person_icon.png">
-                        <div class="explore_account_info">
+                    <div class="explore-account">
+                        <img src="{% static 'images/person_icon.png' %}">
+                        <div class="explore-account-info">
                             <b>Alice</b>
                             <p>Status: Relaxing</p>
                         </div>
                     </div>
 
-                    <div class="explore_account">
-                        <img src="images/person_icon.png">
-                        <div class="explore_account_info">
+                    <div class="explore-account">
+                        <img src="{% static 'images/person_icon.png' %}">
+                        <div class="explore-account-info">
                             <b>Bob</b>
                             <p>Status: Playing</p>
                         </div>
@@ -125,7 +115,7 @@
                 </div>
             </div>
         </div>
-        <div class="explore_footer">Click on a room to visit it!</div>
+        <div class="explore-footer">Click on a room to visit it!</div>
     </div>
 </body>
 

@@ -1,53 +1,33 @@
-<!--dean's note: trying to imitate the myroom page-->
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>My Room</title>
-        <link rel="stylesheet" href="{% static 'css/main.css' %}">
-    </head>
 
-    <body>
-        <div id="main_header" class="header">
-        <div class="header_left">
-            <div class="header_logo">
-                <a href="homepage.html"><img src="{% static 'images/logo.png' %}" alt="Logo"></a>
-            </div>
-        </div>
-        <div class="header_center">
-            <h1>Header Test</h1>
-        </div>
-        <div class="header_right">
-            <div class="header_logo"><a href="homepage.html"><img src="{% static 'images/house_icon.png' %}" alt="Logo"></a></div>
-            <div class="header_logo"><a href=""><img src="{% static 'images/globe_icon.png' %}" alt="Logo"></a></div>
-            <div class="header_logo"><a href=""><img src="{% static 'images/smily_face.png' %}" alt="Logo"></a></div>
-            <div class="header_logo"><a href="log_in.html"><img src="{% static 'images/person_icon.png' %}" alt="Logo"></a></div>
-        </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyDigiRoom - My Room</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+
+<body>
+    <script src="{% static 'js/header_init.js' %}"></script>
+    <div id="insert_header">
+        <h1>Header Loading</h1>
     </div>
+    <script>setHeader("My Room");</script>
     <main>
-        <!--dean's note: primary background block for room-->
         <div class="room-container">
             <h1 id="room-title">MyRoomName</h1>
-
-            <!--dean's note: scripting used here for expansion of the
-    edit button. NEEDS MORE EDITING TO FIT THE ORIGINAL MODEL!
-    I'll try to shrink and add objects later.
-    
-    basically it links to the pencilButton function which links
-    to the primary edit button, and removes/adds a hidden
-    layer showing a sub-menu for what should be objects on
-    expandingBox.-->
 
             <button id="pencilButton" class="edit-button">✏️</button>
 
             <div id="expandingBox" class="edit-button-expand hidden">
-                <h2>put objects here and shrink too</h2>
+                <h2>Temporary, Showcases Box.</h2>
                 <br>
-                <button onclick="closeDown()">close</button>
+                <button onclick="closeDown();">close</button>
             </div>
         </div>
     </main>
 
+    <script src="{% static 'js/script.js' %}"></script>
 </body>
-
-</html>

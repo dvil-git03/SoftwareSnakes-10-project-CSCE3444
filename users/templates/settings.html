@@ -1,27 +1,27 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Settings</title>
-    <link rel="stylesheet" href="css/main.css">
-    <!--personal note: rel=type of file, href=where file is -->
-    <!--
-    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyDigiRoom - Settings</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
 
 <body>
-    <script src="js/header_init.js"></script>
+    <script src="{% static 'js/header_init.js' %}"></script>
     <div id="insert_header">
         <h1>Header Loading</h1>
     </div>
-    <script>set_header("Settings");</script>
+    <script>setHeader("Settings");</script>
 
     <main class="prof-sett-page">
         <div class="prof-sett-content">
             <aside class="prof-sett-sidebar">
                 <div>
-                    <button>My Profile</button>
-                    <button class="active">Settings</button>
+                    <button id="nav-profile">My Profile</button>
+                    <button id="nav-settings" class="active">Settings</button>
                 </div>
                 <button class="logout">Logout</button>
             </aside>
@@ -37,5 +37,8 @@
 
     </main>
 </body>
+
+<script src="{% static 'js/profileChecker.js' %}"></script>
+<script src="{% static 'js/subtabProfileSettings.js' %}"></script>
 
 </html>

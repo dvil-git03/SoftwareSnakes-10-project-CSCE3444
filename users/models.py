@@ -123,8 +123,8 @@ class DjangoSession(models.Model):
 
 
 class Friends(models.Model):
-    userid = models.ForeignKey('Userinfo', models.DO_NOTHING, db_column='userid', blank=True, null=True)
-    friendid = models.IntegerField(blank=True, null=True)
+    userid = models.ForeignKey('Userinfo', models.DO_NOTHING, db_column='userid')
+    friendid = models.IntegerField()
 
     class Meta:
         managed = False
@@ -132,7 +132,7 @@ class Friends(models.Model):
 
 
 class Hashpass(models.Model):
-    userid = models.ForeignKey('Userinfo', models.DO_NOTHING, db_column='userid', blank=True, null=True)
+    userid = models.ForeignKey('Userinfo', models.DO_NOTHING, db_column='userid')
     pwordhash = models.CharField(max_length=30, blank=True, null=True)
 
     class Meta:
@@ -140,9 +140,18 @@ class Hashpass(models.Model):
         db_table = 'hashpass'
 
 
+class Musicdata(models.Model):
+    itemid = models.AutoField(primary_key=True)
+    musicdata = models.BinaryField()
+
+    class Meta:
+        managed = False
+        db_table = 'musicdata'
+
+
 class Objectdata(models.Model):
-    itemid = models.IntegerField(primary_key=True)
-    imagedata = models.BinaryField(blank=True, null=True)
+    itemid = models.AutoField(primary_key=True)
+    imagedata = models.BinaryField()
 
     class Meta:
         managed = False
@@ -150,10 +159,10 @@ class Objectdata(models.Model):
 
 
 class Userinfo(models.Model):
-    userid = models.IntegerField(primary_key=True)
-    email = models.CharField(max_length=255)
+    userid = models.AutoField(primary_key=True)
+    username = models.CharField(unique=True, max_length=30)
+    email = models.CharField(unique=True, max_length=255)
     college = models.CharField(max_length=100, blank=True, null=True)
-    username = models.CharField(max_length=25, blank=True, null=True)
 
     class Meta:
         managed = False
@@ -161,7 +170,7 @@ class Userinfo(models.Model):
 
 
 class Userpass(models.Model):
-    userid = models.ForeignKey(Userinfo, models.DO_NOTHING, db_column='userid', blank=True, null=True)
+    userid = models.ForeignKey(Userinfo, models.DO_NOTHING, db_column='userid')
     password = models.CharField(max_length=30, blank=True, null=True)
 
     class Meta:
@@ -170,8 +179,8 @@ class Userpass(models.Model):
 
 
 class Userroom(models.Model):
-    userid = models.ForeignKey(Userinfo, models.DO_NOTHING, db_column='userid', blank=True, null=True)
-    backgroundid = models.IntegerField(blank=True, null=True)
+    userid = models.ForeignKey(Userinfo, models.DO_NOTHING, db_column='userid')
+    backgroundid = models.ForeignKey(Objectdata, models.DO_NOTHING, db_column='backgroundid')
     roomitem1id = models.IntegerField(blank=True, null=True)
     roomitem2id = models.IntegerField(blank=True, null=True)
     roomitem3id = models.IntegerField(blank=True, null=True)

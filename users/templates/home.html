@@ -1,12 +1,22 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Home</title>
-    <link rel="stylesheet" href="css/main.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyDigiRoom - Home</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
 
 <body>
+    <!-- I don't know if this is intentional, but I'll keep it as is for now. - Diego -->
+    <script src="{% static 'js/signedOutHeader.js' %}"></script>
+    <div id="insert_header">
+        <h1>Header Loading</h1>
+    </div>
+    <script>setHeader("");</script>
+
     <main class="home-container">
 
         <!-- repeat three times; first section -->
@@ -14,7 +24,7 @@
         <section class="info-home">
             <h2>What is MyDigiRoom?</h2>
             <div class="img-text-row">
-                <img src="images/homely.png" alt="Home Image 1" class="home-image">
+                <img src="{% static 'images/homely.png' %}" alt="Home Image 1" class="home-image">
                 <p> Lorem ipsum dolor sit amet, consectetur adipiscing
                     elit, sed do eiusmod tempor incididunt ut labore et
                     dolore magna aliqua...
@@ -29,7 +39,7 @@
         <section class="info-home">
             <h2>Who is MyDigiRoom for?</h2>
             <div class="img-text-row">
-                <img src="images/crowd.png" alt="Home Image 1" class="home-image">
+                <img src="{% static 'images/crowd.png' %}" alt="Home Image 1" class="home-image">
                 <p> Lorem ipsum dolor sit amet, consectetur adipiscing
                     elit, sed do eiusmod tempor incididunt ut labore et
                     dolore magna aliqua...
@@ -44,7 +54,7 @@
         <section class="info-home">
             <h2>All About You</h2>
             <div class="img-text-row">
-                <img src="images/guysmile.png" alt="Home Image 1" class="home-image">
+                <img src="{% static 'images/guysmile.png' %}" alt="Home Image 1" class="home-image">
                 <p> Lorem ipsum dolor sit amet, consectetur adipiscing
                     elit, sed do eiusmod tempor incididunt ut labore et
                     dolore magna aliqua...

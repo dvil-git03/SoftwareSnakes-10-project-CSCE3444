@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyDigiRoom - My Profile</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+
+<body>
+    <script src="{% static 'js/header_init.js' %}"></script>
+    <div id="insert_header">
+        <h1>Header Loading</h1>
+    </div>
+    <script>setHeader("My Profile");</script>
+
+    <main class="prof-sett-page">
+        <div class="prof-sett-content">
+            <aside class="prof-sett-sidebar">
+                <div>
+                    <button id="nav-profile" class="active">My Profile</button>
+                    <button id="nav-settings">Settings</button>
+                </div>
+                <button class="logout">Logout</button>
+            </aside>
+
+            <section class="prof-sett-main">
+                <h1>My Profile</h1>
+
+                <div class="profile-top">
+                    <div class="avatar"></div>
+                    <p id="welcome-message">Hello!</p>
+                </div>
+
+                <div class="profile-form">
+                    <input id="email" type="text" placeholder="Email Address">
+                    <input id="name" type="text" placeholder="Name">
+                    <input id="username" type="text" placeholder="Username">
+                    <input id="password" type="text" placeholder="Change Password">
+                </div>
+            </section>
+        </div>
+
+    </main>
+</body>
+
+<script src="{% static 'js/profileChecker.js' %}"></script>
+<script src="{% static 'js/subtabProfileSettings.js' %}"></script>
+<script src="{% static 'js/profileForm.js' %}"></script>
+
+</html>
