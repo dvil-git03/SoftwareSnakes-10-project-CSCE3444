@@ -45,6 +45,7 @@ Examples include:
 - /users/settings
 - /users/friends
 - /users/explore
+
 The header should direct you to the correct pages as well.
 
 If you have any questions, please contact Diego. :)
