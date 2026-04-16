@@ -1,0 +1,104 @@
+/*
+NOTICE FROM LEAF
+again, i am a little dumb and was over complicating the projection wayyyyyy too much
+
+this is a testament of my commitment to over complicating things
+*/
+
+
+
+.room_container {
+    --angle: 20deg;
+    /* using wall_size_num so then i can calculate the proper side length for the floor without having to deal with chopping off the px */
+    /* cant do pow(20px, 2) because 400 squared pixels is not a valid unit and the whole thing breaks */
+    /* and it felt better than having to convert the <px> unit to a <number> unit*/
+    --wall_size_num: 200;
+    --wall_size: calc(var(--wall_size_num) * 1px);
+    /* for a 30deg angle, scale should be ~= 0.866 */
+    --wall_scale: cos(var(--angle));
+    --floor_size_num: calc(var(--wall_size_num) * sqrt(1 + pow(sin(var(--angle)), 2)));
+    --floor_size: calc(var(--floor_size_num) * 1px);
+    /* --floor_size: var(--wall_size); */
+
+    --floor_skew: calc(var(--angle) - 45deg);
+
+    --floor_scaleX: calc(sqrt(2) * cos(var(--angle)));
+    --floor_scaleY: calc(sqrt(2) * sin(var(--angle)));
+
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    width: 70%;
+    margin: 40px auto;
+    margin-left: 25%;
+    height: 75dvh;
+    
+    background: #D9D9D9;
+    
+    padding: 30px;
+    border-radius: 12px;
+}
+.left_wall {
+    position: absolute;
+    margin: 0px;
+    /* display: grid; */
+    /* grid-template-columns: repeat(var(4), 1fr);
+    grid-template-rows: repeat(var(4), 1fr); */
+
+    transform-origin: bottom right;
+    transform: skewY(calc(-1*var(--angle))) scaleY(var(--wall_scale)); 
+
+    width: var(--wall_size);
+    height: var(--wall_size);
+    
+    right: 50%;
+    bottom: 50%;
+    
+    background:#95a5a6;
+    opacity: 0.5;
+    
+    border: 1px solid red;
+}
+.right_wall {
+    position: absolute;
+    margin: 0px;
+    
+    transform-origin: bottom left;
+    transform: skewY(var(--angle)) scaleY(var(--wall_scale));
+    
+    width: var(--wall_size);
+    height: var(--wall_size);
+
+    left: 50%;
+    bottom: 50%;
+    
+    background:#95a5a6;
+    opacity: 0.5;
+    
+    border: 1px solid red; 
+}
+.floor {
+    position: absolute;
+    margin: 0px;
+
+    transform-origin: top left;
+    /* transform: rotate(45deg) skew(-15deg, -15deg) scale(0.707); */
+    /* var(--floor_skew), var(--floor_skew) */
+    /* calc(var(--angle) - 45deg), calc(var(--angle) - 45deg) */
+    /*  scale(var(--floor_scaleX), var(--floor_scaleY)) */
+    /* transform: rotate(45deg) skew(var(--floor_skew), var(--floor_skew)) scale(var(--floor_scaleX), var(--floor_scaleY)); */
+    transform: rotate(45deg) skew(var(--floor_skew), var(--floor_skew));
+
+    width: var(--floor_size);
+    height: var(--floor_size);
+
+    left: 50%;
+    top: 50%;
+
+    background: #95a5a6;
+    opacity: 0.5;
+    
+    border: 1px solid red;
+}
