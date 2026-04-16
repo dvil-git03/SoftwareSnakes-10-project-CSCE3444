@@ -227,11 +227,13 @@ body {
 .explore-header {
     background: #ff7a3c;
     color: white;
-    padding: 20px 30px;
-    font-size: 32px;
-    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 24px;
+    font-weight:bold;
+    border-radius: 8px;
     display: inline-block;
     margin-bottom: 30px;
+    width: 350px;
 }
 
 .explore-header img {
@@ -345,6 +347,7 @@ body {
     height: 40px;
     background-color: #6E92FD;
     border-radius: 8px;
+    cursor: pointer;
 }
 
 /*dean: expanding hidden button. this and the
@@ -492,6 +495,7 @@ hr {
 }
 
 .prof-sett-sidebar button {
+    font-family:'K2D';
     display: block;
     width: 100%;
     border: none;
@@ -542,6 +546,7 @@ hr {
 }
 
 .profile-form input {
+    font-family:'K2D';
     width: 90%;
     padding: 12px;
     margin-bottom: 15px;
