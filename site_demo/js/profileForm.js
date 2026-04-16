@@ -1,9 +1,11 @@
-// profileForm.js
-// This script populates the profile form with the user's information when the 
-// profile page is loaded. It retrieves the logged-in user's username from 
-// localStorage and uses it to  access a dummy user data object. The user's email, 
-// name, username, and password are then filled into the corresponding input fields 
-// in the profile form.
+/*
+    profileForm.js
+    This script populates the profile form with the user's information when the 
+    profile page is loaded. It retrieves the logged-in user's username from 
+    localStorage and uses it to  access a dummy user data object. The user's email, 
+    name, username, and password are then filled into the corresponding input fields 
+    in the profile form.
+*/
 
 window.addEventListener("DOMContentLoaded", () => {
     const user = localStorage.getItem("loggedIn");
