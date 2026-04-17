@@ -365,6 +365,89 @@ body {
     display: none;
 }
 
+/* Leaf's Comment: adding in the css classes that help format my section of the room edit*/
+
+.room_container {
+    --angle: 20deg;
+    --wall_size: 450px;
+    /* for a 30deg angle, scale should be ~= 0.866 */
+    --wall_scale: cos(var(--angle));
+    --floor_skew: calc(var(--angle) - 45deg);
+
+    --grid_size: 8;
+
+    --square_size: calc(var(--wall_size) / var(--grid_size));
+
+    --shift_down: 50px;
+
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    
+    width: 95%;
+    margin: 40px auto;
+    height: 75dvh;
+    
+    background: #D9D9D9;
+    
+    padding: 30px;
+    border-radius: 12px;
+}
+.room_centerpoint{
+    transform: translateY(var(--shift_down));
+}
+.room_wall {
+    position: absolute;
+    display: grid;
+    grid-template-columns: repeat(var(--grid_size), 1fr);
+    grid-template-rows: repeat(var(--grid_size), 1fr);
+    margin: 0px;
+    background:#95a5a6;
+    opacity: 0.5;
+    
+    border: 1px solid red;
+
+    width: var(--wall_size);
+    height: var(--wall_size);
+
+}
+.left_wall {
+    right: 50%;
+    bottom: 50%;
+
+    transform-origin: bottom right;
+    transform: skewY(calc(-1*var(--angle))) scaleY(var(--wall_scale)); 
+}
+.right_wall {
+    left: 50%;
+    bottom: 50%;
+    
+    transform-origin: bottom left;
+    transform: skewY(var(--angle)) scaleY(var(--wall_scale));
+}
+.floor {
+    left: 50%;
+    top: 50%;
+ 
+    transform-origin: top left;
+    transform: rotate(45deg) skew(var(--floor_skew), var(--floor_skew));
+}
+
+.square {
+    width: var(--square_size);
+    height: var(--square_size);
+    background: #95a5a6;
+    opacity: 0.5;
+    border: 1px solid red
+    
+}
+.square:hover {
+    background: #e74c3c !important;
+    cursor: pointer;
+}
+
 /*==============HOME PAGE===============*/
 
 .home-container {

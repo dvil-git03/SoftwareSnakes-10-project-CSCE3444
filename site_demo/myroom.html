@@ -16,19 +16,21 @@
     </div>
     <script>set_header("My Room");</script>
 
-    <main>
-        <!--dean's note: primary background block for room-->
+    <!--Leaf's Comment-->
+    <!--I'm just going to go ahead and comment this out and add the room stuff i have been working on to here-->
+    <!-- <main>
+        <\!--dean's note: primary background block for room--\>
         <div class="room-container">
             <h1 id="room-title">MyRoomName</h1>
 
-            <!--dean's note: scripting used here for expansion of the
+            <\!--dean's note: scripting used here for expansion of the
     edit button. NEEDS MORE EDITING TO FIT THE ORIGINAL MODEL!
     I'll try to shrink and add objects later.
     
     basically it links to the pencilButton function which links
     to the primary edit button, and removes/adds a hidden
     layer showing a sub-menu for what should be objects on
-    expandingBox.-->
+    expandingBox.--\>
 
             <button id="pencilButton" class="edit-button">✏️</button>
 
@@ -38,7 +40,50 @@
                 <button onclick="closeDown()">close</button>
             </div>
         </div>
+    </main> -->
+
+    <main>
+
+        <div class="room_container">
+            <!-- add an event listener to the room_container so then i can check when a specific square gets clicked -->
+            <script>
+                const room_container = document.getElementsByClassName("room_container")[0];
+                // console.log(room_container);
+                room_container.addEventListener("click", (event) => {
+                    if(event.target.classList.contains("square")){
+                        console.log("Clicked:", event.target.id);
+                    }
+                });
+                // alert("this got loaded and actually ran, wow");
+            </script>
+            <!-- add_square function is in here so it is in scope for the walls -->
+            <script>
+                function add_squares(wall_type){
+                    const element = document.querySelector('.room_container');
+                    const grid_size = window.getComputedStyle(element).getPropertyValue('--grid_size') ** 2;
+                    for(let i=0; i<grid_size; i++){document.write(`<div class="square" id="${i} ${wall_type}"></div>`)};
+                }
+            </script>
+            <!-- all 3 walls with the add_squares function -->
+            <div class="room_centerpoint">
+                <div class="room_wall left_wall">
+                    <script>add_squares("left_wall")</script>
+                </div>
+                <div class="room_wall right_wall">
+                    <script>add_squares("right_wall")</script>
+                </div>
+                <div class="room_wall floor">
+                    <script>add_squares("floor")</script>
+                </div>
+            </div>
+                
+        </div>
+
+        
     </main>
 
-    <script src="script.js"></script>
+    <!-- <script src="script.js"></script> -->
 </body>
+
+
+<!-- womp -->
