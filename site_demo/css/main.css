@@ -22,6 +22,7 @@
     --white: #FFFFFF;
     --light-gray: #F3F5F7;
     --mid-gray: #D9D9D9;
+    --mid-dark-gray: #95a5a6;
     --dark-gray: #6C7179;
     --black: #0D1014;
 
@@ -390,7 +391,7 @@ body {
     margin: 40px auto;
     height: 75dvh;
     
-    background: #D9D9D9;
+    background: var(--mid-gray);
     
     padding: 30px;
     border-radius: 12px;
@@ -404,7 +405,11 @@ body {
     grid-template-columns: repeat(var(--grid_size), 1fr);
     grid-template-rows: repeat(var(--grid_size), 1fr);
     margin: 0px;
-    background:#95a5a6;
+    background: var(--mid-dark-gray);
+    /* background: url("../images/room_editing/pink-pattern-wallpaper.jpg"); */
+    /* background-size: contain; */
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
     opacity: 0.5;
     
     border: 1px solid red;
@@ -438,8 +443,8 @@ body {
 .square {
     width: var(--square_size);
     height: var(--square_size);
-    background: #95a5a6;
-    opacity: 0.5;
+    /* background: var(--mid-dark-gray); */
+    /* opacity: 0.5; */
     border: 1px solid red
     
 }
@@ -447,6 +452,39 @@ body {
     background: #e74c3c !important;
     cursor: pointer;
 }
+
+.side_menu {
+    position: absolute;
+    width: 12.5%;
+    height: 65%;
+
+    /* padding: 30px; */
+    margin-top: 5%;
+    margin-left: 2.5%;
+
+    top: 0;
+    left: 0;
+    background-color: var(--light-gray);
+    /* background-color: var(--white); */
+}
+
+.room_side_menu_title{
+    /* display: grid; */
+    /* grid-template-rows: repeat(var(--grid_size), 1fr); */
+    margin: 5%;
+}
+
+.wallpaper {
+    margin: 10%;
+    height: 50px;
+    width: 50px;
+}
+.flooring {
+    margin: 10%;
+    height: 50px;
+    width: 50px;
+}
+
 
 /*==============HOME PAGE===============*/
 

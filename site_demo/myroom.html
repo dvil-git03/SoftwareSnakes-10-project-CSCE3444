@@ -43,19 +43,18 @@
     </main> -->
 
     <main>
-
         <div class="room_container">
             <!-- add an event listener to the room_container so then i can check when a specific square gets clicked -->
             <script>
                 const room_container = document.getElementsByClassName("room_container")[0];
-                // console.log(room_container);
+                console.log(room_container);
                 room_container.addEventListener("click", (event) => {
                     if(event.target.classList.contains("square")){
                         console.log("Clicked:", event.target.id);
                     }
                 });
                 // alert("this got loaded and actually ran, wow");
-            </script>
+                </script>
             <!-- add_square function is in here so it is in scope for the walls -->
             <script>
                 function add_squares(wall_type){
@@ -63,7 +62,7 @@
                     const grid_size = window.getComputedStyle(element).getPropertyValue('--grid_size') ** 2;
                     for(let i=0; i<grid_size; i++){document.write(`<div class="square" id="${i} ${wall_type}"></div>`)};
                 }
-            </script>
+                </script>
             <!-- all 3 walls with the add_squares function -->
             <div class="room_centerpoint">
                 <div class="room_wall left_wall">
@@ -76,9 +75,67 @@
                     <script>add_squares("floor")</script>
                 </div>
             </div>
-                
-        </div>
 
+            <div class="side_menu">
+                <!-- not properly implemented yet so it will be commented out for the demo -->
+                <!-- <div class="tab-container">
+                    <div class="tabs">
+                      <button class="tablink active" onclick="openTab(event, 'Tab1')">Wallpaper</button>
+                      <button class="tablink" onclick="openTab(event, 'Tab2')">Room Objects</button>
+                    </div>
+                    <div id="Tab1" class="tab-content" style="display:block">Content 1</div>
+                    <div id="Tab2" class="tab-content">Content 2</div>
+                  </div> -->
+                  
+                <div class="room_side_menu_title">
+                    <script>
+                        const wallpaper_select = document.getElementsByClassName("room_side_menu_title")[0];
+                        console.log(wallpaper_select);
+                        wallpaper_select.addEventListener("click", (event) => {
+                        //     if(event.target.parentElement.classList.contains("wallpaper")){
+                        //         const l_wall = document.getElementsByClassName("left_wall")[0];
+                        //         const r_wall = document.getElementsByClassName("right_wall")[0];
+                        //         l_wall.style.background = "";
+                        //         l_wall.style.backgroundImage = wallpaper_str;
+                        //         l_wall.style.opacity = 1;
+                        //         r_wall.style.background = "";
+                        //         r_wall.style.backgroundImage = wallpaper_str;
+                        //         r_wall.style.opacity = 1;
+                                
+                        //     }
+                        //     else if(event.target.classList.contains("flooring")){
+
+                        //     }
+
+                            // console.log("Clicked:", event);
+                            // console.log("Clicked:", event.target);
+                            const wallpaper_type = event.target.id;
+                            // console.log(wallpaper_type);
+                            const wallpaper_str = `url("images/room_editing/${wallpaper_type}.jpg")`;
+                            // console.log(wallpaper_str);
+                            const walls = document.getElementsByClassName("room_wall");
+                            // console.log(walls)
+                            for (let i = 0; i<walls.length; i++){
+                                console.log(walls[i]);
+                                // walls[i].style.backgroundImage = "url(\"images/room_editing/pink-pattern-wallpaper.jpg\")";
+                                walls[i].style.background = "";
+                                walls[i].style.backgroundImage = wallpaper_str;
+                                walls[i].style.opacity = 1;
+                            }
+                        });
+                    </script>
+                    
+                    Wallpapers:
+                    <div class="wallpaper"><img id="pink-pattern-wallpaper" object-fit="cover" height="50px" width="50px" src="images/room_editing/pink-pattern-wallpaper.jpg" alt="pink-pattern-wallpaper"></div>
+                    <div class="wallpaper"><img id="wood_wall" object-fit="cover" height="50px" width="50px" src="images/room_editing/wood_wall.jpg" alt="wood_wall"></div>
+                    Floors:
+                    <div class="flooring"><img id="pink-pattern-wallpaper" object-fit="cover" height="50px" width="50px" src="images/room_editing/pink-pattern-wallpaper.jpg" alt="pink-pattern-wallpaper"></div>
+                    <div class="flooring"><img id="wood_wall" object-fit="cover" height="50px" width="50px" src="images/room_editing/wood_wall.jpg" alt="wood_wall"></div>
+                </div>
+            </div>
+        </div>
+        
+        
         
     </main>
 
