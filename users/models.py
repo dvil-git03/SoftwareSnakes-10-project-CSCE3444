@@ -131,15 +131,6 @@ class Friends(models.Model):
         db_table = 'friends'
 
 
-class Hashpass(models.Model):
-    userid = models.ForeignKey('Userinfo', models.DO_NOTHING, db_column='userid')
-    pwordhash = models.CharField(max_length=30, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'hashpass'
-
-
 class Musicdata(models.Model):
     itemid = models.AutoField(primary_key=True)
     musicdata = models.BinaryField()
@@ -163,18 +154,19 @@ class Userinfo(models.Model):
     username = models.CharField(unique=True, max_length=30)
     email = models.CharField(unique=True, max_length=255)
     college = models.CharField(max_length=100, blank=True, null=True)
+    name = models.CharField(max_length=30)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'userinfo'
 
 
 class Userpass(models.Model):
-    userid = models.ForeignKey(Userinfo, models.DO_NOTHING, db_column='userid')
-    password = models.CharField(max_length=30, blank=True, null=True)
+    userid = models.OneToOneField(Userinfo, models.CASCADE, db_column='userid', primary_key=True)
+    password = models.CharField(max_length=127, blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'userpass'
 
 

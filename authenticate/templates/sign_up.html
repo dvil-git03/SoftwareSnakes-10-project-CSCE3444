@@ -16,24 +16,32 @@
         </div>
         <div class="log-in">
             <img src="{% static 'images/logo.png' %}" alt="Logo">
-            <div class="log-in-placement">
-                <input type="text" class="log-in-text" id="email" placeholder="Email Address">
-            </div>
-            <div class="log-in-placement">
-                <input type="text" class="log-in-text" id="Name" placeholder="Name">
-            </div>
-            <div class="log-in-placement">
-                <input type="text" class="log-in-text" id="username" placeholder="Username">
-            </div>
-            <div class="log-in-placement">
-                <input type="text" class="log-in-text" id="password" placeholder="Password">
-            </div>
-            <a href="/authenticate/login">
+            <form method="POST" action="{% url 'authenticate:signup' %}">
+                <!-- Django login logic required to properly use the Python logic
+                     CSRF token to protect user POST requests                 -->
+                {% csrf_token %}
                 <div class="log-in-placement">
-                    <button class="sign-up-button" type="button">Sign Up</button>
+                    <input type="text" class="log-in-text" id="email" placeholder="Email Address" name="email">
                 </div>
-            </a>
-
+                <div class="log-in-placement">
+                    <input type="text" class="log-in-text" id="name" placeholder="Name" name="name">
+                </div>
+                <div class="log-in-placement">
+                    <input type="text" class="log-in-text" id="username" placeholder="Username" name="username">
+                </div>
+                <div class="log-in-placement">
+                    <input type="password" class="log-in-text" id="password" placeholder="Password" name="password">
+                </div>
+                <div class="log-in-placement">
+                    <button class="sign-up-button" type="submit">Sign Up</button>
+                    <!-- Error handling -->
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p id="error" style="color: red">{{ message }}</p>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </form>
         </div>
     </div>
 

@@ -16,20 +16,36 @@
         </div>
         <div class="log-in">
             <img src="{% static 'images/logo.png' %}" alt="Logo">
-            <div class="log-in-placement">
-                <input type="text" class="log-in-text" id="username" placeholder="Username or Email">
-            </div>
-            <div class="log-in-placement">
-                <input type="text" class="log-in-text" id="password" placeholder="Password">
-            </div>
-            <div class="log-in-placement">
-                <button class="log-in-button" type="button" onclick="login()">Log In</button>
-                <p id="error" style="color: red"></p>
-            </div>
+            <form method="POST" action="{% url 'authenticate:login' %}">
+                <!-- Django login logic required to properly use the Python logic
+                     CSRF token to protect user POST requests                 -->
+                {% csrf_token %}
+                <div class="log-in-placement">
+                    <input type="text" class="log-in-text" id="username" placeholder="Username" name="username">
+                </div>
+                <div class="log-in-placement">
+                    <input type="password" class="log-in-text" id="password" placeholder="Password" name="password">
+                </div>
+                <div class="log-in-placement">
+                    <button class="log-in-button" type="submit">Log In</button>
+                    <!-- Error handling -->
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p id="error" style="color: red">{{ message }}</p>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </form>
         </div>
     </div>
 
-    <script src="{% static 'js/log_in.js' %}"></script>
+    <script>
+        // For now, this will do fine. But later this should be properly implemented.
+        const username = "{{ request.session.username }}";
+        if (username) {
+            localStorage.setItem("loggedIn", username);
+        }
+    </script>
 </body>
 
 </html>
