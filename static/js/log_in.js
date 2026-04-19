@@ -1,5 +1,5 @@
 /*  
-    log_in.js
+    log_in.js -- DEPRECATED!!!!!!! 
     The login function retrieves the username and password from the input fields and 
     calls the authenticate function to validate the credentials. If the credentials 
     are correct, it then stores the username in localStorage and brings the user 
