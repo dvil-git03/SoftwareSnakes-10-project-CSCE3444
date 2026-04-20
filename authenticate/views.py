@@ -24,6 +24,7 @@ def login(request):
             if check_password(passwordInput, authorizedEntry.password):
                 request.session['userid'] = user.userid
                 request.session['username'] = user.username
+                request.session['email'] = user.email
                 return redirect('users:myroom')
             else:
                 messages.error(request, "Invalid Username or Password.") # While this may be checking passwords, we should report a vague message to the user for security.
@@ -55,10 +56,10 @@ def signup(request):
             userAuthentication = Userpass(userid=user, password=hashedPassword)
             userAuthentication.save()
 
-            return redirect('login')
+            return redirect('authenticate:login')
         
-        except IntegrityError:
-            messages.error(request, "This account already exists.")
+        #except IntegrityError:
+        #    messages.error(request, "This account already exists.")
         except Exception as e:
             messages.error(request, f"An unknown error occurred: {e}")  
     return render(request, "sign_up.html")
