@@ -20,7 +20,7 @@
 
     /*neutrals*/
     --white: #FFFFFF;
-    --light-gray: #F3F5F7;
+    --light-gray: #F4F4F3;
     --mid-gray: #D9D9D9;
     --dark-gray: #6C7179;
     --black: #0D1014;
@@ -45,7 +45,7 @@ body {
     margin: 0px;
     padding: 0px;
     font-family: 'K2D', sans-serif;
-    background-color: var(--light-gray);
+    background-color: var(--white);
     color: var(--black);
 }
 
@@ -61,7 +61,7 @@ body {
     text-align: center;
     width: 100%;
     padding: 10px 20px;
-    background-color: #d9d9d9;
+    background-color: var(--light-gray);
 
 }
 
@@ -165,7 +165,7 @@ body {
     border-radius: 8px;
     border: none;
     text-align: left;
-    background-color: #d9d9d9;
+    background-color: var(--light-gray);
     font-size: 12px;
 }
 
@@ -196,8 +196,8 @@ body {
 }
 
 .left-of-log-in img {
-    margin-left: 60px;
-    margin-top: 45px;
+    margin-left: 80px;
+    margin-top: 20px;
     height: 80%;
     width: 85%;
     object-fit: contain;
@@ -210,7 +210,7 @@ body {
     font-family: 'K2D';
     width: 90%;
     margin: 40px auto;
-    background: #d9d9d9;
+    background: var(--light-gray);
     border-radius: 15px;
     padding: 30px;
 }
@@ -227,11 +227,13 @@ body {
 .explore-header {
     background: #ff7a3c;
     color: white;
-    padding: 20px 30px;
-    font-size: 32px;
-    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 8px;
     display: inline-block;
     margin-bottom: 30px;
+    width: 350px;
 }
 
 .explore-header img {
@@ -287,7 +289,7 @@ body {
     border-radius: 8px;
     padding: 15px;
     padding-top: 0px;
-    background: #eee;
+    background: var(--white);
     flex-grow: 1;
     margin-top: 0;
 }
@@ -322,8 +324,8 @@ body {
     width: 90%;
     margin: 40px auto;
     padding: 30px;
-    background: #D9D9D9;
-    border-radius: 12px;
+    background: var(--light-gray);
+    border-radius: 15px;
     position: relative;
     height: 400px;
 }
@@ -345,6 +347,7 @@ body {
     height: 40px;
     background-color: #6E92FD;
     border-radius: 8px;
+    cursor: pointer;
 }
 
 /*dean: expanding hidden button. this and the
@@ -362,64 +365,76 @@ body {
 
 /*==============HOME PAGE===============*/
 
-.home-container {
-    margin: 0px auto;
-    padding: 10px 50px;
-    max-width: 1000px;
-}
-
-.info-home {
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-.info-home h2 {
-    font-size: 28px;
-    margin-bottom: 10px;
-}
-
-.img-text-row {
-    display: flex;
-    align-items: center;
+.home-main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 20px;
+
+    width: 90%;
+    margin: 40px auto;
+
+    font-family: 'K2D';
+    background: var(--light-gray);
+    border-radius: 15px;
+    padding: 30px;
 }
 
-.img-text-row img {
-    width: 300px;
-    border-radius: 12px;
-}
-
-.img-text-row p {
-    line-height: 1.5;
-    max-width: 500px;
-    font-size: 24px;
-}
-
-hr {
-    border: none;
-    border-top: 2px solid white;
-    margin: 40px 0;
-}
-
-.call-to-action-home {
-    text-align: center;
-    margin-top: 50px;
-}
-
-.call-to-action-home h2 {
-    font-size: 32px;
-    margin-bottom: 20px;
-}
-
-.call-to-action-home button {
-    padding: 15px 30px;
-    font-size: 18px;
-    background-color: #0D1014;
+.home-left h1 {
+    background: #E626C6;
     color: white;
-    border: 2x solid white;
-    padding: 12px 25px;
+    padding: 15px 25px;
+    font-size: 32px;
+    font-weight: bold;
     border-radius: 8px;
+    display: inline-block;
+    margin-bottom: 25px;
+    margin-left: 20px;
+    width: 600px;
+}
+
+.home-left h2 {
+    margin-left: 20px;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.info-block {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+    margin-left: 20px;
+}
+
+.info-block img {
+    margin-top: 20px;
+    width: 30px;
+}
+
+.home-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-right-images {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+}
+
+.home-bottom-button {
+    margin-top: 20px;
+    margin-left: 200px;
+    width: 45%;
+    background: #f5a742;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-align: center;
     cursor: pointer;
+    font-weight: bold;
 }
 
 /*=============FRIENDS PAGE==============*/
@@ -428,8 +443,8 @@ hr {
     width: 90%;
     margin: 40px auto;
     padding: 30px;
-    background: #D9D9D9;
-    border-radius: 12px;
+    background: var(--light-gray);
+    border-radius: 16px;
     position: relative;
     height: 400px;
 }
@@ -455,7 +470,7 @@ hr {
     padding: 12px;
     border: none;
     border-radius: 8px;
-    background-color: #cfcfcf;
+    background-color: var(--white);
     width: 200px;
 }
 
@@ -471,6 +486,7 @@ hr {
     font-family: 'K2D';
     width: 90%;
     margin: 40px auto;
+    border-radius: 15px;
 }
 
 /*bethany: sidebar + main layout*/
@@ -482,16 +498,16 @@ hr {
 /*bethany: sidebar */
 .prof-sett-sidebar {
     width: 220px;
-    background: var(--mid-gray);
+    background: var(--light-gray);
     border-radius: var(--border-radius);
     padding: 20px;
-
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
 .prof-sett-sidebar button {
+    font-family: 'K2D';
     display: block;
     width: 100%;
     border: none;
@@ -499,6 +515,7 @@ hr {
     border-radius: 8px;
     margin-bottom: 15px;
     cursor: pointer;
+    background: var(--white);
 }
 
 /*sidebar button states*/
@@ -514,7 +531,7 @@ hr {
 /*bethany: main profile/settings content*/
 .prof-sett-main {
     flex: 1;
-    background: var(--mid-gray);
+    background: var(--light-gray);
     border-radius: var(--border-radius);
     padding: 30px;
 }
@@ -532,7 +549,7 @@ hr {
 .avatar {
     width: 80px;
     height: 80px;
-    background: var(--light-gray);
+    background: var(--white);
     border-radius: 10px;
 }
 
@@ -542,12 +559,13 @@ hr {
 }
 
 .profile-form input {
+    font-family: 'K2D';
     width: 90%;
     padding: 12px;
     margin-bottom: 15px;
     border: none;
     border-radius: 8px;
-    background: var(--light-gray);
+    background: var(--white);
 
 }
 
@@ -556,7 +574,7 @@ hr {
     display: flex;
     justify-content: space-between;
     align-items: left;
-    background: var(--light-gray);
+    background: var(--white);
     padding: 15px;
     border-radius: 8px;
     margin-bottom: 15px;

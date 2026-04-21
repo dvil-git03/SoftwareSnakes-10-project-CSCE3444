@@ -3,71 +3,51 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyDigiRoom - Home</title>
+    <title>Home</title>
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
 
 <body>
-    <!-- I don't know if this is intentional, but I'll keep it as is for now. - Diego -->
     <script src="{% static 'js/signedOutHeader.js' %}"></script>
     <div id="insert_header">
         <h1>Header Loading</h1>
     </div>
     <script>setHeader("");</script>
+    <main class="home-main">
+        <section class="home-left">
+            <h1>Welcome to MyDigiRoom!</h1>
+            <h2>Here's the breakdown</h2>
+            <div class ="info-block">
+                <img src="{% static 'images/house_icon.png' %}" alt="House Icon">
+                <p>This is where you’ll design your room! In the <a href="myroom.html"><span style="font-weight: 800;">My Room Page</span></a>, simply click on the edit button and explore how you can place and customize your objects. </p>
+            </div>
 
-    <main class="home-container">
+            <div class ="info-block">
+                <img src="{% static 'images/globe_icon.png' %}" alt="Globe Icon">
+                <p>Bored of customizing your own room? Check out some others! On the <a href= "explore.html"><span style="font-weight: 800;">Explore Page</span></a>, you can visit public rooms and interact with their objects. Here you’ll also see suggested friends based on your shared interests.</p>
+            </div>
 
-        <!-- repeat three times; first section -->
+            <div class ="info-block">
+                <img src="{% static 'images/smily_face.png' %}" alt="">
+                <p>Keep up with your friends on the <a href= "friends.html"><span style="font-weight: 800;">Friends Page</span></a>! When you friend someone, their profile and room will show up here! Stay tuned to see if we add a messaging feature!</p>
+            </div>
 
-        <section class="info-home">
-            <h2>What is MyDigiRoom?</h2>
-            <div class="img-text-row">
-                <img src="{% static 'images/homely.png' %}" alt="Home Image 1" class="home-image">
-                <p> Lorem ipsum dolor sit amet, consectetur adipiscing
-                    elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua...
-                </p>
+            <div class ="info-block">
+                <img src="{% static 'images/person_icon.png' %}" alt="">
+                <p>Here, in the <a href="profile.html"><span style="font-weight: 800;">Profile and Settings Pages</span></a>, you can manage your account details and room visibility. </p>
+            </div>
+
+            <div class ="home-bottom-button">
+                <a href="/authenticate/login">
+                    <span style="color: white;">
+                        Get started designing!
+                    </span>
+                </a>
             </div>
         </section>
 
-        <hr>
-
-        <!-- second section -->
-
-        <section class="info-home">
-            <h2>Who is MyDigiRoom for?</h2>
-            <div class="img-text-row">
-                <img src="{% static 'images/crowd.png' %}" alt="Home Image 1" class="home-image">
-                <p> Lorem ipsum dolor sit amet, consectetur adipiscing
-                    elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua...
-                </p>
-            </div>
+        <section class="home-right">
+                <img src="{% static 'images/book_pony_cake.png' %}" alt="Decorations" class="home-right-images">
         </section>
-
-        <hr>
-
-        <!-- third section -->
-
-        <section class="info-home">
-            <h2>All About You</h2>
-            <div class="img-text-row">
-                <img src="{% static 'images/guysmile.png' %}" alt="Home Image 1" class="home-image">
-                <p> Lorem ipsum dolor sit amet, consectetur adipiscing
-                    elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua...
-                </p>
-            </div>
-        </section>
-
-        <!-- call to action -->
-
-        <div class="call-to-action-home">
-            <h2>Your life, your interests<br>
-                in <em>one room.</em></h2>
-            <button>Create an account</button>
-        </div>
 
     </main>
