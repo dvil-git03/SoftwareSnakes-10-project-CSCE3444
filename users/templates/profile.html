@@ -21,9 +21,12 @@
             <aside class="prof-sett-sidebar">
                 <div>
                     <button id="nav-profile" class="active">My Profile</button>
-                    <button id="nav-settings">Settings</button>
+                    <button id="nav-settings">Settings</a>
                 </div>
-                <button class="logout">Logout</button>
+                <form action="/users/logout" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="logout">Logout</button>
+                </form>
             </aside>
 
             <section class="prof-sett-main">
@@ -31,14 +34,14 @@
 
                 <div class="profile-top">
                     <div class="avatar"></div>
-                    <p id="welcome-message">Hello!</p>
+                    <p id="welcome-message">Hello {{user.username }}!</p>
                 </div>
 
                 <div class="profile-form">
-                    <input id="email" type="text" placeholder="Email Address">
-                    <input id="name" type="text" placeholder="Name">
-                    <input id="username" type="text" placeholder="Username">
-                    <input id="college" type="text" placeholder="College">
+                    <input id="email" type="text" placeholder="Email Address" value="{{ user.email }}">
+                    <input id="name" type="text" placeholder="Name" value="{{ user.name }}">
+                    <input id="username" type="text" placeholder="Username" value="{{ user.username }}">
+                    <input id="college" type="text" placeholder="College" value="{{ user.college }}">
                     <input id="password" type="text" placeholder="Change Password (NOT IMPLEMENTED)">
                 </div>
             </section>
@@ -47,8 +50,6 @@
     </main>
 </body>
 
-<script src="{% static 'js/profileChecker.js' %}"></script>
 <script src="{% static 'js/subtabProfileSettings.js' %}"></script>
-<script src="{% static 'js/profileForm.js' %}"></script>
 
 </html>

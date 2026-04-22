@@ -21,9 +21,12 @@
             <aside class="prof-sett-sidebar">
                 <div>
                     <button id="nav-profile">My Profile</button>
-                    <button id="nav-settings" class="active">Settings</button>
+                    <button id="nav-settings" class="active">Settings</a>
                 </div>
-                <button class="logout">Logout</button>
+                <form action="/users/logout" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="logout" onclick="localStorage.clear();">Logout</button>
+                </form>
             </aside>
 
             <section class="prof-sett-main">
@@ -38,7 +41,6 @@
     </main>
 </body>
 
-<script src="{% static 'js/profileChecker.js' %}"></script>
 <script src="{% static 'js/subtabProfileSettings.js' %}"></script>
 
 </html>

@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <script src="{% static 'js/signedOutHeader.js' %}"></script>
+    <script src="{% static 'js/header_init.js' %}"></script>
     <div id="insert_header">
         <h1>Header Loading</h1>
     </div>
@@ -33,24 +33,20 @@
                 </div>
                 <div class="log-in-placement">
                     <button class="log-in-button" type="submit">Log In</button>
-                    <!-- Error handling -->
+                </div>
+            </form>
+                <div class="log-in-placement">
+                    <!-- nasty hack, but it's alright. -->
+                    <button onclick="window.location='/authenticate/signup'" class="sign-up-button" href="/authenticate/signup" style="background-color:var(--primary-green)">Sign Up Here!</button>
+                     <!-- Error handling -->
                     {% if messages %}
                         {% for message in messages %}
                             <p id="error" style="color: red">{{ message }}</p>
                         {% endfor %}
                     {% endif %}
                 </div>
-            </form>
         </div>
     </div>
-
-    <script>
-        // For now, this will do fine. But later this should be properly implemented.
-        const username = "{{ request.session.username }}";
-        if (username) {
-            localStorage.setItem("loggedIn", username);
-        }
-    </script>
 </body>
 
 </html>
