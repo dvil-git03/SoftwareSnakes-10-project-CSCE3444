@@ -59,8 +59,8 @@ def signup(request):
 
             return redirect('authenticate:login')
         
-        #except IntegrityError:
-        #    messages.error(request, "This account already exists.")
+        except IntegrityError:
+            messages.error(request, "Unknown integrity error.")
         except Exception as e:
             messages.error(request, f"An unknown error occurred: {e}")  
     return render(request, "sign_up.html")

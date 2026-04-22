@@ -566,7 +566,17 @@ body {
     border: none;
     border-radius: 8px;
     background: var(--white);
+}
 
+.profile-save-button {
+    font-family: 'K2D';
+    width: 20%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 8px;
+    background: var(--primary-green);
+    cursor: pointer;
 }
 
 /*=======SETTINGS PAGE========*/

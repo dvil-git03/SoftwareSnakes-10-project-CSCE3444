@@ -34,19 +34,34 @@
 
                 <div class="profile-top">
                     <div class="avatar"></div>
-                    <p id="welcome-message">Hello {{user.username }}!</p>
+                    <p id="welcome-message">Hello {{request.session.username}}!</p>
                 </div>
 
                 <div class="profile-form">
-                    <input id="email" type="text" placeholder="Email Address" value="{{ user.email }}">
-                    <input id="name" type="text" placeholder="Name" value="{{ user.name }}">
-                    <input id="username" type="text" placeholder="Username" value="{{ user.username }}">
-                    <input id="college" type="text" placeholder="College" value="{{ user.college }}">
-                    <input id="password" type="text" placeholder="Change Password (NOT IMPLEMENTED)">
+                    <form method="POST" action="{% url 'users:updateProfile' %}">
+                        {% csrf_token %}
+                        <input id="email" name="email" type="text" placeholder="Email Address" value="{{ user.email }}">
+                        <input id="username" name="username" type="text" placeholder="Username" value="{{ user.username }}">
+                        <input id="name" name="name" type="text" placeholder="Name" value="{{ user.name }}">
+                        <input id="college" name="college" type="text" placeholder="College" value="{{ user.college }}">
+                        <input id="password" name="password" type="password" placeholder="Change Password">
+                        <div class="save-button">
+                            <button type="submit" class="profile-save-button">Save Changes</button>
+                        </div>
+                    </form>
+                    <!-- This is quite nasty, but essentially this prints out either a success or error and the right color, its a bit foul but at the moment it'll be fine. -->
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p {% if message.tags %} class="{{ message.tags }}" 
+                            style="color: {% if 'error' in message.tags %} red {% elif 'success' in message.tags %} green {% else %} black {% endif %};">
+                            {{ message }}
+                            </p>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
                 </div>
             </section>
         </div>
-
     </main>
 </body>
 
