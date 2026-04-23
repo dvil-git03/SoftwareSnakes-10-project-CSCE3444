@@ -13,18 +13,22 @@
     </div>
     <script>set_header("Friends");</script>
 
-    <div class="friends-room-container">
+    <div class="friends_main">
+        <div class="friends_container">
+            <div class="friends_left">
+                <div class="friends_header">Friends</div>
 
-        <!-- Separated relevant friends section (header, 
-    search, no friends) into relevant style classes -->
-
-        <div class="friends-header">
-            <div class="friends-title">
-                Friends
+                <div class="no_friends"> 
+                    <p>No friends yet!</p>
+                </div>
             </div>
-
-            <input type="text" placeholder="Search for friends" class="friends-search">
+            <div class="friends_right">
+                <input type="text" placeholder="Search for friends" class="friends_search">
+                <div class="friends_messaging">
+                    <h3>Messaging</h3>
+                    <p style="font-size: 12px;">Check back for a messaging update!</p>
+                </div>
+            </div>
         </div>
-
-        <p class="no-friends">No friends yet!</p>
+        <div class="friends_footer"></div>
     </div>
