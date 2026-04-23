@@ -40,11 +40,11 @@
                 <div class="profile-form">
                     <form method="POST" action="{% url 'users:updateProfile' %}">
                         {% csrf_token %}
-                        <input id="email" name="email" type="text" placeholder="Email Address" value="{{ user.email }}">
-                        <input id="username" name="username" type="text" placeholder="Username" value="{{ user.username }}">
-                        <input id="name" name="name" type="text" placeholder="Name" value="{{ user.name }}">
-                        <input id="college" name="college" type="text" placeholder="College" value="{{ user.college }}">
-                        <input id="password" name="password" type="password" placeholder="Change Password">
+                        <input id="email" name="email" type="text" placeholder="Email Address" value="{{ user.email }}" autocomplete="new-password">
+                        <input id="username" name="username" type="text" placeholder="Username" value="{{ user.username }}" autocomplete="new-password">
+                        <input id="name" name="name" type="text" placeholder="Name" value="{{ user.name }}" autocomplete="name">
+                        <input id="college" name="college" type="text" placeholder="College" value="{{ user.college }}" autocomplete="new-password">
+                        <input id="password" name="password" type="password" placeholder="Change Password"autocomplete="new-password">
                         <div class="save-button">
                             <button type="submit" class="profile-save-button">Save Changes</button>
                         </div>

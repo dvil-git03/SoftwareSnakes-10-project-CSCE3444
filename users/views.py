@@ -92,8 +92,7 @@ def updateProfile(request):
 def settings(request):
   if 'userid' not in request.session:
     return redirect('authenticate:login')
-  template = loader.get_template('settings.html')
-  return HttpResponse(template.render())
+  return render(request, 'settings.html')
 
 def main(request):
   template = loader.get_template('home.html')
