@@ -393,14 +393,14 @@ body {
     font-weight:bold;
     border-radius: 8px;
     display: inline-block;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     margin-left: 20px;
     width: 600px;
 }
 
 .left h2{
     margin-left: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
     font-size: 18px;
 }
 
@@ -408,12 +408,11 @@ body {
     display: flex;
     align-items: flex-start;
     gap: 12px;
-    margin-bottom: 12px;
     margin-left: 20px;
 }
 
 .info-block img{
-    margin-top: 20px;
+    margin-top: 18px;
     width: 30px;
 }
 
@@ -424,8 +423,9 @@ body {
 }
 
 .right_images{
+    margin-left:10px;
     width: 100%;
-    max-width: 500px;
+    max-width: 475px;
     height: auto;
 }
 
