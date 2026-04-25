@@ -24,9 +24,7 @@
             </aside>
 
             <section class="prof-sett-main">
-                <div class="proff-sett-main">
-                    <h1>My Profile</h1>
-                </div>
+                <h1>My Profile</h1>
 
                 <div class="profile-top">
                     <div class="avatar"></div>
@@ -34,10 +32,10 @@
                 </div>
 
                 <div class="profile-form">
-                    <input id="email" type="text" placeholder="Email Address">
-                    <input id="name" type="text" placeholder="Name">
-                    <input id="username" type="text" placeholder="Username">
-                    <input id="password" type="text" placeholder="Change Password">
+                    <input id="email" type="email" aria-label="Email Address" placeholder="Email Address">
+                    <input id="name" name="name" type="text" placeholder="Name" aria-label="Name">
+                    <input id="username" name="username" type="text" placeholder="Username" aria-label="Username">
+                    <input id="password" name="password" type="password" placeholder="Change Password" aria-label="Change Password">
                 </div>
             </section>
         </div>
@@ -50,3 +48,4 @@
 <script src="js/profileForm.js"></script>
 
 </html>
+
