@@ -42,6 +42,7 @@ def updateProfile(request):
       passwordInput = request.POST.get('password')
       collegeInput = request.POST.get('college')
       usersession = request.session.get('userid')
+      profilePic = request.FILES.get('profilePic')
 
       # A Python classic, basically, this is checking if there is ALREADY an existing email or username. 
       # Q stands for Query and using the logical OR (|) to check if either condition is true, EXCLUDING our own.
@@ -72,7 +73,13 @@ def updateProfile(request):
           userPassword.password = make_password(passwordInput)
           userPassword.save()
           # Updating their session in Realtime, kinda.
+
+        if profilePic:
+          user.profilePicture = request.FILES['profilePic']
+          user.save()
+
         request.session['username'] = usernameInput
+        
       
       # A error happened, oh no! Please tell Diego :( !
       except Exception as e:

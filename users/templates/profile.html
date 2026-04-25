@@ -35,13 +35,23 @@
                 </div>
 
                 <div class="profile-top">
-                    <div class="avatar"></div>
+                    <div class="avatar">
+                        <!-- Simple error checking, if somehow this file is gone. -->
+                        {% if user.profilePicture and user.profilePicture.url %}
+                            <img class="avatar" src="{{ user.profilePicture.url }}" alt="Profile Picture" onerror="this.src='/media/pfp/default.png';"></img>
+                        {% else %}
+                            <img class="avatar" src="/media/pfp/default.png" alt="Profile Picture"></img>
+                        {% endif %}
+                    </div>
                     <p id="welcome-message">Hello {{request.session.username}}!</p>
                 </div>
 
                 <div class="profile-form">
-                    <form method="POST" action="{% url 'users:updateProfile' %}">
+                    <form method="POST" action="{% url 'users:updateProfile' %}" enctype="multipart/form-data">
                         {% csrf_token %}
+                        <!-- This is temporary, I'll let someone else change this, our designer likely :( -->
+                        <p for="pfp">Change Profile Picture:</p>
+                        <input type="file" name="profilePic" id="pfp" accept="image/*">
                         <input id="email" name="email" type="text" placeholder="Email Address" value="{{ user.email }}" autocomplete="new-password">
                         <input id="username" name="username" type="text" placeholder="Username" value="{{ user.username }}" autocomplete="new-password">
                         <input id="name" name="name" type="text" placeholder="Name" value="{{ user.name }}" autocomplete="name">
