@@ -1,6 +1,0 @@
-### TRACKING DATABASE CHANGES TO BEST FIT THE CURRENT MODEL
-
-- migrated django auth 
-- dropped hashpass as we can store hashed passwords in one table instead
-- dropped password column on userpass and re-added it with 128 char length
-- added name column on userinfo with 30 char length
