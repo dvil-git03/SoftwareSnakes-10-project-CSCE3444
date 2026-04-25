@@ -1,0 +1,29 @@
+<!-- This replaces header_init.js, to allow for better dynamic names for pages, like showing the current logged in users room at the top. -->
+<div id="main-header" class="header">
+    <div class="header-left">
+        <div class="header-logo">
+            <a href="/">
+                <img class="main-logo" src="/static/images/logo.png" alt="Logo">
+            </a>
+        </div>
+    </div>
+    <div class="header-center">
+        <h1>{{ nameplate }}</h1> <!-- Now, I don't think I need the proper nameplate here because this is only for the login / signup pages. -->
+    </div>
+    <div class="header-right">
+        <div class="header-logo">
+            {% if request.session.userid %}
+                <a href="{% url 'users:viewRoom' urlID=request.session.userid %}">
+                    <img src="/static/images/house_icon.png" alt="Logo">
+                </a>
+            {% else %}
+                <a href="{% url 'authenticate:login' %}">
+                    <img src="/static/images/house_icon.png" alt="Logo">
+                </a>
+            {% endif %}
+        </div>
+        <div class="header-logo"><a href="/users/explore"><img src="/static/images/globe_icon.png" alt="Logo"></a></div>
+        <div class="header-logo"><a href="/users/friends"><img src="/static/images/smily_face.png" alt="Logo"></a></div>
+        <div class="header-logo"><a href="/users/profile"><img src="/static/images/person_icon.png" alt="Logo"></a></div>
+    </div>
+</div>

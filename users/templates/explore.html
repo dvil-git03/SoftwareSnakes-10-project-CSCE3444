@@ -10,13 +10,7 @@
 </head>
 
 <body>
-    <!-- Loading header from js/header_init.js -->
-    <script src="{% static 'js/header_init.js' %}"></script>
-    <div id="insert_header">
-        <h1>Header Loading</h1>
-    </div>
-    <script>setHeader("Explore");</script>
-
+    {% include 'header.html' with nameplate="Explore" %}
     <div class="explore-main">
         <div class="explore-container">
             <div class="explore-left">

@@ -10,11 +10,7 @@
 </head>
 
 <body>
-    <script src="{% static 'js/header_init.js' %}"></script>
-    <div id="insert_header">
-        <h1>Header Loading</h1>
-    </div>
-    <script>setHeader("My Room");</script>
+    {% include 'header.html' with nameplate=targetedUser.username is_room=True %}
     <main>
         <div class="room-container">
             <h1 id="room-title">MyRoomName</h1>
@@ -29,5 +25,9 @@
         </div>
     </main>
 
-    <script src="{% static 'js/script.js' %}"></script>
+    <!--
+    {% if is_own_room %}
+        <script src="{% static 'js/script.js' %}"></script>
+    {% endif %}
+    -->
 </body>

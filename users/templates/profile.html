@@ -10,12 +10,7 @@
 </head>
 
 <body>
-    <script src="{% static 'js/header_init.js' %}"></script>
-    <div id="insert_header">
-        <h1>Header Loading</h1>
-    </div>
-    <script>setHeader("My Profile");</script>
-
+    {% include 'header.html' with nameplate="My Profile" %}
     <main class="prof-sett-page">
         <div class="prof-sett-content">
             <aside class="prof-sett-sidebar">

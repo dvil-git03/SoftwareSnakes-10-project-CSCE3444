@@ -1,30 +1,36 @@
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.template import loader
 from django.db.models import Q
 from django.contrib.auth.hashers import make_password
-from .models import Userinfo, Userpass
+from .models import Userinfo, Userpass, Userroom
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 
 # Create your views here.
 
-def myroom(request):
+def viewRoom(request, urlID):
   if 'userid' not in request.session:
     return redirect('authenticate:login')
-  template = loader.get_template('myroom.html')
-  return HttpResponse(template.render())
+  
+  targetedUser = get_object_or_404(Userinfo, userid=urlID)
+
+  context = {
+    'targetedUser': targetedUser
+  }
+
+  return render(request, 'myroom.html', context)
+  
 
 def explore(request):
   if 'userid' not in request.session:
     return redirect('authenticate:login')
-  template = loader.get_template('explore.html')
-  return HttpResponse(template.render())
+  return render(request, 'explore.html')
 
 def friends(request):
   if 'userid' not in request.session:
     return redirect('authenticate:login')
   template = loader.get_template('friends.html')
-  return HttpResponse(template.render())
+  return render(request, 'friends.html')
 
 def profile(request):
   if 'userid' not in request.session:
@@ -103,7 +109,7 @@ def settings(request):
 
 def main(request):
   template = loader.get_template('home.html')
-  return HttpResponse(template.render())
+  return render(request, 'home.html')
 
 @require_POST
 def logout(request):

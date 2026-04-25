@@ -10,11 +10,7 @@
 </head>
 
 <body>
-    <script src="{% static 'js/header_init.js' %}"></script>
-    <div id="insert_header">
-        <h1>Header Loading</h1>
-    </div>
-    <script>setHeader("");</script>
+    {% include 'header.html' with nameplate="" %}
     <div class="container">
         <div class="left-of-log-in">
             <img src="{% static 'images/bigcat.png' %}" alt="Big Cat">

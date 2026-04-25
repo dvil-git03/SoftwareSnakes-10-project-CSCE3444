@@ -10,11 +10,7 @@
 </head>
 
 <body>
-    <script src="{% static 'js/header_init.js' %}"></script>
-    <div id="insert_header">
-        <h1>Header Loading</h1>
-    </div>
-    <script>setHeader("");</script>
+    {% include 'header.html' with nameplate="" %}
     <main class="home-main">
         <section class="home-left">
             <h1>Welcome to MyDigiRoom!</h1>
@@ -40,10 +36,17 @@
             </div>
 
             <div class ="home-bottom-button">
-                <a href="/authenticate/login">
-                    <span style="color: white;">
-                        Get started designing!
-                    </span>
+                {% if request.session.userid %}
+                    <a href="{% url 'users:viewRoom' urlID=request.session.userid %}">
+                        <span style="color: white;">
+                            Get started designing!
+                        </span>
+                {% else %}
+                    <a href="/authenticate/login">
+                        <span style="color: white;">
+                            Get started designing!
+                        </span>
+                {% endif %}
                 </a>
             </div>
         </section>
