@@ -17,7 +17,11 @@
             <h2>Here's the breakdown</h2>
             <div class ="info-block">
                 <img src="{% static 'images/house_icon.png' %}" alt="House Icon">
-                <p>This is where you’ll design your room! In the <a href="/users/myroom"><span style="font-weight: 800;">My Room Page</span></a>, simply click on the edit button and explore how you can place and customize your objects. </p>
+                {% if request.session.userid %}
+                    <p>This is where you’ll design your room! In the <a href="{% url 'users:viewRoom' urlID=request.session.userid %}"><span style="font-weight: 800;">My Room Page</span></a>, simply click on the edit button and explore how you can place and customize your objects. </p>
+                {% else %}
+                    <p>This is where you’ll design your room! In the <a href="{% url 'authenticate:login' %}"><span style="font-weight: 800;">My Room Page</span></a>, simply click on the edit button and explore how you can place and customize your objects. </p>
+                {% endif %}
             </div>
 
             <div class ="info-block">
