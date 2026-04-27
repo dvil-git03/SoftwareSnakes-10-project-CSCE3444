@@ -25,9 +25,7 @@
             </aside>
 
             <section class="prof-sett-main">
-                <div class="proff-sett-main">
-                    <h1>My Profile</h1>
-                </div>
+                <h1>My Profile</h1>
 
                 <div class="profile-top">
                     <div class="avatar">
@@ -47,11 +45,11 @@
                         <!-- This is temporary, I'll let someone else change this, our designer likely :( -->
                         <p for="pfp">Change Profile Picture:</p>
                         <input type="file" name="profilePic" id="pfp" accept="image/*">
-                        <input id="email" name="email" type="text" placeholder="Email Address" value="{{ user.email }}" autocomplete="new-password">
-                        <input id="username" name="username" type="text" placeholder="Username" value="{{ user.username }}" autocomplete="new-password">
-                        <input id="name" name="name" type="text" placeholder="Name" value="{{ user.name }}" autocomplete="name">
-                        <input id="college" name="college" type="text" placeholder="College" value="{{ user.college }}" autocomplete="new-password">
-                        <input id="password" name="password" type="password" placeholder="Change Password"autocomplete="new-password">
+                        <input id="email" name="email" type="email" aria-label="Email Address" placeholder="Email Address" value="{{ user.email }}" autocomplete="new-password">
+                        <input id="username" name="username" type="text" placeholder="Username" aria-label="Username" value="{{ user.username }}" autocomplete="new-password">
+                        <input id="name" name="name" type="text" placeholder="Name" aria-label="Name" value="{{ user.name }}" autocomplete="name">
+                        <input id="college" name="college" type="text" placeholder="College" aria-label="College" value="{{ user.college }}" autocomplete="new-password">
+                        <input id="password" name="password" type="password" placeholder="Change Password" aria-label="Change Password" autocomplete="new-password">
                         <div class="save-button">
                             <button type="submit" class="profile-save-button">Save Changes</button>
                         </div>

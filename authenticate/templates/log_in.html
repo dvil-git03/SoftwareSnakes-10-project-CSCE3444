@@ -22,10 +22,10 @@
                      CSRF token to protect user POST requests                 -->
                 {% csrf_token %}
                 <div class="log-in-placement">
-                    <input type="text" class="log-in-text" id="username" placeholder="Username" name="username" autocomplete="off">
+                    <input type="text" class="log-in-text" id="username" placeholder="Username" name="username" autocomplete="off" aria-label="Username">
                 </div>
                 <div class="log-in-placement">
-                    <input type="password" class="log-in-text" id="password" placeholder="Password" name="password" autocomplete="new-password">
+                    <input type="password" class="log-in-text" id="password" placeholder="Password" name="password" autocomplete="new-password" aria-label="Password">
                 </div>
                 <div class="log-in-placement">
                     <button class="log-in-button" type="submit">Log In</button>
