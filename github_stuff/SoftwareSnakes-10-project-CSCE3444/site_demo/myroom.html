@@ -1,0 +1,88 @@
+<!--dean's note: trying to imitate the myroom page-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>My Room</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+
+<body>
+    <script src="js/header_init.js"></script>
+    <div id="insert_header">
+        <h1>Header Loading</h1>
+    </div>
+    <script>set_header("My Room");</script>
+
+
+    <main> 
+        <div class="room_edit_notice">⚠️ Notice ⚠️</div>
+        <div class="room_container">
+            <!-- all 3 walls of the room -->
+            <div class="room_centerpoint">
+                <div class="room_wall left_wall"></div>
+                <div class="room_wall right_wall"></div>
+                <div class="room_wall floor"></div>
+            </div>
+
+            <!-- side menue is the entier menu on the left side of the screen -->
+            <div class="side_menu">
+                <!-- creates the class tab_container so then each tab will have the same formatting -->
+                <!-- tab container will also be used for a click event to check and see which tab has been clicked to change the actual stuff in the menu -->
+                <div class="tab_container">
+                    <div class="item_tab" id="Wallpaper/Flooring">Wallpaper/Flooring</div>
+                    <div class="item_tab" id="Items">Items</div>
+                </div>
+
+                <div class="item_list" id="Wallpaper/Flooring">
+                    <img id="blue_stripes" object-fit="cover" height="50px" width="50px" src="images/room_editing/wallpapers/blue_stripes.jpeg" alt="blue_stripes">
+                    <img id="colorful_doodles" object-fit="cover" height="50px" width="50px" src="images/room_editing/wallpapers/colorful_doodles.jpeg" alt="colorful_doodles">
+                    <img id="brown_wood" object-fit="cover" height="50px" width="50px" src="images/room_editing/wallpapers/brown_wood.jpeg" alt="brown_wood">    
+                </div>
+                <div class="item_list" id="Items">
+                    <img id="pink-pattern-wallpaper" object-fit="cover" height="50px" width="50px" src="images/room_editing/pink-pattern-wallpaper.jpg" alt="pink-pattern-wallpaper">
+                    <img id="wood_wall" object-fit="cover" height="50px" width="50px" src="images/room_editing/wood_wall.jpg" alt="wood_wall">        
+                </div>
+
+                <!-- not properly implemented yet so it will be commented out for the demo -->
+                <!-- <div class="tab-container">
+                    <div class="tabs">
+                      <button class="tablink active" onclick="openTab(event, 'Tab1')">Wallpaper</button>
+                      <button class="tablink" onclick="openTab(event, 'Tab2')">Room Objects</button>
+                    </div>
+                    <div id="Tab1" class="tab-content" style="display:block">Content 1</div>
+                    <div id="Tab2" class="tab-content">Content 2</div>
+                  </div> -->
+                  
+                <!-- <div class="room_side_menu_title">
+                    <img id="pink-pattern-wallpaper" object-fit="cover" height="50px" width="50px" src="images/room_editing/pink-pattern-wallpaper.jpg" alt="pink-pattern-wallpaper">
+                    <img id="wood_wall" object-fit="cover" height="50px" width="50px" src="images/room_editing/wood_wall.jpg" alt="wood_wall">
+
+                    Wallpapers:
+                </div>
+                <div class="wallpaper">
+                    <img id="wood_wall" object-fit="cover" height="50px" width="50px" src="images/room_editing/wood_wall.jpg" alt="wood_wall">
+                    <img id="wood_wall" object-fit="cover" height="50px" width="50px" src="images/room_editing/wood_wall.jpg" alt="wood_wall">
+                    <img id="wood_wall" object-fit="cover" height="50px" width="50px" src="images/room_editing/wood_wall.jpg" alt="wood_wall">
+                    <img id="wood_wall" object-fit="cover" height="50px" width="50px" src="images/room_editing/wood_wall.jpg" alt="wood_wall">
+                </div> -->
+                <!-- <div class="wallpaper"></div> -->
+                <!-- Floors:
+                <div class="flooring"><img id="pink-pattern-wallpaper" object-fit="cover" height="50px" width="50px" src="images/room_editing/pink-pattern-wallpaper.jpg" alt="pink-pattern-wallpaper"></div>
+                <div class="flooring"><img id="wood_wall" object-fit="cover" height="50px" width="50px" src="images/room_editing/wood_wall.jpg" alt="wood_wall"></div>
+            </div> -->
+        </div>
+        
+        
+        
+    </main>
+
+    <!-- <script src="script.js"></script> -->
+    <script src="js/myroom_customization.js"></script>
+
+</body>
+
+
+<!-- womp -->

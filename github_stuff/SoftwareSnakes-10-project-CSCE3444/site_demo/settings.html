@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Settings</title>
+    <link rel="stylesheet" href="css/main.css">
+    <!--personal note: rel=type of file, href=where file is -->
+    <!--
+    -->
+</head>
+
+<body>
+    <script src="js/header_init.js"></script>
+    <div id="insert_header">
+        <h1>Header Loading</h1>
+    </div>
+    <script>set_header("Settings");</script>
+
+    <main class="prof-sett-page">
+        <div class="prof-sett-content">
+            <aside class="prof-sett-sidebar">
+                <div>
+                    <button id="nav-profile">My Profile</button>
+                    <button id="nav-settings" class="active">Settings</button>
+                </div>
+                <button class="logout">Logout</button>
+            </aside>
+
+            <section class="prof-sett-main">
+                <h1>Privacy Settings</h1>
+                <div class="settings-group">
+                    <p>Hide Room</p>
+                    <input type="checkbox">
+                </div>
+            </section>
+        </div>
+
+    </main>
+</body>
+
+<script src="js/profileChecker.js"></script>
+<script src="js/subtabProfileSettings.js"></script>
+</html>
