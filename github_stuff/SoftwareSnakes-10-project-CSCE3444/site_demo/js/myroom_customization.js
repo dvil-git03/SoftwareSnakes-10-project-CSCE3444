@@ -3,7 +3,7 @@
 function add_squares(wall_type){
     const element = document.querySelector('.room_container');
     const grid_size = window.getComputedStyle(element).getPropertyValue('--grid_size') ** 2;
-
+    
     let squares_on_wall = "";
     for(let i=0; i<grid_size; i++){
         squares_on_wall += `<div class="square" id="${i}, ${wall_type}"></div>`;
@@ -38,6 +38,22 @@ tab_container.addEventListener("click", (event) => {
 let selected_item = "";
 let selected_item_type = "";
 let edit_notice = document.getElementsByClassName("room_edit_notice")[0];
+const element = document.querySelector('.room_container');
+const grid_size = window.getComputedStyle(element).getPropertyValue('--grid_size') ** 2;
+let room_storage = {
+    left_wall : {
+        background_image : "",
+        tiles : new Array(grid_size)
+    },
+    right_wall : {
+        background_image : "",
+        tiles : new Array(grid_size)
+    },
+    floor : {
+        background_image : "",
+        tiles : new Array(grid_size)
+    }
+}
 
 const item_container = document.getElementsByClassName("side_menu")[0];
 
@@ -69,19 +85,35 @@ room_container.addEventListener("click", (event) => {
         console.log("Clicked:", event.target.id);
         console.log(selected_item);
         console.log(selected_item_type);
-
+        
         if(selected_item_type == "Wallpaper/Flooring"){
             const wall_id = event.target.id.split(", ")[1];
             let selected_wall = document.getElementsByClassName(wall_id)[0];
             // console.log(selected_item)
-            const wallpaper_str = `url("images/room_editing/wallpapers/${selected_item}.jpeg")`;
+            const wallpaper_str = `url("images/room_editing/wallpapers/${selected_item}")`;
             // console.log(wallpaper_str)
             selected_wall.style.background = "";
             selected_wall.style.backgroundImage = wallpaper_str;
-            selected_wall.style.opacity = 1;
+
+            room_storage[wall_id] = wallpaper_str;
+            console.log(room_storage)
         }
         if(selected_item_type == "Items"){
-
+            const tile_id = event.target.id;
+            console.log(document.getElementById(tile_id));
+            let tile = document.getElementById(tile_id);
+            const item_str = `url("images/room_editing/items/${selected_item}")`;
+            tile.style.background = "";
+            tile.style.backgroundImage = item_str;
+            tile.style.backgroundSize = "cover";   // or contain
+            tile.style.backgroundRepeat = "no-repeat";
+            tile.style.backgroundPosition = "center";
+            
+            const tile_num = tile_id.split(", ")[0];
+            const wall_id = tile_id.split(", ")[1];
+            room_storage[wall_id][tile_num] = item_str;
+            console.log(room_storage)
+            console.log(room_storage[wall_id][tile_num])
         }
 
         selected_item = "";
