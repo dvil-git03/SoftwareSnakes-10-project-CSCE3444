@@ -8,26 +8,73 @@
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
 <body>
+    {% include 'header.html' with nameplate="Explore" %}
+    <div class="explore-main">
+    <div class="explore-container">
 
-<script src="{% static 'js/header_init.js' %}"></script>
-<div id="insert_header"><h1>Header Loading</h1></div>
-<script>setHeader("Explore");</script>
+    <!-- LEFT -->
+    <div class="explore-left">
 
-<div class="explore-main">
-<div class="explore-container">
+    <div class="explore-header">Explore</div>
 
-<!-- LEFT -->
-<div class="explore-left">
+    {% if results %}
+        {% for user in results %}
+        <div class="explore-room">
+            <img src="{% static 'images/room_preview.png' %}">
+            <div class="explore-room-text">
+                <h3>{{ user.username }}'s Room</h3>
+                <p>This is {{ user.username }}'s room preview.</p>
 
-<div class="explore-header">Explore</div>
+                <div class="explore-actions">
+                    <button type="button" class="secondary">Visit Room</button>
 
-{% if results %}
-    {% for user in results %}
-    <div class="explore-room">
-        <img src="{% static 'images/room_preview.png' %}">
-        <div class="explore-room-text">
-            <h3>{{ user.username }}'s Room</h3>
-            <p>This is {{ user.username }}'s room preview.</p>
+                    {% if user.userid in friend_ids %}
+                        <button type="button" disabled>Already Friends</button>
+
+                    {% elif user.userid in sent_requests %}
+                        <button type="button" disabled>Requested</button>
+
+                    {% else %}
+                        <form method="POST" action="{% url 'users:add_friend' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="friend_id" value="{{ user.userid }}">
+                            <button type="submit">Add Friend</button>
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="explore-room" style="opacity:0;">
+            <img src="{% static 'images/room_preview.png' %}">
+            <div class="explore-room-text">
+                <h3>Placeholder</h3>
+                <p>Placeholder</p>
+            </div>
+        </div>
+    {% endif %}
+
+    </div>
+
+    <!-- RIGHT -->
+    <div class="explore-right">
+
+    <form method="GET">
+        <input class="explore-search" type="text" name="q"
+            placeholder="Search Rooms" value="{{ query|default:'' }}">
+    </form>
+
+    <div class="explore-friends">
+    <h3>Suggested Friends</h3>
+
+    <div class="explore-friends-scroll">
+
+    {% for user in all_users %}
+    <div class="explore-account">
+        <img src="{% static 'images/person_icon.png' %}">
+        <div class="explore-account-info">
+            <b>{{ user.username }}</b>
 
             <div class="explore-actions">
                 <button type="button" class="secondary">Visit Room</button>
@@ -49,66 +96,15 @@
         </div>
     </div>
     {% endfor %}
-{% else %}
-    <div class="explore-room" style="opacity:0;">
-        <img src="{% static 'images/room_preview.png' %}">
-        <div class="explore-room-text">
-            <h3>Placeholder</h3>
-            <p>Placeholder</p>
-        </div>
+
     </div>
-{% endif %}
-
-</div>
-
-<!-- RIGHT -->
-<div class="explore-right">
-
-<form method="GET">
-    <input class="explore-search" type="text" name="q"
-           placeholder="Search Rooms" value="{{ query|default:'' }}">
-</form>
-
-<div class="explore-friends">
-<h3>Suggested Friends</h3>
-
-<div class="explore-friends-scroll">
-
-{% for user in all_users %}
-<div class="explore-account">
-    <img src="{% static 'images/person_icon.png' %}">
-    <div class="explore-account-info">
-        <b>{{ user.username }}</b>
-
-        <div class="explore-actions">
-            <button type="button" class="secondary">Visit Room</button>
-
-            {% if user.userid in friend_ids %}
-                <button type="button" disabled>Already Friends</button>
-
-            {% elif user.userid in sent_requests %}
-                <button type="button" disabled>Requested</button>
-
-            {% else %}
-                <form method="POST" action="{% url 'users:add_friend' %}">
-                    {% csrf_token %}
-                    <input type="hidden" name="friend_id" value="{{ user.userid }}">
-                    <button type="submit">Add Friend</button>
-                </form>
-            {% endif %}
-        </div>
     </div>
-</div>
-{% endfor %}
 
-</div>
-</div>
+    </div>
+    </div>
 
-</div>
-</div>
-
-<div class="explore-footer">Click on a room to visit it!</div>
-</div>
+    <div class="explore-footer">Click on a room to visit it!</div>
+    </div>
 
 </body>
 </html>

@@ -9,149 +9,143 @@
 </head>
 
 <body>
+    {% include 'header.html' with nameplate="Friends" %}
+    <div class="friends-main">
 
-<script src="{% static 'js/header_init.js' %}"></script>
-<div id="insert_header"></div>
-<script>setHeader("Friends");</script>
-
-<div class="friends-main">
-
-    {% if messages %}
-    <div class="messages-container">
-        {% for message in messages %}
-            {% if "friends" in message.tags %}
-                <p class="msg success">{{ message }}</p>
-            {% endif %}
-        {% endfor %}
-    </div>
-    {% endif %}
-
-    <div class="friends-container">
-
-        <!-- LEFT SIDE -->
-        <div class="friends-left">
-
-            <div class="friends-header">
-                <h2><b>Friends</b></h2>
-            </div>
-
-            <h3>Friend Requests</h3>
-            {% if incoming_requests %}
-                {% for req in incoming_requests %}
-                <div class="friend-request">
-                    <p>{{ req.sender.username }}</p>
-                    <div style="display:flex; gap:10px;">
-                        <form method="POST" action="{% url 'users:accept_friend_request' %}">
-                            {% csrf_token %}
-                            <input type="hidden" name="sender_id" value="{{ req.sender.userid }}">
-                            <button type="submit">Accept</button>
-                        </form>
-
-                        <form method="POST" action="{% url 'users:cancel_friend_request' %}">
-                            {% csrf_token %}
-                            <input type="hidden" name="user_id" value="{{ req.sender.userid }}">
-                            <button type="submit" class="cancel-btn">Cancel</button>
-                        </form>
-                    </div>
-                </div>
-                {% endfor %}
-            {% else %}
-                <p>No pending requests</p>
-            {% endif %}
-
-            <h3>Sent Requests</h3>
-            {% if sent_requests %}
-                {% for req in sent_requests %}
-                <div class="friend-request">
-                    <div>{{ req.receiver.username }}</div>
-
-                    <div class="friend-actions">
-                        <span style="font-size:12px; color:var(--dark-gray);">Requested</span>
-                        <form method="POST" action="{% url 'users:cancel_friend_request' %}">
-                            {% csrf_token %}
-                            <input type="hidden" name="user_id" value="{{ req.receiver.userid }}">
-                            <button type="submit" class="cancel-btn">Cancel</button>
-                        </form>
-                    </div>
-                </div>
-                {% endfor %}
-            {% else %}
-                <p>No outgoing requests</p>
-            {% endif %}
-
-            <h3><b>Your Friends</b></h3>
-            {% if friends %}
-                {% for friend in friends %}
-                <div class="friend-row">
-                    <b>{{ friend.username }}</b>
-                    <div style="display:flex; gap:10px;">
-                        <button type="button">Visit Room</button>
-                        <form method="POST" action="{% url 'users:remove_friend' %}">
-                            {% csrf_token %}
-                            <input type="hidden" name="friend_id" value="{{ friend.userid }}">
-                            <button type="submit" class="remove-btn">Remove</button>
-                        </form>
-                    </div>
-                </div>
-                {% endfor %}
-            {% else %}
-                <p>No friends yet!</p>
-            {% endif %}
-
+        {% if messages %}
+        <div class="messages-container">
+            {% for message in messages %}
+                {% if "friends" in message.tags %}
+                    <p class="msg success">{{ message }}</p>
+                {% endif %}
+            {% endfor %}
         </div>
+        {% endif %}
 
-        <!-- RIGHT SIDE -->
-        <div class="friends-right">
+        <div class="friends-container">
 
-            <form method="GET">
-                <input type="text" name="q" placeholder="Search your friends"
-                       value="{{ query|default:'' }}">
-            </form>
+            <!-- LEFT SIDE -->
+            <div class="friends-left">
 
-            <div class="friends-results">
-                {% if results %}
-                    {% for user in results %}
-                    <div class="friend-result">
-                        <b>{{ user.username }}</b>
+                <div class="friends-header">Friends</div>
 
-                        <div class="friend-actions">
-                            <button type="button" class="secondary">Visit Room</button>
+                <h3>Friend Requests</h3>
+                {% if incoming_requests %}
+                    {% for req in incoming_requests %}
+                    <div class="friend-request">
+                        <p>{{ req.sender.username }}</p>
+                        <div style="display:flex; gap:10px;">
+                            <form method="POST" action="{% url 'users:accept_friend_request' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="sender_id" value="{{ req.sender.userid }}">
+                                <button type="submit">Accept</button>
+                            </form>
 
-                            {% if user.userid in friend_ids %}
-                                <button type="button" disabled>Friends</button>
-
-                            {% elif user.userid in sent_request_ids %}
-                                <form method="POST" action="{% url 'users:cancel_friend_request' %}">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="user_id" value="{{ user.userid }}">
-                                    <button type="submit" class="cancel-btn">Cancel</button>
-                                </form>
-
-                            {% else %}
-                                <form method="POST" action="{% url 'users:add_friend' %}">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="friend_id" value="{{ user.userid }}">
-                                    <button type="submit">Add Friend</button>
-                                </form>
-                            {% endif %}
+                            <form method="POST" action="{% url 'users:cancel_friend_request' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="user_id" value="{{ req.sender.userid }}">
+                                <button type="submit" class="cancel-btn">Cancel</button>
+                            </form>
                         </div>
                     </div>
                     {% endfor %}
-                {% elif query %}
-                    <p>No friends found.</p>
+                {% else %}
+                    <p>No pending requests</p>
                 {% endif %}
+
+                <h3>Sent Requests</h3>
+                {% if sent_requests %}
+                    {% for req in sent_requests %}
+                    <div class="friend-request">
+                        <div>{{ req.receiver.username }}</div>
+
+                        <div class="friend-actions">
+                            <span style="font-size:12px; color:var(--dark-gray);">Requested</span>
+                            <form method="POST" action="{% url 'users:cancel_friend_request' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="user_id" value="{{ req.receiver.userid }}">
+                                <button type="submit" class="cancel-btn">Cancel</button>
+                            </form>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <p>No outgoing requests</p>
+                {% endif %}
+
+                <h3><b>Your Friends</b></h3>
+                {% if friends %}
+                    {% for friend in friends %}
+                    <div class="friend-row">
+                        <b>{{ friend.username }}</b>
+                        <div style="display:flex; gap:10px;">
+                            <button type="button">Visit Room</button>
+                            <form method="POST" action="{% url 'users:remove_friend' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="friend_id" value="{{ friend.userid }}">
+                                <button type="submit" class="remove-btn">Remove</button>
+                            </form>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <p>No friends yet!</p>
+                {% endif %}
+
             </div>
 
-            <div class="friends-messaging">
-                <h3>Messaging</h3>
-                <p style="font-size:12px;">Check back for a messaging update!</p>
-            </div>
+            <!-- RIGHT SIDE -->
+            <div class="friends-right">
 
+                <form method="GET">
+                    <input class="friends-search" type="text" name="q" placeholder="Search your friends"
+                        value="{{ query|default:'' }}">
+                </form>
+
+                <div class="friends-results">
+                    {% if results %}
+                        {% for user in results %}
+                        <div class="friend-result">
+                            <b>{{ user.username }}</b>
+
+                            <div class="friend-actions">
+                                <button type="button" class="secondary">Visit Room</button>
+
+                                {% if user.userid in friend_ids %}
+                                    <button type="button" disabled>Friends</button>
+
+                                {% elif user.userid in sent_request_ids %}
+                                    <form method="POST" action="{% url 'users:cancel_friend_request' %}">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="user_id" value="{{ user.userid }}">
+                                        <button type="submit" class="cancel-btn">Cancel</button>
+                                    </form>
+
+                                {% else %}
+                                    <form method="POST" action="{% url 'users:add_friend' %}">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="friend_id" value="{{ user.userid }}">
+                                        <button type="submit">Add Friend</button>
+                                    </form>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% elif query %}
+                        <p>No friends found.</p>
+                    {% endif %}
+                </div>
+
+                <div class="friends-messaging">
+                    <h3>Messaging</h3>
+                    <p style="font-size:12px;">Check back for a messaging update!</p>
+                </div>
+
+            </div>
         </div>
-    </div>
 
-    <div class="friends-footer"></div>
-</div>
+        <div class="friends-footer"></div>
+    </div>
 
 </body>
 </html>

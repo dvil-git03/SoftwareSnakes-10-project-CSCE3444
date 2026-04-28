@@ -4,7 +4,7 @@ from . import views
 app_name = "users"
 
 urlpatterns = [
-    path('myroom', views.myroom, name='myroom'),
+    path('room/<int:urlID>', views.viewRoom, name='viewRoom'),
     path('explore', views.explore, name='explore'),
     path('friends', views.friends, name='friends'),
     path('profile', views.profile, name='profile'),
