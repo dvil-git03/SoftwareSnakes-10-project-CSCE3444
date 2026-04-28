@@ -1,36 +1,108 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from genericpath import exists
+from urllib import request
+
+from django.shortcuts import render, HttpResponse, redirect
 from django.template import loader
-from django.db.models import Q
+from django.db.models import Q, query
 from django.contrib.auth.hashers import make_password
-from .models import Userinfo, Userpass, Userroom
+from .models import FriendRequest, Friends, Userinfo, Userpass
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 
+
 # Create your views here.
 
-def viewRoom(request, urlID):
+def myroom(request):
   if 'userid' not in request.session:
     return redirect('authenticate:login')
-  
-  targetedUser = get_object_or_404(Userinfo, userid=urlID)
-
-  context = {
-    'targetedUser': targetedUser
-  }
-
-  return render(request, 'myroom.html', context)
-  
+  template = loader.get_template('myroom.html')
+  return HttpResponse(template.render())
 
 def explore(request):
-  if 'userid' not in request.session:
-    return redirect('authenticate:login')
-  return render(request, 'explore.html')
+    if 'userid' not in request.session:
+        return redirect('authenticate:login')
+
+    current_user_id = request.session['userid']
+    query = request.GET.get('q')
+
+    # FRIENDS
+    friend_ids = set(
+        Friends.objects.filter(userid_id=current_user_id)
+        .values_list('friendid', flat=True)
+    )
+
+    # REQUESTS
+    sent_requests = set(
+        FriendRequest.objects.filter(sender_id=current_user_id)
+        .values_list('receiver_id', flat=True)
+    )
+
+    # SEARCH RESULTS
+    results = []
+    if query:
+        results = Userinfo.objects.filter(
+            username__icontains=query
+        ).exclude(userid=current_user_id)
+
+    # ALL USERS (future?? maybe show mutual friends or something??)
+    all_users = Userinfo.objects.exclude(userid=current_user_id)
+
+    return render(request, 'explore.html', {
+        'query': query,
+        'results': results,
+        'all_users': all_users,
+        'friend_ids': friend_ids,
+        'sent_requests': sent_requests
+    })
+
 
 def friends(request):
-  if 'userid' not in request.session:
-    return redirect('authenticate:login')
-  template = loader.get_template('friends.html')
-  return render(request, 'friends.html')
+    if 'userid' not in request.session:
+        return redirect('authenticate:login')
+
+    current_user_id = request.session['userid']
+    query = request.GET.get('q')
+
+    # FRIEND IDS
+    friend_ids = set(
+        Friends.objects.filter(userid_id=current_user_id)
+        .values_list('friendid', flat=True)
+    )
+
+    # FRIEND OBJECTS
+    friends_list = Userinfo.objects.filter(userid__in=friend_ids)
+
+    # incoming requests
+    incoming_requests = FriendRequest.objects.filter(
+        receiver_id=current_user_id
+    )
+
+    # outgoing requests
+    sent_request_ids = set(
+        FriendRequest.objects.filter(sender_id=current_user_id)
+        .values_list('receiver_id', flat=True)
+    )
+
+    sent_requests = FriendRequest.objects.filter(
+    sender_id=current_user_id
+  )
+
+    # FRIEND SEARCH
+    results = []
+    if query:
+        results = friends_list.filter(
+            username__icontains=query
+        )
+
+    return render(request, 'friends.html', {
+      'friends': friends_list,
+      'incoming_requests': incoming_requests,
+      'sent_requests': sent_requests,
+      'sent_request_ids': sent_request_ids,
+      'friend_ids': friend_ids,
+      'results': results,
+      'query': query
+})
 
 def profile(request):
   if 'userid' not in request.session:
@@ -109,9 +181,102 @@ def settings(request):
 
 def main(request):
   template = loader.get_template('home.html')
-  return render(request, 'home.html')
+  return HttpResponse(template.render())
 
 @require_POST
 def logout(request):
   request.session.flush() # now, you would normally NOT do this, but since we have a custom solution it's fine.
   return redirect('authenticate:login')
+
+@require_POST
+def add_friend(request):
+    if 'userid' not in request.session:
+        return redirect('authenticate:login')
+
+    sender_id = request.session['userid']
+    receiver_id = request.POST.get('friend_id')
+
+    if str(sender_id) == str(receiver_id):
+        return redirect('users:explore')
+
+    existing = FriendRequest.objects.filter(
+      Q(sender_id=sender_id, receiver_id=receiver_id) |
+      Q(sender_id=receiver_id, receiver_id=sender_id)
+    ).exists()
+
+    if not existing:
+        FriendRequest.objects.create(
+            sender_id=sender_id,
+            receiver_id=receiver_id
+        )
+
+        # ✅ Only useful on Friends page
+        messages.success(request, "Friend request sent.", extra_tags="friends")
+
+    else:
+        messages.info(request, "Request already sent.", extra_tags="friends")
+
+    return redirect('users:explore')  # stays explore
+
+@require_POST
+def accept_friend_request(request): # This is a new view function to handle accepting friend requests, which was not in the original code but is necessary for the "add_friend" functionality (DEAN)
+    if 'userid' not in request.session:
+        return redirect('authenticate:login')
+
+    current_user_id = request.session['userid']
+    sender_id = request.POST.get('sender_id')
+
+    try:
+        req = FriendRequest.objects.get(
+            sender_id=sender_id,
+            receiver_id=current_user_id
+        )
+
+        Friends.objects.create(userid_id=current_user_id, friendid=sender_id)
+        Friends.objects.create(userid_id=sender_id, friendid=current_user_id)
+
+        req.delete()
+
+        messages.success(request, "Friend request accepted.", extra_tags="friends")
+
+    except FriendRequest.DoesNotExist:
+        messages.error(request, "Request not found.")
+
+    return redirect('users:friends')
+
+@require_POST # This is a new view function to handle removing friends, which was not in the original code but is necessary for the "add_friend" functionality (DEAN)
+def remove_friend(request):
+    if 'userid' not in request.session:
+        return redirect('authenticate:login')
+
+    current_user_id = request.session['userid']
+    friend_id = request.POST.get('friend_id')
+
+    Friends.objects.filter(userid_id=current_user_id, friendid=friend_id).delete()
+    Friends.objects.filter(userid_id=friend_id, friendid=current_user_id).delete()
+
+    messages.success(request, "Friend removed.", extra_tags="friends")
+
+    return redirect('users:friends')
+
+@require_POST # This is a new view function to handle canceling friend requests, which was not in the original code but is necessary for the "add_friend" functionality (DEAN)
+def cancel_friend_request(request):
+    if 'userid' not in request.session:
+        return redirect('authenticate:login')
+
+    user_id = request.session['userid']
+    other_id = request.POST.get("user_id")
+
+    FriendRequest.objects.filter(
+        sender_id=user_id,
+        receiver_id=other_id
+    ).delete()
+
+    FriendRequest.objects.filter(
+        sender_id=other_id,
+        receiver_id=user_id
+    ).delete()
+
+    messages.success(request, "Friend request canceled.", extra_tags="friends")
+
+    return redirect('users:friends')
