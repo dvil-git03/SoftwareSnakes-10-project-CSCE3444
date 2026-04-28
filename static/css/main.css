@@ -370,6 +370,179 @@ body {
     display: none;
 }
 
+/* Leaf's Comment: adding in the css classes that help format my section of the room edit*/
+/* comment from me: diego, not typical to have underscores, but since I don't want to heavily modify this, it'll work. */
+.room_edit_notice{
+    visibility: hidden;
+    text-align: center;
+    width: 95%;
+    background-color: yellow;
+    border-radius: 12px;
+    margin: 15px auto;
+}
+.room_container {
+    --angle: 20deg;
+    --wall_size: 450px;
+    /* for a 30deg angle, scale should be ~= 0.866 */
+    --wall_scale: cos(var(--angle));
+    --floor_skew: calc(var(--angle) - 45deg);
+
+    --grid_size: 8;
+
+    --square_size: calc(var(--wall_size) / var(--grid_size));
+
+    --shift_down: 50px;
+
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    
+    width: 95%;
+    margin: 25px auto;
+    height: 75dvh;
+    
+    background: var(--mid-gray);
+    
+    padding: 30px;
+    border-radius: 12px;
+}
+.room_centerpoint{
+    transform: translateY(var(--shift_down));
+}
+.room_wall {
+    position: absolute;
+    display: grid;
+    grid-template-columns: repeat(var(--grid_size), 1fr);
+    grid-template-rows: repeat(var(--grid_size), 1fr);
+    margin: 0px;
+    background: var(--mid-dark-gray);
+    /* background: url("../images/room_editing/pink-pattern-wallpaper.jpg"); */
+    /* background-size: contain; */
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    /* opacity: 0.5; */
+    
+    border: 1px solid red;
+
+    width: var(--wall_size);
+    height: var(--wall_size);
+
+}
+.left_wall {
+    right: 50%;
+    bottom: 50%;
+
+    transform-origin: bottom right;
+    transform: skewY(calc(-1*var(--angle))) scaleY(var(--wall_scale)); 
+}
+.right_wall {
+    left: 50%;
+    bottom: 50%;
+    
+    transform-origin: bottom left;
+    transform: skewY(var(--angle)) scaleY(var(--wall_scale));
+}
+.floor {
+    left: 50%;
+    top: 50%;
+ 
+    transform-origin: top left;
+    transform: rotate(45deg) skew(var(--floor_skew), var(--floor_skew));
+}
+
+.square {
+    width: var(--square_size);
+    height: var(--square_size);
+    /* background: var(--mid-dark-gray); */
+    /* opacity: 0.5; */
+    border: 1px solid red
+    
+}
+.square:hover {
+    background: #e74c3c !important;
+    cursor: pointer;
+}
+
+.side_menu {
+    position: absolute;
+    width: 12.5%;
+    height: 65%;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    /* padding: 30px; */
+    margin-top: 5%;
+    margin-left: 2.5%;
+
+    top: 0;
+    left: 0;
+    background-color: var(--light-gray);
+    /* background-color: var(--white); */
+}
+
+
+.tab_container {
+    display: grid;
+    margin: 5%;
+
+}
+
+.item_tab{
+    cursor: pointer;
+    width: auto;
+    height: 25px;
+    border-radius: 5px;
+    margin: 2%;
+    border: 1px solid var(--mid-dark-gray);
+    background-color: var(--mid-gray);
+    text-align: center;
+}
+.item_tab:hover{
+    /* PLEASE SOMEONE FIX THE COLOR AND MAKE IT LOOK ACTUALLY GOOD */
+    background-color: var(--mid-dark-gray);
+    border: var(--dark-gray)
+}
+
+.item_list{
+    display: none;
+    /* display: grid; */
+    flex: 0.95;
+    overflow-y: scroll;
+    margin-left: 10%;
+    margin-right: 5%;
+    grid-template-columns: repeat(auto-fill, 55px);
+    grid-auto-rows: 55px;
+}
+.item_list img{
+    cursor: pointer;
+}
+
+
+/* depriciated */
+.room_side_menu_title{
+    display: grid;
+    /* grid-template-rows: repeat(var(--grid_size), 1fr); */
+}
+
+.wallpaper {
+    /* grid-template-columns: repeat(var(--grid_size), 1fr); */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12.5%, 1fr));
+    /* gap: 25px; */
+    margin: 10%;
+    height: 50px;
+    width: 50px;
+}
+.flooring {
+    margin: 10%;
+    height: 50px;
+    width: 50px;
+}
+
+
 /*==============HOME PAGE===============*/
 
 .home-main {
@@ -595,7 +768,7 @@ body {
     padding: 30px;
 }
 
-/* hey, maybe don't do this type of naming? -- Diego */
+
 .prof-sett-main h1 {
     background: var(--primary-purple);
     color: white;
