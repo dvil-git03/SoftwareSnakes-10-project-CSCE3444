@@ -10,7 +10,6 @@ class Friends(models.Model):
         managed = True
         db_table = 'friends'
 
-
 class Musicdata(models.Model):
     itemid = models.AutoField(primary_key=True)
     musicdata = models.BinaryField()
@@ -40,6 +39,15 @@ class Userinfo(models.Model):
     class Meta:
         managed = True
         db_table = 'userinfo'
+
+
+class FriendRequest(models.Model): # This is a new model to handle friend requests, which was not in the original SQL code but is necessary for the "add_friend" functionality.
+    sender = models.ForeignKey(Userinfo, on_delete=models.CASCADE, related_name='sent_requests')
+    receiver = models.ForeignKey(Userinfo, on_delete=models.CASCADE, related_name='received_requests')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('sender', 'receiver')
 
 
 class Userpass(models.Model):
