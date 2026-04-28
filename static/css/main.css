@@ -953,3 +953,12 @@ button.secondary {
     display: flex;
     gap: 10px;
 }
+
+.pfp-sm {
+width: 40px !important;
+height: 40px !important;
+object-fit: cover;
+border-radius: 8px;
+flex-shrink: 0;
+display: block;
+}
