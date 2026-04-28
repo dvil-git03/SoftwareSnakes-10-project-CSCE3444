@@ -33,7 +33,17 @@
                 {% if incoming_requests %}
                     {% for req in incoming_requests %}
                     <div class="friend-request">
-                        <p>{{ req.sender.username }}</p>
+                        <div style="display:flex; align-items:center; gap:10px;">
+                            {% if req.sender.profilePicture and req.sender.profilePicture.url %}
+                                <img src="{{ req.sender.profilePicture.url }}" class="pfp-sm"
+                                     onclick="openProfileModal('{{ req.sender.username }}', '{{ req.sender.profilePicture.url }}')"
+                                     onerror="this.src='/media/pfp/default.png';">
+                            {% else %}
+                                <img src="/media/pfp/default.png" class="pfp-sm"
+                                    onclick="openProfileModal('{{ req.sender.username }}', '/media/pfp/default.png')">
+                            {% endif %}
+                            <p>{{ req.sender.username }}</p>
+                        </div>
                         <div style="display:flex; gap:10px;">
                             <form method="POST" action="{% url 'users:accept_friend_request' %}">
                                 {% csrf_token %}
@@ -57,7 +67,17 @@
                 {% if sent_requests %}
                     {% for req in sent_requests %}
                     <div class="friend-request">
-                        <div>{{ req.receiver.username }}</div>
+                        <div style="display:flex; align-items:center; gap:10px;">
+                            {% if req.receiver.profilePicture and req.receiver.profilePicture.url %}
+                                <img src="{{ req.receiver.profilePicture.url }}" class="pfp-sm"
+                                     onclick="openProfileModal('{{ req.receiver.username }}', '{{ req.receiver.profilePicture.url }}')"
+                                     onerror="this.src='/media/pfp/default.png';">
+                            {% else %}
+                                <img src="/media/pfp/default.png" class="pfp-sm"
+                                    onclick="openProfileModal('{{ req.receiver.username }}', '/media/pfp/default.png')">
+                            {% endif %}
+                            <div>{{ req.receiver.username }}</div>
+                        </div>
 
                         <div class="friend-actions">
                             <span style="font-size:12px; color:var(--dark-gray);">Requested</span>
@@ -77,7 +97,17 @@
                 {% if friends %}
                     {% for friend in friends %}
                     <div class="friend-row">
-                        <b>{{ friend.username }}</b>
+                        <div style="display:flex; align-items:center; gap:10px;">
+                            {% if friend.profilePicture and friend.profilePicture.url %}
+                                <img src="{{ friend.profilePicture.url }}" class="pfp-sm"
+                                     onclick="openProfileModal('{{ friend.username }}', '{{ friend.profilePicture.url }}')"
+                                     onerror="this.src='/media/pfp/default.png';">
+                            {% else %}
+                                <img src="/media/pfp/default.png" class="pfp-sm"
+                                    onclick="openProfileModal('{{ friend.username }}', '/media/pfp/default.png')">
+                            {% endif %}
+                            <b>{{ friend.username }}</b>
+                        </div>
                         <div style="display:flex; gap:10px;">
                             <button type="button">Visit Room</button>
                             <form method="POST" action="{% url 'users:remove_friend' %}">
@@ -106,7 +136,17 @@
                     {% if results %}
                         {% for user in results %}
                         <div class="friend-result">
-                            <b>{{ user.username }}</b>
+                            <div style="display:flex; align-items:center; gap:10px;">
+                                {% if user.profilePicture and user.profilePicture.url %}
+                                    <img src="{{ user.profilePicture.url }}" class="pfp-sm"
+                                         onclick="openProfileModal('{{ user.username }}', '{{ user.profilePicture.url }}')"
+                                         onerror="this.src='/media/pfp/default.png';">
+                                {% else %}
+                                    <img src="/media/pfp/default.png" class="pfp-sm"
+                                         onclick="openProfileModal('{{ user.username }}', '/media/pfp/default.png')">
+                                {% endif %}
+                                <b>{{ user.username }}</b>
+                            </div>
 
                             <div class="friend-actions">
                                 <button type="button" class="secondary">Visit Room</button>
@@ -146,6 +186,26 @@
 
         <div class="friends-footer"></div>
     </div>
+
+    <div id="profile-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); justify-content:center; align-items:center;">
+    <div style="background:white; padding:20px; border-radius:10px; text-align:center;">
+        <img id="modal-img" src="" style="width:150px; height:150px; object-fit:cover; border-radius:50%;">
+        <h3 id="modal-username"></h3>
+        <button type="button" onclick="closeProfileModal()">Close</button>
+    </div>
+</div>
+
+<script>
+function openProfileModal(username, imgUrl) {
+    document.getElementById("profile-modal").style.display = "flex";
+    document.getElementById("modal-img").src = imgUrl;
+    document.getElementById("modal-username").innerText = username;
+}
+
+function closeProfileModal() {
+    document.getElementById("profile-modal").style.display = "none";
+}
+</script>
 
 </body>
 </html>
