@@ -128,7 +128,6 @@ def updateProfile(request):
       passwordInput = request.POST.get('password')
       collegeInput = request.POST.get('college', user.college)
       usersession = request.session.get('userid', user.userid)
-      profilePic = request.FILES.get('profilePic', user.profilePicture)
 
       conflictExists = Userinfo.objects.filter(Q(email=emailInput) | Q(username=usernameInput)).exclude(userid=usersession).exists()
       if conflictExists:
@@ -154,9 +153,10 @@ def updateProfile(request):
           userPassword.password = make_password(passwordInput)
           userPassword.save()
 
-        if profilePic in request.FILES:
-          user.profilePicture = request.FILES['profilePic']
-          user.save()
+        if 'profilePic' in request.FILES:
+            user.profilePicture = request.FILES['profilePic']
+            
+        user.save()
 
         request.session['username'] = usernameInput
         request.session['email'] = emailInput
