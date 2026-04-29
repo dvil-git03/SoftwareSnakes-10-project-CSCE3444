@@ -10,6 +10,15 @@
 <body>
 
     {% include 'header.html' with nameplate="Explore" %}
+
+            {% if messages %}
+            <div class="messages-container">
+                {% for message in messages %}
+                    <p class="msg {{ message.tags }}">{{ message }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+
     <div class="explore-main">
     <div class="explore-container">
     <div class="explore-left">
@@ -29,7 +38,10 @@
                         <img src="/media/pfp/default.png" class="pfp-sm"
                             onclick="openProfileModal('{{ user.username }}', '/media/pfp/default.png')">
                     {% endif %}
-                    <h3 style="margin:0;">{{ user.username }}'s Room</h3>
+
+                    <h3 style="margin:0; display:flex; align-items:center; gap:6px;">
+                        {{ user.username }}'s Room
+                    </h3>
                 </div>
 
                 <p>This is {{ user.username }}'s room preview.</p>
