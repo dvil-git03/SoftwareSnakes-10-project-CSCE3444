@@ -9,9 +9,11 @@
 </head>
 <body>
 
+    <header>
     {% include 'header.html' with nameplate="Explore" %}
+    </header>
 
-    <div class="explore-main">
+    <main class="explore-main">
 
         {% if messages %}
         <div class="messages-container">
@@ -23,26 +25,35 @@
 
     <div class="explore-container">
     <div class="explore-left">
-    <div class="explore-header">Explore</div>
+    <h1 class="explore-header">Explore</h1>
 
     {% if results %}
         {% for user in results %}
         <div class="explore-room">
-            <img src="{% static 'images/room_preview.png' %}">
+            <img src="{% static 'images/room_preview.png' %}" alt="">
             <div class="explore-room-text">
                 <div style="display:flex; align-items:center; gap:10px;">
                     {% if user.profilePicture and user.profilePicture.url %}
-                        <img src="{{ user.profilePicture.url }}" class="pfp-sm"
-                            onclick="openProfileModal('{{ user.username }}', '{{ user.profilePicture.url }}')"
+                        <button type="button" class="pfp-button"
+                            onclick="openProfileModal('{{ user.username }}', '{{ user.profilePicture.url }}')">
+                        <img src="{{ user.profilePicture.url }}"
+                            class="pfp-sm"
+                            alt="{{ user.username }} profile picture"
                             onerror="this.src='/media/pfp/default.png';">
+                        </button>
                     {% else %}
-                        <img src="/media/pfp/default.png" class="pfp-sm"
+                        <button type="button" class="pfp-button"
                             onclick="openProfileModal('{{ user.username }}', '/media/pfp/default.png')">
+                        <img src="/media/pfp/default.png"
+                            class="pfp-sm"
+                            alt="{{ user.username }} profile picture"
+                            onerror="this.src='/media/pfp/default.png';">
+                        </button>
                     {% endif %}
 
-                    <h3 style="margin:0; display:flex; align-items:center; gap:6px;">
+                    <h2 style="margin:0; display:flex; align-items:center; gap:6px; font-size: 18px;">
                         {{ user.username }}'s Room
-                    </h3>
+                    </h2>
                 </div>
 
                 <p>This is {{ user.username }}'s room preview.</p>
@@ -69,9 +80,9 @@
         {% endfor %}
     {% else %}
         <div class="explore-room" style="opacity:0;">
-            <img src="{% static 'images/room_preview.png' %}">
+            <img src="{% static 'images/room_preview.png' %}" alt="">
             <div class="explore-room-text">
-                <h3>Placeholder</h3>
+                <h2>Placeholder</h2>
                 <p>Placeholder</p>
             </div>
         </div>
@@ -82,8 +93,14 @@
     <div class="explore-right">
 
     <form method="GET">
-        <input class="explore-search" type="text" name="q"
-            placeholder="Search Rooms" value="{{ query|default:'' }}">
+        <label for="explore-search" class="sr-only">Search Rooms</label>
+
+        <input id="explore-search"
+           class="explore-search"
+           type="text"
+           name="q"
+           placeholder="Search Rooms"
+           value="{{ query|default:'' }}">
     </form>
 
     <div class="explore-friends">
@@ -94,12 +111,21 @@
     {% for user in all_users %}
     <div class="explore-account">
         {% if user.profilePicture and user.profilePicture.url %}
-            <img src="{{ user.profilePicture.url }}" class="pfp-sm"
-                 onclick="openProfileModal('{{ user.username }}', '{{ user.profilePicture.url }}')"
-                 onerror="this.src='/media/pfp/default.png';">
+            <button type="button" class="pfp-button"
+                onclick="openProfileModal('{{ user.username }}', '{{ user.profilePicture.url }}')">
+            <img src="{{ user.profilePicture.url }}"
+                class="pfp-sm"
+                alt="{{ user.username }} profile picture"
+                onerror="this.src='/media/pfp/default.png';">
+            </button>
         {% else %}
-            <img src="/media/pfp/default.png" class="pfp-sm"
-                 onclick="openProfileModal('{{ user.username }}', '/media/pfp/default.png')">
+            <button type="button" class="pfp-button"
+                onclick="openProfileModal('{{ user.username }}', '/media/pfp/default.png')">
+            <img src="/media/pfp/default.png"
+                class="pfp-sm"
+                alt="{{ user.username }} profile picture"
+                onerror="this.src='/media/pfp/default.png';">
+                </button>
         {% endif %}
         <div class="explore-account-info">
             <b>{{ user.username }}</b>
@@ -129,15 +155,16 @@
     </div>
 
     </div>
-    </div>
+    </main>
 
-    <div class="explore-footer">Click on a room to visit it!</div>
+    <footer class="explore-footer">Click on a room to visit it!</footer>
     </div>
 
 <div id="profile-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); justify-content:center; align-items:center;">
     <div style="background:white; padding:20px; border-radius:10px; text-align:center;">
-        <img id="modal-img" src="" style="width:150px; height:150px; object-fit:cover; border-radius:50%;">
-        <h3 id="modal-username"></h3>
+        <img id="modal-img" src="" alt = ""
+            style="width:150px; height:150px; object-fit:cover; border-radius:50%;">
+        <h3 id="modal-username">User Profile</h3>
         <button type="button" onclick="closeProfileModal()">Close</button>
     </div>
 </div>
