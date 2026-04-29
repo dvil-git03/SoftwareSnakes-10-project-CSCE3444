@@ -47,10 +47,14 @@ def explore(request):
     if query:
         results = Userinfo.objects.filter(
             username__icontains=query
-        ).exclude(userid=current_user_id)
+        ).exclude(userid=current_user_id).filter(
+            Q(show_profile=True, hide_room=False) | Q(userid__in=friend_ids)
+        )
 
-    # ALL USERS (future?? maybe show mutual friends or something??)
-    all_users = Userinfo.objects.exclude(userid=current_user_id)
+    # ALL USERS
+    all_users = Userinfo.objects.exclude(userid=current_user_id).filter(
+        Q(show_profile=True, hide_room=False) | Q(userid__in=friend_ids)
+    )
 
     return render(request, 'explore.html', {
         'query': query,
@@ -112,13 +116,11 @@ def friends(request):
 def profile(request):
   if 'userid' not in request.session:
     return redirect('authenticate:login')
-  # Replaces a JS script that filled in logged in userinfo, by collecting info from the current session.
   user_data = Userinfo.objects.get(userid=request.session['userid'])
   return render(request, 'profile.html', {'user': user_data})
 
 def updateProfile(request):
   if request.method == "POST":
-      # Any userinput that was changed gets captured here
       user = Userinfo.objects.get(userid=request.session.get('userid'))
       emailInput = request.POST.get('email', user.email)
       nameInput = request.POST.get('name', user.name)
@@ -128,10 +130,8 @@ def updateProfile(request):
       usersession = request.session.get('userid', user.userid)
       profilePic = request.FILES.get('profilePic', user.profilePicture)
 
-      # A Python classic, basically, this is checking if there is ALREADY an existing email or username. 
-      # Q stands for Query and using the logical OR (|) to check if either condition is true, EXCLUDING our own.
       conflictExists = Userinfo.objects.filter(Q(email=emailInput) | Q(username=usernameInput)).exclude(userid=usersession).exists()
-      if conflictExists: # Oops.
+      if conflictExists:
         messages.error(request, f"This email or username already exists.")
         erroredUser = {
           'username': usernameInput,
@@ -141,9 +141,7 @@ def updateProfile(request):
         }
         return render(request, 'profile.html', {"user": erroredUser})
       
-      # Now, time to update this database, putting this in a try/except block because things MAY go wrong.
       try:
-        # ONLY manipulating this current users information.
         user = Userinfo.objects.get(userid=usersession)
         user.username = usernameInput
         user.email = emailInput
@@ -151,12 +149,10 @@ def updateProfile(request):
         user.college = collegeInput
         user.save()
       
-        # If they chose to update their password, we need to rehash it and store it in Userpass.
         if passwordInput:
           userPassword = Userpass.objects.get(userid=usersession)
           userPassword.password = make_password(passwordInput)
           userPassword.save()
-          # Updating their session in Realtime, kinda.
 
         if profilePic in request.FILES:
           user.profilePicture = request.FILES['profilePic']
@@ -167,7 +163,6 @@ def updateProfile(request):
         request.session['name'] = nameInput
         request.session['college'] = collegeInput
       
-      # A error happened, oh no! Please tell Diego :( !
       except Exception as e:
         messages.error(request, f"An unknown error occurred: {e}")
         erroredUser = {
@@ -185,14 +180,24 @@ def updateProfile(request):
 def settings(request):
   if 'userid' not in request.session:
     return redirect('authenticate:login')
-  return render(request, 'settings.html')
+
+  user = Userinfo.objects.get(userid=request.session['userid'])
+
+  if request.method == "POST":
+    user.hide_room = request.POST.get("hide_room") == "on"
+    user.allow_requests = request.POST.get("allow_requests") == "on"
+    user.show_profile = request.POST.get("show_profile") == "on"
+    user.save()
+
+  return render(request, 'settings.html', {'user': user})
+
 
 def main(request):
   return render(request, 'home.html')
 
 @require_POST
 def logout(request):
-  request.session.flush() # now, you would normally NOT do this, but since we have a custom solution it's fine.
+  request.session.flush()
   return redirect('authenticate:login')
 
 @require_POST
@@ -206,6 +211,12 @@ def add_friend(request):
     if str(sender_id) == str(receiver_id):
         return redirect('users:explore')
 
+    receiver = Userinfo.objects.get(userid=receiver_id)
+
+    if not receiver.allow_requests:
+        messages.error(request, "This user is not accepting friend requests.", extra_tags="friends")
+        return redirect('users:explore')
+
     existing = FriendRequest.objects.filter(
       Q(sender_id=sender_id, receiver_id=receiver_id) |
       Q(sender_id=receiver_id, receiver_id=sender_id)
@@ -217,16 +228,15 @@ def add_friend(request):
             receiver_id=receiver_id
         )
 
-        # Only useful on Friends page
         messages.success(request, "Friend request sent.", extra_tags="friends")
 
     else:
         messages.info(request, "Request already sent.", extra_tags="friends")
 
-    return redirect('users:explore')  # stays explore
+    return redirect('users:explore')
 
 @require_POST
-def accept_friend_request(request): # This is a new view function to handle accepting friend requests, which was not in the original code but is necessary for the "add_friend" functionality (DEAN)
+def accept_friend_request(request):
     if 'userid' not in request.session:
         return redirect('authenticate:login')
 
@@ -251,7 +261,7 @@ def accept_friend_request(request): # This is a new view function to handle acce
 
     return redirect('users:friends')
 
-@require_POST # This is a new view function to handle removing friends, which was not in the original code but is necessary for the "add_friend" functionality (DEAN)
+@require_POST
 def remove_friend(request):
     if 'userid' not in request.session:
         return redirect('authenticate:login')
@@ -266,7 +276,7 @@ def remove_friend(request):
 
     return redirect('users:friends')
 
-@require_POST # This is a new view function to handle canceling friend requests, which was not in the original code but is necessary for the "add_friend" functionality (DEAN)
+@require_POST
 def cancel_friend_request(request):
     if 'userid' not in request.session:
         return redirect('authenticate:login')
