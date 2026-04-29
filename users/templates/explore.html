@@ -11,15 +11,16 @@
 
     {% include 'header.html' with nameplate="Explore" %}
 
-            {% if messages %}
-            <div class="messages-container">
-                {% for message in messages %}
-                    <p class="msg {{ message.tags }}">{{ message }}</p>
-                {% endfor %}
-            </div>
-            {% endif %}
-
     <div class="explore-main">
+
+        {% if messages %}
+        <div class="messages-container">
+            {% for message in messages %}
+                <p class="msg {{ message.tags }}">{{ message }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+
     <div class="explore-container">
     <div class="explore-left">
     <div class="explore-header">Explore</div>
