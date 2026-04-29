@@ -28,10 +28,24 @@
                 <div class="proff-sett-main">
                     <h1>Privacy Settings</h1>
                 </div>
-                <div class="settings-group">
-                    <p>Hide Room</p>
-                    <input type="checkbox">
-                </div>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="settings-group">
+                        <p>Hide Room</p>
+                        <input type="checkbox" name="hide_room" {% if user.hide_room %}checked{% endif %}>
+                    </div>
+
+                    <div class="settings-group">
+                        <p>Allow Friend Requests</p>
+                        <input type="checkbox" name="allow_requests" {% if user.allow_requests %}checked{% endif %}>
+                    </div>
+
+                    <div class="settings-group">
+                        <p>Show Profile in Search</p>
+                        <input type="checkbox" name="show_profile" {% if user.show_profile %}checked{% endif %}>
+                    </div>
+                    <button type="submit" class="profile-save-button">Save Changes</button>
+                </form>
             </section>
         </div>
 
