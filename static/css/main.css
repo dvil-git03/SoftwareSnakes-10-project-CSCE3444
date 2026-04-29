@@ -962,3 +962,14 @@ border-radius: 8px;
 flex-shrink: 0;
 display: block;
 }
+
+.profile-save-button {
+    width: 200px;
+    background: var(--primary-green);
+    color: white;
+    font-weight: 600;
+}
+
+.profile-save-button:hover {
+    background: #7ed61f;
+}
