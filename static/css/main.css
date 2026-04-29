@@ -323,6 +323,16 @@ body {
     overflow-y: auto;
 }
 
+.explore-main .messages-container {
+    margin-bottom: 20px;
+}
+
+.explore-main .msg {
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
 /*==============MYROOM===============*/
 
 /*dean: mydigiroom left space top bar*/
