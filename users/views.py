@@ -119,13 +119,14 @@ def profile(request):
 def updateProfile(request):
   if request.method == "POST":
       # Any userinput that was changed gets captured here
-      emailInput = request.POST.get('email')
-      nameInput = request.POST.get('name')
-      usernameInput = request.POST.get('username')
+      user = Userinfo.objects.get(userid=request.session.get('userid'))
+      emailInput = request.POST.get('email', user.email)
+      nameInput = request.POST.get('name', user.name)
+      usernameInput = request.POST.get('username', user.username)
       passwordInput = request.POST.get('password')
-      collegeInput = request.POST.get('college')
-      usersession = request.session.get('userid')
-      profilePic = request.FILES.get('profilePic')
+      collegeInput = request.POST.get('college', user.college)
+      usersession = request.session.get('userid', user.userid)
+      profilePic = request.FILES.get('profilePic', user.profilePicture)
 
       # A Python classic, basically, this is checking if there is ALREADY an existing email or username. 
       # Q stands for Query and using the logical OR (|) to check if either condition is true, EXCLUDING our own.
@@ -157,12 +158,14 @@ def updateProfile(request):
           userPassword.save()
           # Updating their session in Realtime, kinda.
 
-        if profilePic:
+        if profilePic in request.FILES:
           user.profilePicture = request.FILES['profilePic']
           user.save()
 
         request.session['username'] = usernameInput
-        
+        request.session['email'] = emailInput
+        request.session['name'] = nameInput
+        request.session['college'] = collegeInput
       
       # A error happened, oh no! Please tell Diego :( !
       except Exception as e:
@@ -174,7 +177,7 @@ def updateProfile(request):
           'college': collegeInput
         }
         return render(request, 'profile.html', {"user": erroredUser})
-
+      
       messages.success(request, "Successfully updated profile!")
       return redirect('users:profile')
 
