@@ -35,6 +35,9 @@ class Userinfo(models.Model):
     college = models.CharField(max_length=100, blank=True, null=True)
     name = models.CharField(max_length=30, default="John Doe")
     profilePicture = models.ImageField(upload_to='pfp', default='pfp/default.png')
+    hide_room = models.BooleanField(default=False)
+    allow_requests = models.BooleanField(default=True)
+    show_profile = models.BooleanField(default=True)
 
     class Meta:
         managed = True
