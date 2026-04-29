@@ -223,8 +223,8 @@ body {
 }
 
 .explore-header {
-    background: #ff7a3c;
-    color: white;
+    background: #d95c2b;
+    color: #ffffff;
     padding: 10px 20px;
     font-size: 24px;
     font-weight: bold;
@@ -260,12 +260,12 @@ body {
 
 .explore-room-text h3 {
     margin: 0;
-    color: var(--primary-orange);
+    color: #C24D1F;
 }
 
 .explore-room-text p {
     font-size: 14px;
-    color: #333
+    color: #2f2f2f;
 }
 
 .explore-right {
@@ -309,7 +309,7 @@ body {
 }
 
 .explore-account-info b {
-    color: var(--primary-purple);
+    color: #2f2f2f;
 }
 
 .explore-footer {
@@ -926,24 +926,27 @@ body {
     font-size: 13px;
     font-weight: 600;
     transition: all 0.2s ease;
-    background: var(--primary-orange);
-    color: white;
+}
+
+.explore-main button.primary {
+    background: #d95c2b;
+    color: #ffffff;
 }
 
 .explore-main button:hover:not(:disabled) {
-    background: #e5672f;
+    background: #b84a21;
 }
 
 .explore-main button:disabled {
-    background: var(--mid-gray);
-    color: var(--dark-gray);
+    background: #d0d0d0;
+    color: #6a6a6a;
+    cursor: not-allowed;
 }
 
 
-button.secondary {
-    background: transparent;
-    border: 2px solid currentColor;
-    color: inherit;
+button.secondary:hover {
+    background: #2f2f2f;
+    color: #ffffff;
 }
 
 .explore-actions {
@@ -982,4 +985,16 @@ display: block;
 
 .profile-save-button:hover {
     background: #7ed61f;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
