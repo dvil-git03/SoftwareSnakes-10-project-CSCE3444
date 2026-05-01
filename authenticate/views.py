@@ -26,7 +26,7 @@ def login(request):
                 request.session['username'] = user.username
                 request.session['email'] = user.email
                 request.session['college'] = user.college
-                return redirect('users:viewRoom', urlID=user.userid)
+                return redirect('users:myRoom')
             else:
                 messages.error(request, "Invalid Username or Password.") # While this may be checking passwords, we should report a vague message to the user for security.
         except Userinfo.DoesNotExist:
