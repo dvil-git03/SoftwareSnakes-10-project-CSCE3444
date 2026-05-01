@@ -1,5 +1,7 @@
 # SoftwareSnakes-10-project-CSCE3444 (MyDigiRoom)
 
+![MyDigiRoom Home Page](/docs/mydigiroom_home.png)
+
 ## Project Members
 
 - Lily Hillman
@@ -22,30 +24,40 @@ https://us05web.zoom.us/j/83044713288?pwd=QFN6uw1LTIY9ZwaBh2ydrrL57aRbPw.1
 Meeting ID: 830 4471 3288 
 Passcode: 3igRQJ 
 
-## Run Server
-To run and develop the proof of concept, install Django using PIP (Python's Package Manager).
-``pip install django psycopg2 pillow``.
+## Prepare to Run Server
+To run and develop the proof of concept, install Django using PIP (Python's Package Manager), 
+``pip install django psycopg2 pillow`` and allowing it to install the packages.
 
+
+### Database 
 Before you can run the server, you must launch your PostgreSQL server. Modify the settings in `mydigiroom/settings.py` to match the settings of
-your PostgreSQL account. Please read `dbChanges.md` for more information on configuring the database.
+your PostgreSQL account and database. This tutorial assumes you are running an empty database and schema. If you have items, records, or tables in your database,
+please refer to _dbChanges.md_ on how to start the table from scratch.
 
-After ensuring all settings are correct, we will launch the server with
-`` python manage.py runserver ``.
+From the empty database and schema, enter the root directory of the project in a terminal and run the following command: `python manage.py migrate` which
+should move the changes required for the backend to function properly into your PostgreSQL database. 
 
-You may enter the admin panel using ``127.0.0.1:PORT/admin`` and you may directly interface with the database using the admin panel, but
-you must make a superuser account using `python manage.py createsuperuser` and by following the prompts, you can ignore an email if you wish.
+## Testing 
 
-At the moment, I have migrated the static HTML pages to be Django compliant, and everything should be working as intended. Once the server is running you
-will be greeted with the home.html page. To access other websites, since the login logic has yet to be implemented, manually type into the search bar the 
-page you'd like to visit.
-Examples include:
-- /users/myroom
-- /users/settings
-- /users/friends
-- /users/explore
+Django has built in Testing support, and a few unit tests were created in `users/tests.py` which test the functionality of the core of the website's backend and database.
+This is conducted by creating a test database with the same models and objects as defined in `users/models.py` and simulating a browser client for testing.
 
-The header should direct you to the correct pages as well.
+To run the test suite, ensure your database settings in `mydigiroom/settings.py` are correct as previously instructed and ensure your database has the proper Django 
+migrations when checking the SQL administrative app. 
 
-If you have any questions, please contact Diego. :)
+Then, after all your database settings are correct, and the server can run correctly, you can run the tests by conducting the following command: `python manage.py test`.
+
+## Running the Server
+
+After ensuring all settings are correct, we will launch the server with ` python manage.py runserver ` and the program will run a local server on localhost (127.0.0.1) in debug mode.
+You may enter the admin panel using ``127.0.0.1:PORT/admin`` and you may directly interface with the database using the admin panel, but you must make a superuser account using 
+`python manage.py createsuperuser` and by following the prompts, you can ignore an email if you wish.
+
+To close the server, simply send an interrupt signal (CTRL-C) to the terminal running the server. This server grants the ability to render the pages
+properly and allow user interaction with the database and other aspects of the backend.
+
+![MyDigiRoom Profile Page](/docs/mydigiroom_profile.png)
+
+![MyDigiRoom Explore Page](/docs/mydigiroom_explore.png)
 
 
