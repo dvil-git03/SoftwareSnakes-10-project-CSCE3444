@@ -1,0 +1,1000 @@
+/*
+    main.css 
+    The main styling sheet for our pages,
+    currently needs to be cleaned up, 
+    but for now,this will work.
+*/
+@import url('https://fonts.googleapis.com/css2?family=K2D:wght@400;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    /*primary colors*/
+    --primary-green: #90E626;
+    --primary-blue: #4272FF;
+    --primary-orange: #FF7E42;
+    --primary-yellow: #FFB343;
+    --primary-teal: #42EAFF;
+    --primary-purple: #E626C6;
+
+    /*neutrals*/
+    --white: #FFFFFF;
+    --light-gray: #F4F4F3;
+    --mid-gray: #D9D9D9;
+    --dark-gray: #6C7179;
+    --black: #0D1014;
+
+    /*layout*/
+    --border-radius: 12px;
+    --padding: 16px;
+
+}
+
+p {
+    text-align: left;
+}
+
+/*styling links*/
+a {
+    text-decoration: none;
+}
+
+
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'K2D', sans-serif;
+    background-color: var(--white);
+    color: var(--black);
+}
+
+/*==============HEADER===============*/
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* border: 5px outset red; */
+    /* margin:0px;
+    padding:0px; */
+    text-align: center;
+    width: 100%;
+    padding: 10px 20px;
+    background-color: var(--light-gray);
+
+}
+
+.header-left {
+    float: left;
+    display: inline-flex;
+    text-align: center;
+    padding: 5px;
+    padding-left: 15px;
+    /* border: 5px inset blue; */
+}
+
+.header-logo {
+    float: left;
+    display: inline-flex;
+    /* border: 5px inset green; */
+    text-align: center;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding: 5px;
+    cursor: pointer;
+    justify-content: center;
+    /* padding-right: 15px; */
+}
+
+.main-logo {
+    width: auto;
+    height: 30px;
+    padding-top: 5px;
+}
+
+
+.header-center {
+    /* float: right; */
+    display: flex;
+    text-align: center;
+}
+
+.header-center h1 {
+    /* float: right; */
+    font-family: 'K2D', sans-serif;
+    font-size: 28px;
+    margin: 0px;
+    display: inline-flex;
+    text-align: center;
+    padding-left: 5px;
+}
+
+.header-right img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    gap: 15px;
+}
+
+/*==============LOGIN===============*/
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100vh;
+    align-items: center;
+}
+
+.log-in {
+    border-radius: 12px;
+    border: 1px solid var(--dark-gray);
+    padding: 40px 30px;
+    margin: 0;
+    margin-left: 12%;
+    margin-top: -50px;
+
+    width: 65%;
+    height: fit-content(200px, 30%);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    gap: 15px;
+
+}
+
+.log-in img {
+    margin-left: 5%;
+    width: 75%;
+    margin-top: 25px;
+    margin-bottom: 30px;
+}
+
+.log-in-placement {
+    width: 90%;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+.log-in-text {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    text-align: left;
+    background-color: var(--light-gray);
+    font-size: 12px;
+}
+
+.log-in-button {
+    background-color: var(--primary-yellow);
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.sign-up-button {
+    background-color: var(--primary-green);
+    width: 50%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    cursor: pointer;
+}
+
+.left-of-log-in {
+    height: 90%;
+}
+
+.left-of-log-in img {
+    margin-left: 80px;
+    margin-top: 20px;
+    height: 80%;
+    width: 85%;
+    object-fit: contain;
+}
+
+
+/*==============EXPLORE===============*/
+
+.explore-main {
+    font-family: 'K2D';
+    width: 90%;
+    margin: 40px auto;
+    background: var(--light-gray);
+    border-radius: 15px;
+    padding: 30px;
+    min-height: 500px;
+}
+
+.explore-container {
+    display: flex;
+    gap: 40px;
+}
+
+.explore-header {
+    background: #d95c2b;
+    color: #ffffff;
+    padding: 10px 20px;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 8px;
+    display: inline-block;
+    margin-bottom: 40px;
+    width: 350px;
+}
+
+.explore-header img {
+    display: inline-block;
+}
+
+.explore-left {
+    flex: 2;
+}
+
+.explore-room {
+    display: flex;
+    gap: 30px;              /* more breathing room */
+    margin-bottom: 40px;    /* more vertical separation */
+    align-items: flex-start;
+}
+
+.explore-room img {
+    width: 320px;           /* slightly larger visual anchor */
+}
+
+.explore-room-text {
+    flex: 1;                /* allow text to expand instead of being capped */
+    max-width: 500px;
+}
+
+.explore-room-text h3 {
+    margin: 0;
+    color: #C24D1F;
+}
+
+.explore-room-text p {
+    font-size: 14px;
+    color: #2f2f2f;
+}
+
+.explore-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.explore-search {
+    width: 90%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    margin-bottom: 20px;
+    margin-top: 10%;
+    font-size: 14px;
+}
+
+.explore-friends {
+    border: 2px solid #333;
+    border-radius: 8px;
+    padding: 15px;
+    padding-top: 0px;
+    background: var(--white);
+    flex-grow: 1;
+    width: 90%;
+    margin-top: 0;
+}
+
+.explore-account {
+    display: flex;
+    align-items: center;
+    gap: 18px;              /* more space between avatar + content */
+    padding: 10px 0;        /* vertical breathing room per user */
+}
+
+.explore-account img {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+}
+
+.explore-account-info b {
+    color: #2f2f2f;
+}
+
+.explore-footer {
+    text-align: right;
+    margin-top: 30px;
+    font-size: 18px;
+}
+
+.explore-friends-scroll {
+    max-height: 300px;   /* adjust if needed */
+    overflow-y: auto;
+}
+
+.explore-main .messages-container {
+    margin-bottom: 20px;
+}
+
+.explore-main .msg {
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+/*==============MYROOM===============*/
+
+/*dean: mydigiroom left space top bar*/
+
+.room-container {
+    width: 90%;
+    margin: 40px auto;
+    padding: 30px;
+    background: var(--light-gray);
+    border-radius: 15px;
+    position: relative;
+    min-height: 500px;
+}
+
+/*dean: title for room container "My Room"*/
+.room-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/*dean: square edit button
+    this part co-pilot handled really well, i let it
+    do this part because i didn't wanna customize*/
+.edit-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background-color: #6E92FD;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/*dean: expanding hidden button. this and the
+    hidden function below intertwine*/
+.edit-button-expand {
+    margin-top: 20px;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Leaf's Comment: adding in the css classes that help format my section of the room edit*/
+/* comment from me: diego, not typical to have underscores, but since I don't want to heavily modify this, it'll work. */
+.room_edit_notice{
+    visibility: hidden;
+    text-align: center;
+    width: 95%;
+    background-color: yellow;
+    border-radius: 12px;
+    margin: 15px auto;
+}
+.room_container {
+    --angle: 20deg;
+    --wall_size: 450px;
+    /* for a 30deg angle, scale should be ~= 0.866 */
+    --wall_scale: cos(var(--angle));
+    --floor_skew: calc(var(--angle) - 45deg);
+
+    --grid_size: 8;
+
+    --square_size: calc(var(--wall_size) / var(--grid_size));
+
+    --shift_down: 50px;
+
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    
+    width: 95%;
+    margin: 25px auto;
+    height: 75dvh;
+    
+    background: var(--mid-gray);
+    
+    padding: 30px;
+    border-radius: 12px;
+}
+.room_centerpoint{
+    transform: translateY(var(--shift_down));
+}
+.room_wall {
+    position: absolute;
+    display: grid;
+    grid-template-columns: repeat(var(--grid_size), 1fr);
+    grid-template-rows: repeat(var(--grid_size), 1fr);
+    margin: 0px;
+    background: var(--mid-dark-gray);
+    /* background: url("../images/room_editing/pink-pattern-wallpaper.jpg"); */
+    /* background-size: contain; */
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    /* opacity: 0.5; */
+    
+    border: 1px solid red;
+
+    width: var(--wall_size);
+    height: var(--wall_size);
+
+}
+.left_wall {
+    right: 50%;
+    bottom: 50%;
+
+    transform-origin: bottom right;
+    transform: skewY(calc(-1*var(--angle))) scaleY(var(--wall_scale)); 
+}
+.right_wall {
+    left: 50%;
+    bottom: 50%;
+    
+    transform-origin: bottom left;
+    transform: skewY(var(--angle)) scaleY(var(--wall_scale));
+}
+.floor {
+    left: 50%;
+    top: 50%;
+ 
+    transform-origin: top left;
+    transform: rotate(45deg) skew(var(--floor_skew), var(--floor_skew));
+}
+
+.square {
+    width: var(--square_size);
+    height: var(--square_size);
+    /* background: var(--mid-dark-gray); */
+    /* opacity: 0.5; */
+    border: 1px solid red
+    
+}
+.square:hover {
+    background: #e74c3c !important;
+    cursor: pointer;
+}
+
+.side_menu {
+    position: absolute;
+    width: 12.5%;
+    height: 65%;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    /* padding: 30px; */
+    margin-top: 5%;
+    margin-left: 2.5%;
+
+    top: 0;
+    left: 0;
+    background-color: var(--light-gray);
+    /* background-color: var(--white); */
+}
+
+
+.tab_container {
+    display: grid;
+    margin: 5%;
+
+}
+
+.item_tab{
+    cursor: pointer;
+    width: auto;
+    height: 25px;
+    border-radius: 5px;
+    margin: 2%;
+    border: 1px solid var(--mid-dark-gray);
+    background-color: var(--mid-gray);
+    text-align: center;
+}
+.item_tab:hover{
+    /* PLEASE SOMEONE FIX THE COLOR AND MAKE IT LOOK ACTUALLY GOOD */
+    background-color: var(--mid-dark-gray);
+    border: var(--dark-gray)
+}
+
+.item_list{
+    display: none;
+    /* display: grid; */
+    flex: 0.95;
+    overflow-y: scroll;
+    margin-left: 10%;
+    margin-right: 5%;
+    grid-template-columns: repeat(auto-fill, 55px);
+    grid-auto-rows: 55px;
+}
+.item_list img{
+    cursor: pointer;
+}
+
+
+/* depriciated */
+.room_side_menu_title{
+    display: grid;
+    /* grid-template-rows: repeat(var(--grid_size), 1fr); */
+}
+
+.wallpaper {
+    /* grid-template-columns: repeat(var(--grid_size), 1fr); */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12.5%, 1fr));
+    /* gap: 25px; */
+    margin: 10%;
+    height: 50px;
+    width: 50px;
+}
+.flooring {
+    margin: 10%;
+    height: 50px;
+    width: 50px;
+}
+
+
+/*==============HOME PAGE===============*/
+
+.home-main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+
+    width: 90%;
+    margin: 40px auto;
+
+    font-family: 'K2D';
+    background: var(--light-gray);
+    border-radius: 15px;
+    padding: 30px;
+}
+
+.home-left h1 {
+    background: var(--primary-purple);
+    color: white;
+    padding: 15px 25px;
+    font-size: 32px;
+    font-weight: bold;
+    border-radius: 8px;
+    display: inline-block;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    width: 600px;
+}
+
+.home-left h2 {
+    margin-left: 20px;
+    margin-bottom: 12px;
+    font-size: 18px;
+}
+
+.info-block {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-left: 20px;
+}
+
+.info-block img {
+    margin-top: 18px;
+    width: 30px;
+}
+
+.home-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-right-images {
+    margin-left: 10px;
+    width: 100%;
+    max-width: 475px;
+    height: auto;
+}
+
+.home-bottom-button {
+    margin-top: 20px;
+    margin-left: 200px;
+    width: 45%;
+    background: #f5a742;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/*=============FRIENDS PAGE==============*/
+
+.friends-main {
+    font-family: 'K2D';
+    width: 90%;
+    margin: 40px auto;
+    background: var(--light-gray);
+    border-radius: 15px;
+    padding: 30px;
+}
+
+.friends-container {
+    display: flex;
+    gap: 40px;
+    min-height: 500px;
+}
+
+.friends-header {
+    background: #4272FF;
+    color: white;
+    padding: 10px 20px;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 8px;
+    display: inline-block;
+    margin-bottom: 40px;
+    width: 350px;
+}
+
+.friends-left {
+    flex: 2;
+}
+
+.friends-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.friends-search {
+    width: 90%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    margin-top: 10%;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.friends-messaging {
+    border: 2px solid #333;
+    border-radius: 8px;
+    padding: 15px;
+    padding-top: 0px;
+    background: var(--white);
+    flex-grow: 1;
+    width: 90%;
+    margin-top: 0;
+}
+
+.no-friends {
+    font-size: 18px;
+    margin-left: 1%;
+}
+
+.friends-footer {
+    text-align: right;
+    margin-top: 30px;
+    font-size: 18px;
+}
+
+.friend-result {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 12px 0;
+}
+
+.friend-form {
+    margin: 0;
+}
+
+.friend-form button {
+    cursor: pointer;
+}
+
+.msg.success {
+    background: #d4edda;
+    padding: 8px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+/*=======PROFILE AND SETTINGS PAGES=======*/
+/* bethany: layout wrapper */
+.prof-sett-page {
+    font-family: 'K2D';
+    width: 90%;
+    margin: 40px auto;
+    border-radius: 15px;
+}
+
+/*bethany: sidebar + main layout*/
+.prof-sett-content {
+    display: flex;
+    gap: 20px;
+}
+
+/*bethany: sidebar */
+.prof-sett-sidebar {
+    width: 220px;
+    background: var(--light-gray);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 500px;
+}
+
+.prof-sett-sidebar button {
+    font-family: 'K2D';
+    display: block;
+    width: 100%;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    background: var(--white);
+}
+
+/*sidebar button states*/
+.prof-sett-sidebar .active {
+    background: var(--primary-green);
+}
+
+.prof-sett-sidebar .logout {
+    background: var(--primary-yellow);
+    margin-top: auto;
+}
+
+/*bethany: main profile/settings content*/
+.prof-sett-main {
+    flex: 1;
+    background: var(--light-gray);
+    border-radius: var(--border-radius);
+    padding: 30px;
+}
+
+
+.prof-sett-main h1 {
+    background: var(--primary-purple);
+    color: white;
+    padding: 10px 20px;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 8px;
+    display: inline-block;
+    width: 350px;
+}
+
+/*=======PROFILE PAGE========*/
+/* bethany: profile header section */
+.profile-top {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.avatar {
+    width: 80px;
+    height: 80px;
+    background: var(--white);
+    border-radius: 10px;
+}
+
+/*bethany: input containers*/
+.profile-form {
+    margin-top: 20px;
+}
+
+.profile-form input {
+    font-family: 'K2D';
+    width: 90%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 8px;
+    background: var(--white);
+}
+
+.profile-save-button {
+    font-family: 'K2D';
+    width: 20%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 8px;
+    background: var(--primary-green);
+    cursor: pointer;
+}
+
+/*=======SETTINGS PAGE========*/
+.settings-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: left;
+    background: var(--white);
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+.settings-group input {
+    width: auto;
+
+}
+
+/* ===== FRIENDS & EXPLORE ADDITIONS ===== (DEAN) */
+
+/* ---------- FRIENDS PAGE ---------- */
+.friends-main button {
+    font-family: 'K2D', sans-serif;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    background: var(--primary-blue);
+    color: white;
+}
+
+.friends-main button:hover:not(:disabled) {
+    background: #2f5be0;
+}
+
+.friends-main button:disabled {
+    background: var(--mid-gray);
+    color: var(--dark-gray);
+    cursor: not-allowed;
+}
+
+
+.friends-main .remove-btn {
+    background: #ff4d4d;
+}
+
+.friends-main .remove-btn:hover {
+    background: #d93636;
+}
+
+.friends-main .cancel-btn {
+    background: var(--dark-gray);
+}
+
+.friends-main .cancel-btn:hover {
+    background: #555;
+}
+
+
+.friend-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 12px 0;
+    margin-bottom: 10px;
+}
+
+.friend-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.friend-request {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 12px 0;
+    margin-bottom: 10px;
+}
+
+/* ---------- EXPLORE PAGE ---------- */
+.explore-main button {
+    font-family: 'K2D', sans-serif;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.explore-main button.primary {
+    background: #d95c2b;
+    color: #ffffff;
+}
+
+.explore-main button:hover:not(:disabled) {
+    background: #b84a21;
+}
+
+.explore-main button:disabled {
+    background: #d0d0d0;
+    color: #6a6a6a;
+    cursor: not-allowed;
+}
+
+
+button.secondary:hover {
+    background: #2f2f2f;
+    color: #ffffff;
+}
+
+.explore-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.explore-account-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+}
+
+.explore-account-info .explore-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.pfp-sm {
+width: 40px !important;
+height: 40px !important;
+object-fit: cover;
+border-radius: 8px;
+flex-shrink: 0;
+display: block;
+}
+
+.profile-save-button {
+    width: 200px;
+    background: var(--primary-green);
+    color: white;
+    font-weight: 600;
+}
+
+.profile-save-button:hover {
+    background: #7ed61f;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}

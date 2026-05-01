@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyDigiRoom - My Profile</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+
+<body>
+    {% include 'header.html' with nameplate="My Profile" %}
+    <main class="prof-sett-page">
+        <div class="prof-sett-content">
+            <aside class="prof-sett-sidebar">
+                <div>
+                    <button id="nav-profile" class="active">My Profile</button>
+                    <button id="nav-settings">Settings</a>
+                </div>
+                <form action="/users/logout" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="logout">Logout</button>
+                </form>
+            </aside>
+
+            <section class="prof-sett-main">
+                <h1>My Profile</h1>
+
+                <div class="profile-top">
+                    <div class="avatar">
+                        <!-- Simple error checking, if somehow this file is gone. -->
+                        {% if user.profilePicture and user.profilePicture.url %}
+                            <img class="avatar" src="{{ user.profilePicture.url }}" alt="Profile Picture" onerror="this.src='/media/pfp/default.png';"></img>
+                        {% else %}
+                            <img class="avatar" src="/media/pfp/default.png" alt="Profile Picture"></img>
+                        {% endif %}
+                    </div>
+                    <p id="welcome-message">Hello {{request.session.username}}!</p>
+                </div>
+
+                <div class="profile-form">
+                    <form method="POST" action="{% url 'users:updateProfile' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <!-- This is temporary, I'll let someone else change this, our designer likely :( -->
+                        <p for="pfp">Change Profile Picture:</p>
+                        <input type="file" name="profilePic" id="pfp" accept="image/*">
+                        <input id="email" name="email" type="email" aria-label="Email Address" placeholder="Email Address" value="{{ user.email }}" autocomplete="new-password">
+                        <input id="username" name="username" type="text" placeholder="Username" aria-label="Username" value="{{ user.username }}" autocomplete="new-password">
+                        <input id="name" name="name" type="text" placeholder="Name" aria-label="Name" value="{{ user.name }}" autocomplete="name">
+                        <input id="college" name="college" type="text" placeholder="College" aria-label="College" value="{{ user.college }}" autocomplete="new-password">
+                        <input id="password" name="password" type="password" placeholder="Change Password" aria-label="Change Password" autocomplete="new-password">
+                        <div class="save-button">
+                            <button type="submit" class="profile-save-button">Save Changes</button>
+                        </div>
+                    </form>
+                    <!-- This is quite nasty, but essentially this prints out either a success or error and the right color, its a bit foul but at the moment it'll be fine. -->
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p {% if message.tags %} class="{{ message.tags }}" 
+                            style="color: {% if 'error' in message.tags %} red {% elif 'success' in message.tags %} green {% else %} black {% endif %};">
+                            {{ message }}
+                            </p>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+
+<script src="{% static 'js/subtabProfileSettings.js' %}"></script>
+
+</html>

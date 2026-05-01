@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyDigiRoom - Settings</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+
+<body>
+    {% include 'header.html' with nameplate="Settings" %}
+    <main class="prof-sett-page">
+        <div class="prof-sett-content">
+            <aside class="prof-sett-sidebar">
+                <div>
+                    <button id="nav-profile">My Profile</button>
+                    <button id="nav-settings" class="active">Settings</a>
+                </div>
+                <form action="/users/logout" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="logout" onclick="localStorage.clear();">Logout</button>
+                </form>
+            </aside>
+
+            <section class="prof-sett-main">
+                <div class="proff-sett-main">
+                    <h1>Privacy Settings</h1>
+                </div>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="settings-group">
+                        <p>Hide Room</p>
+                        <input type="checkbox" name="hide_room" {% if user.hide_room %}checked{% endif %}>
+                    </div>
+
+                    <div class="settings-group">
+                        <p>Allow Friend Requests</p>
+                        <input type="checkbox" name="allow_requests" {% if user.allow_requests %}checked{% endif %}>
+                    </div>
+
+                    <div class="settings-group">
+                        <p>Show Profile in Search</p>
+                        <input type="checkbox" name="show_profile" {% if user.show_profile %}checked{% endif %}>
+                    </div>
+                    <button type="submit" class="profile-save-button">Save Changes</button>
+                </form>
+            </section>
+        </div>
+
+    </main>
+</body>
+
+<script src="{% static 'js/subtabProfileSettings.js' %}"></script>
+
+</html>

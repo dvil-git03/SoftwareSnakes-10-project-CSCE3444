@@ -22,3 +22,30 @@ https://us05web.zoom.us/j/83044713288?pwd=QFN6uw1LTIY9ZwaBh2ydrrL57aRbPw.1
 Meeting ID: 830 4471 3288 
 Passcode: 3igRQJ 
 
+## Run Server
+To run and develop the proof of concept, install Django using PIP (Python's Package Manager).
+``pip install django psycopg2 pillow``.
+
+Before you can run the server, you must launch your PostgreSQL server. Modify the settings in `mydigiroom/settings.py` to match the settings of
+your PostgreSQL account. Please read `dbChanges.md` for more information on configuring the database.
+
+After ensuring all settings are correct, we will launch the server with
+`` python manage.py runserver ``.
+
+You may enter the admin panel using ``127.0.0.1:PORT/admin`` and you may directly interface with the database using the admin panel, but
+you must make a superuser account using `python manage.py createsuperuser` and by following the prompts, you can ignore an email if you wish.
+
+At the moment, I have migrated the static HTML pages to be Django compliant, and everything should be working as intended. Once the server is running you
+will be greeted with the home.html page. To access other websites, since the login logic has yet to be implemented, manually type into the search bar the 
+page you'd like to visit.
+Examples include:
+- /users/myroom
+- /users/settings
+- /users/friends
+- /users/explore
+
+The header should direct you to the correct pages as well.
+
+If you have any questions, please contact Diego. :)
+
+

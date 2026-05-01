@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyDigiRoom - Login</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+
+<body>
+    {% include 'header.html' with nameplate="" %}
+    <div class="container">
+        <div class="left-of-log-in">
+            <img src="{% static 'images/bigcat.png' %}" alt="Big Cat">
+        </div>
+        <div class="log-in">
+            <img src="{% static 'images/logo.png' %}" alt="Logo">
+            <form method="POST" action="{% url 'authenticate:login' %}">
+                <!-- Django login logic required to properly use the Python logic
+                     CSRF token to protect user POST requests                 -->
+                {% csrf_token %}
+                <div class="log-in-placement">
+                    <input type="text" class="log-in-text" id="username" placeholder="Username" name="username" autocomplete="off" aria-label="Username">
+                </div>
+                <div class="log-in-placement">
+                    <input type="password" class="log-in-text" id="password" placeholder="Password" name="password" autocomplete="new-password" aria-label="Password">
+                </div>
+                <div class="log-in-placement">
+                    <button class="log-in-button" type="submit">Log In</button>
+                </div>
+            </form>
+                <div class="log-in-placement">
+                    <!-- nasty hack, but it's alright. -->
+                    <button onclick="window.location='/authenticate/signup'" class="sign-up-button" href="/authenticate/signup" style="background-color:var(--primary-green)">Sign Up Here!</button>
+                     <!-- Error handling -->
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p id="error" style="color: red">{{ message }}</p>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+        </div>
+    </div>
+</body>
+
+</html>
