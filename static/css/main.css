@@ -433,7 +433,9 @@ body {
     background-size: 100% 100%;
     background-repeat: no-repeat;
     /* opacity: 0.5; */
-    
+
+    overflow: visible;
+
     border: 1px solid red;
 
     width: var(--wall_size);
@@ -467,8 +469,13 @@ body {
     height: var(--square_size);
     /* background: var(--mid-dark-gray); */
     /* opacity: 0.5; */
-    border: 1px solid red
+    border: 1px solid red;
+    /* transform-origin: bottom left; */
+    /* transform: scale(1) rotate(0); */
+    transform-origin: center;
+    transform: rotate(0deg);
     
+
 }
 .square:hover {
     background: #e74c3c !important;
@@ -493,6 +500,25 @@ body {
     /* background-color: var(--white); */
 }
 
+.edit_menu {
+    visibility: hidden;
+    position: absolute;
+    width: 12.5%;
+    height: auto;
+    overflow: hidden;
+    /* text-align: center; */
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    /* padding: 30px; */
+    margin-top: 5%;
+    margin-right: 2.5%;
+
+    top: 0;
+    right: 0;
+    background-color: var(--light-gray);
+    /* background-color: var(--white); */
+}
 
 .tab_container {
     display: grid;
@@ -551,6 +577,35 @@ body {
     height: 50px;
     width: 50px;
 }
+
+.save_button {
+    position: absolute;
+    width: 12.5%;
+    height: auto;
+    overflow: hidden;
+    align-items: center;
+
+    border-radius: 50px;
+
+    display: flex;
+    flex-direction: column;
+    /* padding: 30px; */
+    margin-top: 0.5%;
+    margin-left: 2.5%;
+
+    top: 0;
+    left: 0;
+    background-color: var(--light-gray);
+    /* background-color: var(--white); */
+}
+
+.save_button:hover{
+    /* PLEASE SOMEONE FIX THE COLOR AND MAKE IT LOOK ACTUALLY GOOD */
+    background-color: var(--mid-dark-gray);
+    border: var(--dark-gray);
+    cursor: pointer;
+}
+
 
 
 /*==============HOME PAGE===============*/

@@ -4,10 +4,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Q
 from django.contrib.auth.hashers import make_password
-from .models import FriendRequest, Friends, Userinfo, Userpass
+from .models import FriendRequest, Friends, Userinfo, Userpass, Userroom
 from django.views.decorators.http import require_POST
 from django.contrib import messages
-
+#import json
+#from django.http import JsonResponse
 
 # Create your views here.
 
@@ -22,13 +23,30 @@ def viewRoom(request, urlID=None):
 
   targetedUser = get_object_or_404(Userinfo, userid=targetID)
   isOwner = (request.session['userid'] == targetedUser.userid)
+  #roomConfig = getattr(targetedUser, 'room', None)
 
   context = {
     'targetedUser': targetedUser,
-    'isOwner': isOwner
+    'isOwner': isOwner,
+    #'json': roomConfig.roomJSON if roomConfig else {}
   }
 
   return render(request, 'myroom.html', context)
+
+# def saveRoom(request): 
+#     if request.method == "POST":
+#         try:
+#             user_id_from_session = request.session['userid']
+#             # Fetch the actual user instance first
+#             user_instance = Userinfo.objects.get(userid=user_id_from_session)
+#             data = json.loads(request.body) # Loading the JSON sent to us
+#             room, created = Userroom.objects.get_or_create(userid=user_instance) # saving in the users room
+#             room.roomJSON = data
+#             room.save() 
+#             return JsonResponse({"status": "saved"})
+#         except Exception as e:
+#             print(f"ERROR: {e}")
+#             return JsonResponse({"status": "error", "message": str(e)}, status=400)
 
 def explore(request):
     if 'userid' not in request.session:

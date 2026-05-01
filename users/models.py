@@ -63,13 +63,9 @@ class Userpass(models.Model):
 
 
 class Userroom(models.Model):
-    userid = models.ForeignKey(Userinfo, models.DO_NOTHING, db_column='userid')
-    backgroundid = models.ForeignKey(Objectdata, models.DO_NOTHING, db_column='backgroundid')
-    roomitem1id = models.IntegerField(blank=True, null=True)
-    roomitem2id = models.IntegerField(blank=True, null=True)
-    roomitem3id = models.IntegerField(blank=True, null=True)
-    roomitem4id = models.IntegerField(blank=True, null=True)
-    roomitem5id = models.IntegerField(blank=True, null=True)
+    userid = models.OneToOneField(Userinfo, models.CASCADE, db_column='userid', related_name="room", primary_key=True, null=False)
+    roomJSON = models.JSONField(default=dict, blank=True)
+    dateUpdated = models.DateTimeField(auto_now=True)
 
     class Meta:
         managed = True

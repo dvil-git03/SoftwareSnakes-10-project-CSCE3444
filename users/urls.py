@@ -6,6 +6,7 @@ app_name = "users"
 urlpatterns = [
     path('room/', views.viewRoom, name='myRoom'),
     path('room/<int:urlID>', views.viewRoom, name='viewRoom'),
+    #path('saveRoom/', views.saveRoom, name='saveRoom'),
     path('explore', views.explore, name='explore'),
     path('friends', views.friends, name='friends'),
     path('profile', views.profile, name='profile'),
