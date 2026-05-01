@@ -24,12 +24,12 @@ https://us05web.zoom.us/j/83044713288?pwd=QFN6uw1LTIY9ZwaBh2ydrrL57aRbPw.1
 Meeting ID: 830 4471 3288 
 Passcode: 3igRQJ 
 
-## Prepare to Run Server
+### Prepare to Run Server
 To run and develop the proof of concept, install Django using PIP (Python's Package Manager), 
 ``pip install django psycopg2 pillow`` and allowing it to install the packages.
 
 
-### Database 
+## Database 
 Before you can run the server, you must launch your PostgreSQL server. Modify the settings in `mydigiroom/settings.py` to match the settings of
 your PostgreSQL account and database. This tutorial assumes you are running an empty database and schema. If you have items, records, or tables in your database,
 please refer to _dbChanges.md_ on how to start the table from scratch.
