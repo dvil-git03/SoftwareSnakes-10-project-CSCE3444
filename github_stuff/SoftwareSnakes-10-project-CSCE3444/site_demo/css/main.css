@@ -478,6 +478,25 @@ body {
     /* background-color: var(--white); */
 }
 
+.edit_menu {
+    position: absolute;
+    width: 12.5%;
+    height: auto;
+    overflow: hidden;
+    /* text-align: center; */
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    /* padding: 30px; */
+    margin-top: 5%;
+    margin-right: 2.5%;
+
+    top: 0;
+    right: 0;
+    background-color: var(--light-gray);
+    /* background-color: var(--white); */
+}
+
 
 .tab_container{
     display: grid;

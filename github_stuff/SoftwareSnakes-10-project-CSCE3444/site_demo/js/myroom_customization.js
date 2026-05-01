@@ -9,11 +9,16 @@ function add_squares(wall_type){
         squares_on_wall += `<div class="square" id="${i}, ${wall_type}"></div>`;
     }
     document.querySelector(`.room_wall.${wall_type}`).innerHTML = squares_on_wall;
+    document.querySelector(`.room_wall.${wall_type}`).style.background = `url("images/room_editing/wallpapers/white_plain.jpeg")`;
+    document.querySelector(`.room_wall.${wall_type}`).wallpaper = "images/room_editing/wallpapers/white_plain.jpeg";
 }
 
 add_squares("left_wall")
 add_squares("right_wall")
 add_squares("floor")
+
+
+
 
 
 // makes the tab menu actually swap between tabs
@@ -24,11 +29,15 @@ let item_tabs = document.getElementsByClassName("item_list")
 item_tabs[0].style.display = "grid";
 // console.log(item_tabs)
 
+
+current_tab = "Wallpaper/Flooring"
+// event listener for switching tabs
 tab_container.addEventListener("click", (event) => {
     for(let i = 0; i<item_tabs.length; i++){
         item_tabs[i].style.display = "none";
         if(item_tabs[i].id == event.target.id){
             item_tabs[i].style.display = "grid";
+            current_tab = event.target.id
         }
     }
 });
@@ -38,6 +47,7 @@ tab_container.addEventListener("click", (event) => {
 let selected_item = "";
 let selected_item_type = "";
 let edit_notice = document.getElementsByClassName("room_edit_notice")[0];
+let edit_menu = document.getElementsByClassName("edit_menu")[0];
 const element = document.querySelector('.room_container');
 const grid_size = window.getComputedStyle(element).getPropertyValue('--grid_size') ** 2;
 let room_storage = {
@@ -79,7 +89,7 @@ item_container.addEventListener("click", (event) => {
 const room_container = document.getElementsByClassName("room_container")[0];
 
 // console.log(room_container);
-
+// event listener for when a tile is clicked 
 room_container.addEventListener("click", (event) => {
     if(event.target.classList.contains("square")){
         console.log("Clicked:", event.target.id);
@@ -94,11 +104,12 @@ room_container.addEventListener("click", (event) => {
             // console.log(wallpaper_str)
             selected_wall.style.background = "";
             selected_wall.style.backgroundImage = wallpaper_str;
-
+            selected_wall.wallpaper = wallpaper_str.replace("url(\"", "").replace("\")", "");
+            
             room_storage[wall_id] = wallpaper_str;
             console.log(room_storage)
         }
-        if(selected_item_type == "Items"){
+        else if(selected_item_type == "Items"){
             const tile_id = event.target.id;
             console.log(document.getElementById(tile_id));
             let tile = document.getElementById(tile_id);
@@ -108,6 +119,8 @@ room_container.addEventListener("click", (event) => {
             tile.style.backgroundSize = "cover";   // or contain
             tile.style.backgroundRepeat = "no-repeat";
             tile.style.backgroundPosition = "center";
+            
+            // tile.style.rotate = '90deg';
             
             const tile_num = tile_id.split(", ")[0];
             const wall_id = tile_id.split(", ")[1];
@@ -119,7 +132,45 @@ room_container.addEventListener("click", (event) => {
         selected_item = "";
         selected_item_type = "";
         edit_notice.style.visibility = "hidden";
+        
+        if(selected_item == ""){
+            if(current_tab == "Wallpaper/Flooring"){
+                console.log(current_tab)
+                const wall_id = event.target.id.split(", ")[1];
+                let selected_wall = document.getElementsByClassName(wall_id)[0];
+                let wall_wallpaper = selected_wall.wallpaper
+                console.log(wall_wallpaper)
+                edit_menu.innerHTML = `<h3>${wall_id} selected!</h3>
+                    <img object-fit="cover" height="100px" width="100px" src="${wall_wallpaper}" alt="wallpaper">
+                    <div id="rotation_container" vertical-align="middle">
+                        <img id="rotate_right" object-fit="cover" height="50px" width="50px" src="images/room_editing/rotate-right-variant.svg" alt="rotate right">
+                        Rotate Image
+                        <img id="rotate_left" object-fit="cover" height="50px" width="50px" src="images/room_editing/rotate-left-variant.svg" alt="rotate left">
+                    </div>
+                    
+                    `
+                // console.log(selected_wall.wallpaper)
+
+            }
+            if(current_tab == "Items"){
+                console.log(current_tab)
+            }
+
+        }
+
     }
 });
 // alert("this got loaded and actually ran, wow");
 
+
+// const rotation_container = document.getElementById("rotation_container");
+// // console.log(rotation_container)
+// rotation_container.addEventListener("click", (event) => {
+//     if(event.target.id.contains("rotate_right")){
+//         console.log("will rotate to the right")
+//     }
+//     if(event.target.id.contains("rotate_left")){
+//         console.log("will rotate to the left")
+//     }
+
+// });
