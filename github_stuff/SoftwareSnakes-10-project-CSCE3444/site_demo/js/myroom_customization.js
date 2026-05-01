@@ -246,3 +246,12 @@ edit_menu.addEventListener("click", (event) => {
     room_storage[wall_id]["tiles"][tile_num].set_item_rotation(transformations);
     console.log(room_storage)
 });
+
+
+
+const save_button = document.getElementsByClassName("save_button")[0];
+
+save_button.addEventListener("click", (event) => {
+    console.log("Saving item to blah blah");
+    console.log(room_storage);
+});
