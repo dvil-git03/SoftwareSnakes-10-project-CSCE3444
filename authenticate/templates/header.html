@@ -13,7 +13,7 @@
     <div class="header-right">
         <div class="header-logo">
             {% if request.session.userid %}
-                <a href="{% url 'users:viewRoom' urlID=request.session.userid %}">
+                <a href="{% url 'users:myRoom' %}">
                     <img src="/static/images/house_icon.png" alt="Home">
                 </a>
             {% else %}

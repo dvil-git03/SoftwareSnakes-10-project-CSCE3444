@@ -7,8 +7,8 @@
     <title>MyDigiRoom - Explore</title>
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
-<body>
-
+<body> 
+    
     <header>
     {% include 'header.html' with nameplate="Explore" %}
     </header>
@@ -59,7 +59,8 @@
                 <p>This is {{ user.username }}'s room preview.</p>
 
                 <div class="explore-actions">
-                    <button type="button" class="secondary">Visit Room</button>
+                    <!-- Not great... -->
+                    <button type="submit" class="secondary" onclick="window.location.href='{% url 'users:viewRoom' urlID=user.userid %}'">Visit Room</button>
 
                     {% if user.userid in friend_ids %}
                         <button type="button" disabled>Already Friends</button>
@@ -131,7 +132,7 @@
             <b>{{ user.username }}</b>
 
             <div class="explore-actions">
-                <button type="button" class="secondary">Visit Room</button>
+                <button type="submit" class="secondary" onclick="window.location.href='{% url 'users:viewRoom' urlID=user.userid %}'">Visit Room</button>
 
                 {% if user.userid in friend_ids %}
                     <button type="button" disabled>Already Friends</button>
@@ -166,18 +167,6 @@
         <button type="button" onclick="closeProfileModal()">Close</button>
     </div>
 </div>
-
-<script>
-function openProfileModal(username, imgUrl) {
-    document.getElementById("profile-modal").style.display = "flex";
-    document.getElementById("modal-img").src = imgUrl;
-    document.getElementById("modal-username").innerText = username;
-}
-
-function closeProfileModal() {
-    document.getElementById("profile-modal").style.display = "none";
-}
-</script>
-
+<script src="{% static 'js/profileModal.js' %}"></script>
 </body>
 </html>

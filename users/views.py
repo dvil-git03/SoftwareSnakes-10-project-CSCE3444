@@ -11,14 +11,21 @@ from django.contrib import messages
 
 # Create your views here.
 
-def viewRoom(request, urlID):
+def viewRoom(request, urlID=None):
   if 'userid' not in request.session:
     return redirect('authenticate:login')
   
-  targetedUser = get_object_or_404(Userinfo, userid=urlID)
+  if urlID is None:
+    targetID = request.session['userid']
+  else:
+    targetID = urlID
+
+  targetedUser = get_object_or_404(Userinfo, userid=targetID)
+  isOwner = (request.session['userid'] == targetedUser.userid)
 
   context = {
-    'targetedUser': targetedUser
+    'targetedUser': targetedUser,
+    'isOwner': isOwner
   }
 
   return render(request, 'myroom.html', context)

@@ -109,7 +109,7 @@
                             <b>{{ friend.username }}</b>
                         </div>
                         <div style="display:flex; gap:10px;">
-                            <button type="button">Visit Room</button>
+                            <button type="submit" class="secondary" onclick="window.location.href='{% url 'users:viewRoom' urlID=friend.userid %}'">Visit Room</button>
                             <form method="POST" action="{% url 'users:remove_friend' %}">
                                 {% csrf_token %}
                                 <input type="hidden" name="friend_id" value="{{ friend.userid }}">
@@ -151,7 +151,7 @@
                             </div>
 
                             <div class="friend-actions">
-                                <button type="button" class="secondary">Visit Room</button>
+                                <button type="submit" class="secondary" onclick="window.location.href='{% url 'users:viewRoom' urlID=user.userid %}'">Visit Room</button>
 
                                 {% if user.userid in friend_ids %}
                                     <button type="button" disabled>Friends</button>
@@ -196,18 +196,6 @@
         <button type="button" onclick="closeProfileModal()">Close</button>
     </div>
 </div>
-
-<script>
-function openProfileModal(username, imgUrl) {
-    document.getElementById("profile-modal").style.display = "flex";
-    document.getElementById("modal-img").src = imgUrl;
-    document.getElementById("modal-username").innerText = username;
-}
-
-function closeProfileModal() {
-    document.getElementById("profile-modal").style.display = "none";
-}
-</script>
-
+<script src="{% static 'js/profileModal.js' %}"></script>
 </body>
 </html>

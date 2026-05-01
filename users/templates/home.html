@@ -41,7 +41,7 @@
 
             <div class ="home-bottom-button">
                 {% if request.session.userid %}
-                    <a href="{% url 'users:viewRoom' urlID=request.session.userid %}">
+                    <a href="{% url 'users:myRoom' %}">
                         <span style="color: white;">
                             Get started designing!
                         </span>
