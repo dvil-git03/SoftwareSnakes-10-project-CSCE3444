@@ -24,7 +24,7 @@ https://us05web.zoom.us/j/83044713288?pwd=QFN6uw1LTIY9ZwaBh2ydrrL57aRbPw.1
 Meeting ID: 830 4471 3288 
 Passcode: 3igRQJ 
 
-### Prepare to Run Server
+# Prepare to Run Server
 To run and develop the proof of concept, install Django using PIP (Python's Package Manager), 
 ``pip install django psycopg2 pillow`` and allowing it to install the packages.
 
