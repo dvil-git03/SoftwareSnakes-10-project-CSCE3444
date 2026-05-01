@@ -418,6 +418,8 @@ body {
     background-size: 100% 100%;
     background-repeat: no-repeat;
     /* opacity: 0.5; */
+
+    overflow: visible;
     
     border: 1px solid red;
 
@@ -452,7 +454,12 @@ body {
     height: var(--square_size);
     /* background: var(--mid-dark-gray); */
     /* opacity: 0.5; */
-    border: 1px solid red
+    border: 1px solid red;
+    /* transform-origin: bottom left; */
+    /* transform: scale(1) rotate(0); */
+    transform-origin: center;
+    transform: rotate(0deg);
+    
     
 }
 .square:hover {
@@ -479,6 +486,7 @@ body {
 }
 
 .edit_menu {
+    visibility: hidden;
     position: absolute;
     width: 12.5%;
     height: auto;
