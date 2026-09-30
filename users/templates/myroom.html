@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyDigiRoom - My Room</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+
+<body>
+    {% include 'header.html' with nameplate=targetedUser.username is_room=True %}
+    <main> 
+        <div class="room_edit_notice">⚠️ Notice ⚠️</div>
+        <div class="room_container">
+            <!-- all 3 walls of the room -->
+            <div class="room_centerpoint">
+                <div class="room_wall left_wall"></div>
+                <div class="room_wall right_wall"></div>
+                <div class="room_wall floor"></div>
+            </div>
+
+            <!-- side menue is the entier menu on the left side of the screen -->
+            <div class="side_menu">
+                <!-- creates the class tab_container so then each tab will have the same formatting -->
+                <!-- tab container will also be used for a click event to check and see which tab has been clicked to change the actual stuff in the menu -->
+                <div class="tab_container">
+                    <div class="item_tab" id="Wallpaper/Flooring">Wallpaper/Flooring</div>
+                    <div class="item_tab" id="Items">Items</div>
+                </div>
+
+                <div class="item_list" id="Wallpaper/Flooring">
+                    <img id="blue_stripes.jpeg" object-fit="cover" height="50px" width="50px" src="{% static 'images/room_editing/wallpapers/blue_stripes.jpeg' %}" alt="blue_stripes">
+                    <img id="colorful_doodles.jpeg" object-fit="cover" height="50px" width="50px" src="{% static 'images/room_editing/wallpapers/colorful_doodles.jpeg' %}" alt="colorful_doodles">
+                    <img id="brown_wood.jpeg" object-fit="cover" height="50px" width="50px" src="{% static 'images/room_editing/wallpapers/brown_wood.jpeg' %}" alt="brown_wood">    
+                </div>
+                <div class="item_list" id="Items">
+                    <img id="basketball.png" object-fit="cover" height="50px" width="50px" src="{% static 'images/room_editing/items/basketball.png' %}" alt="basketball">        
+                    <img id="clay_pot.png" object-fit="cover" height="50px" width="50px" src="{% static 'images/room_editing/items/clay_pot.png' %}" alt="clay_pot">        
+                    <img id="crystal.png" object-fit="cover" height="50px" width="50px" src="{% static 'images/room_editing/items/crystal.png' %}" alt="crystal">        
+                </div>  
+        </div>
+        <div class="edit_menu">
+            <h3 id="edit_menu_item_selected">SELECTED</h3>
+            <div id="rotation_container" vertical-align="middle">
+                <img id="rotate_right" object-fit="cover" height="50px" width="50px" src="images/room_editing/rotate-right-variant.svg" alt="rotate right">
+                Rotate Image
+                <img id="rotate_left" object-fit="cover" height="50px" width="50px" src="images/room_editing/rotate-left-variant.svg" alt="rotate left">
+            </div>
+        </div>
+        <div class="save_button"><h3>Save Changes</h3></div>
+    </main>
+    <!--script type="text/javascript">
+        const initRoom = {{ json|safe|default:"{}" }}
+    </script-->
+    <script src="{% static 'js/myroom_customization.js' %}" defer></script>
+</body>

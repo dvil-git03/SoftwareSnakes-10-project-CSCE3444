@@ -1,0 +1,201 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyDigiRoom - Friends</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+
+<body>
+    {% include 'header.html' with nameplate="Friends" %}
+    <div class="friends-main">
+
+        {% if messages %}
+        <div class="messages-container">
+            {% for message in messages %}
+                {% if "friends" in message.tags %}
+                    <p class="msg success">{{ message }}</p>
+                {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="friends-container">
+
+            <!-- LEFT SIDE -->
+            <div class="friends-left">
+
+                <div class="friends-header">Friends</div>
+
+                <h3>Friend Requests</h3>
+                {% if incoming_requests %}
+                    {% for req in incoming_requests %}
+                    <div class="friend-request">
+                        <div style="display:flex; align-items:center; gap:10px;">
+                            {% if req.sender.profilePicture and req.sender.profilePicture.url %}
+                                <img src="{{ req.sender.profilePicture.url }}" class="pfp-sm"
+                                     onclick="openProfileModal('{{ req.sender.username }}', '{{ req.sender.profilePicture.url }}')"
+                                     onerror="this.src='/media/pfp/default.png';">
+                            {% else %}
+                                <img src="/media/pfp/default.png" class="pfp-sm"
+                                    onclick="openProfileModal('{{ req.sender.username }}', '/media/pfp/default.png')">
+                            {% endif %}
+                            <p>{{ req.sender.username }}</p>
+                        </div>
+                        <div style="display:flex; gap:10px;">
+                            <form method="POST" action="{% url 'users:accept_friend_request' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="sender_id" value="{{ req.sender.userid }}">
+                                <button type="submit">Accept</button>
+                            </form>
+
+                            <form method="POST" action="{% url 'users:cancel_friend_request' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="user_id" value="{{ req.sender.userid }}">
+                                <button type="submit" class="cancel-btn">Cancel</button>
+                            </form>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <p>No pending requests</p>
+                {% endif %}
+
+                <h3>Sent Requests</h3>
+                {% if sent_requests %}
+                    {% for req in sent_requests %}
+                    <div class="friend-request">
+                        <div style="display:flex; align-items:center; gap:10px;">
+                            {% if req.receiver.profilePicture and req.receiver.profilePicture.url %}
+                                <img src="{{ req.receiver.profilePicture.url }}" class="pfp-sm"
+                                     onclick="openProfileModal('{{ req.receiver.username }}', '{{ req.receiver.profilePicture.url }}')"
+                                     onerror="this.src='/media/pfp/default.png';">
+                            {% else %}
+                                <img src="/media/pfp/default.png" class="pfp-sm"
+                                    onclick="openProfileModal('{{ req.receiver.username }}', '/media/pfp/default.png')">
+                            {% endif %}
+                            <div>{{ req.receiver.username }}</div>
+                        </div>
+
+                        <div class="friend-actions">
+                            <span style="font-size:12px; color:var(--dark-gray);">Requested</span>
+                            <form method="POST" action="{% url 'users:cancel_friend_request' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="user_id" value="{{ req.receiver.userid }}">
+                                <button type="submit" class="cancel-btn">Cancel</button>
+                            </form>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <p>No outgoing requests</p>
+                {% endif %}
+
+                <h3><b>Your Friends</b></h3>
+                {% if friends %}
+                    {% for friend in friends %}
+                    <div class="friend-row">
+                        <div style="display:flex; align-items:center; gap:10px;">
+                            {% if friend.profilePicture and friend.profilePicture.url %}
+                                <img src="{{ friend.profilePicture.url }}" class="pfp-sm"
+                                     onclick="openProfileModal('{{ friend.username }}', '{{ friend.profilePicture.url }}')"
+                                     onerror="this.src='/media/pfp/default.png';">
+                            {% else %}
+                                <img src="/media/pfp/default.png" class="pfp-sm"
+                                    onclick="openProfileModal('{{ friend.username }}', '/media/pfp/default.png')">
+                            {% endif %}
+                            <b>{{ friend.username }}</b>
+                        </div>
+                        <div style="display:flex; gap:10px;">
+                            <button type="submit" class="secondary" onclick="window.location.href='{% url 'users:viewRoom' urlID=friend.userid %}'">Visit Room</button>
+                            <form method="POST" action="{% url 'users:remove_friend' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="friend_id" value="{{ friend.userid }}">
+                                <button type="submit" class="remove-btn">Remove</button>
+                            </form>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <p>No friends yet!</p>
+                {% endif %}
+
+            </div>
+
+            <!-- RIGHT SIDE -->
+            <div class="friends-right">
+
+                <form method="GET">
+                    <input class="friends-search" type="text" name="q" placeholder="Search your friends"
+                        value="{{ query|default:'' }}">
+                </form>
+
+                <div class="friends-results">
+                    {% if results %}
+                        {% for user in results %}
+                        <div class="friend-result">
+                            <div style="display:flex; align-items:center; gap:10px;">
+                                {% if user.profilePicture and user.profilePicture.url %}
+                                    <img src="{{ user.profilePicture.url }}" class="pfp-sm"
+                                         onclick="openProfileModal('{{ user.username }}', '{{ user.profilePicture.url }}')"
+                                         onerror="this.src='/media/pfp/default.png';">
+                                {% else %}
+                                    <img src="/media/pfp/default.png" class="pfp-sm"
+                                         onclick="openProfileModal('{{ user.username }}', '/media/pfp/default.png')">
+                                {% endif %}
+                                <b>
+                                    {{ user.username }}
+                                </b>
+                            </div>
+
+                            <div class="friend-actions">
+                                <button type="submit" class="secondary" onclick="window.location.href='{% url 'users:viewRoom' urlID=user.userid %}'">Visit Room</button>
+
+                                {% if user.userid in friend_ids %}
+                                    <button type="button" disabled>Friends</button>
+
+                                {% elif user.userid in sent_request_ids %}
+                                    <form method="POST" action="{% url 'users:cancel_friend_request' %}">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="user_id" value="{{ user.userid }}">
+                                        <button type="submit" class="cancel-btn">Cancel</button>
+                                    </form>
+
+                                {% else %}
+                                    <form method="POST" action="{% url 'users:add_friend' %}">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="friend_id" value="{{ user.userid }}">
+                                        <button type="submit">Add Friend</button>
+                                    </form>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% elif query %}
+                        <p>No friends found.</p>
+                    {% endif %}
+                </div>
+
+                <div class="friends-messaging">
+                    <h3>Messaging</h3>
+                    <p style="font-size:12px;">Check back for a messaging update!</p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="friends-footer"></div>
+    </div>
+
+    <div id="profile-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); justify-content:center; align-items:center;">
+    <div style="background:white; padding:20px; border-radius:10px; text-align:center;">
+        <img id="modal-img" src="" style="width:150px; height:150px; object-fit:cover; border-radius:50%;">
+        <h3 id="modal-username"></h3>
+        <button type="button" onclick="closeProfileModal()">Close</button>
+    </div>
+</div>
+<script src="{% static 'js/profileModal.js' %}"></script>
+</body>
+</html>
